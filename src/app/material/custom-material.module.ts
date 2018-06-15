@@ -71,5 +71,5 @@ import {
         MatTooltipModule,
     ],
 })
-export class CustomMaterialModule {
+export class MaterialModule {
 }

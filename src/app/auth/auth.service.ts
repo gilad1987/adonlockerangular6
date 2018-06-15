@@ -1,17 +1,23 @@
-import { Injectable } from '@angular/core';
-import {of} from "rxjs/index";
+import {Injectable} from '@angular/core';
+import {Observable, of} from "rxjs/index";
+import {User} from "./user.interface";
+import {Store} from "../services/store/store";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
-  user = { isAdmin: false };
+    private user: Observable<User> = this.store.select('user');
 
-  checkPermissions() {
-    return of(false);
-  }
-  isLoggedIn() {
-    return of(true);
-  }
+    constructor(private store: Store) {
+    }
+
+    checkPermissions() {
+        return of(false);
+    }
+
+    isLoggedIn() {
+        return of(true);
+    }
 }
