@@ -23,7 +23,7 @@ export class AuthGuard implements CanLoad, CanActivate {
 
     canActivate() {
         const canActivate$ = this.authService.isLoggedIn();
-
+debugger;
         canActivate$.subscribe((canActivate) => {
             console.log('hasPermission', canActivate);
             this.route.navigateByUrl('/login');

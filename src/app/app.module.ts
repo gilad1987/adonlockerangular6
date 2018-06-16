@@ -4,11 +4,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from './material/custom-material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardModule} from './dashboard/dashboard.module';
+import {SiteModule} from './site/site.module';
 import {AuthModule} from './auth/auth.module';
 
 import {AppComponent} from './app.component';
 import {PreloadAllModules, RouterModule, Routes} from "@angular/router";
-import {LoginComponent} from './containers/login/login.component';
+import {LoginComponent} from './dashboard/containers/login/login.component';
 import {ROUTES} from './routes';
 
 import {Store} from './services/store/store';
@@ -25,6 +26,7 @@ import {Store} from './services/store/store';
         ReactiveFormsModule,
         MaterialModule,
         DashboardModule,
+        SiteModule,
         RouterModule.forRoot(ROUTES, {
                 enableTracing: true,
             }
