@@ -13,6 +13,10 @@ export class AuthService {
     constructor(private store: Store) {
     }
 
+    public get token() {
+        return localStorage.getItem('token');
+    }
+
     checkPermissions() {
         return of(false);
     }

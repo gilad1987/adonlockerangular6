@@ -28,7 +28,7 @@ import {Store} from './services/store/store';
         DashboardModule,
         SiteModule,
         RouterModule.forRoot(ROUTES, {
-                enableTracing: true,
+                // enableTracing: true,
             }
         ),
     ],

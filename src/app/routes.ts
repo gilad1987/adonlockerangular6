@@ -5,8 +5,8 @@ import {LoginComponent} from "./dashboard/containers/login/login.component";
 
 export const ROUTES: Routes = [
     {
-        path: '**',
-        redirectTo: '/dashboard',
+        path: '',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
     },
     {
@@ -15,4 +15,4 @@ export const ROUTES: Routes = [
         // canLoad: [AuthGuard],
 
     }
-];
+]

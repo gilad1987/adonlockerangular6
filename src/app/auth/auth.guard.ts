@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CanLoad, CanActivate, Router} from '@angular/router';
+import {CanLoad, CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
 import {AuthService} from './auth.service';
 import {Observable} from "rxjs/index";
@@ -21,11 +21,9 @@ export class AuthGuard implements CanLoad, CanActivate {
         return hasPermission$;
     }
 
-    canActivate() {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         const canActivate$ = this.authService.isLoggedIn();
-debugger;
         canActivate$.subscribe((canActivate) => {
-            console.log('hasPermission', canActivate);
             this.route.navigateByUrl('/login');
         });
 
