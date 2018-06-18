@@ -15,10 +15,6 @@ export class Store {
         return this.subject.value;
     }
 
-    getValue(prop?: string) {
-        return prop ? this.subject.value[prop] : this.subject.value;
-    }
-
     select<T>(name: string): Observable<T> {
         return this.store.pipe(map(s => s[name]));
     }

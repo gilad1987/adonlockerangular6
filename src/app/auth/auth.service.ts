@@ -4,15 +4,15 @@ import {User} from "./user.interface";
 import {Store} from "../services/store/store";
 import {HttpClient} from "@angular/common/http";
 import {catchError, first, map} from "rxjs/internal/operators";
+import {UserService} from "../services/user/user.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    private user: Observable<User> = this.store.select('user');
-
     constructor(private store: Store,
+                private userService: UserService,
                 private http: HttpClient) {
     }
 
@@ -24,8 +24,14 @@ export class AuthService {
         return of(false);
     }
 
-    isLoggedIn() {
-        return of(false);
+    async isLoggedIn() {
+        let user = this.store.value.user;
+
+        if (this.token && !user) {
+            user = await this.userService.get$().toPromise();
+        }
+
+        return await !!user;
     }
 
     login(email, password) {

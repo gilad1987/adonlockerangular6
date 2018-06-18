@@ -21,7 +21,4 @@ import {TokenInterceptorService} from './token-interceptor.service';
         }
     ]
 })
-export class AuthModule {
-    constructor() {
-    }
-}
+export class AuthModule {}

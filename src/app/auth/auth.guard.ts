@@ -3,33 +3,25 @@ import {CanLoad, CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapsho
 
 import {AuthService} from './auth.service';
 import {Observable} from "rxjs/index";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanLoad, CanActivate {
-    constructor(
-        private authService: AuthService,
-        private router: Router
-    ) {
+export class AuthGuard implements CanActivate {
+    constructor(private authService: AuthService,
+                private router: Router) {
     }
 
-    canLoad(): Observable<boolean> | boolean {
-        debugger;
-        const hasPermission$ = this.authService.checkPermissions();
-        hasPermission$.subscribe((hasPermission) => {
-            console.log('hasPermission', hasPermission);
-            this.router.navigateByUrl('/login');
-        });
-        return hasPermission$;
-    }
+    async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        const canActivate$ = this.authService.isLoggedIn();
-        canActivate$.subscribe((canActivate) => {
-            this.router.navigateByUrl('/login');
-        });
-
-        return canActivate$;
+        try {
+            const isLoggedUser = await this.authService.isLoggedIn();
+            if (isLoggedUser) {
+                return true;
+            }
+        } catch (error: HttpErrorResponse) {}
+        console.log('redirect from canActivate');
+        this.router.navigate(['login']);
     }
 }

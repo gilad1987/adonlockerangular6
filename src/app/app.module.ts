@@ -16,6 +16,8 @@ import {Store} from './services/store/store';
 import {HttpModule} from "@angular/http";
 import {HttpClientModule} from "@angular/common/http";
 
+import {UserService} from "./services/user/user.service";
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -36,7 +38,8 @@ import {HttpClientModule} from "@angular/common/http";
         ),
     ],
     providers: [
-        Store
+        Store,
+        UserService
     ],
     exports: [
         // RouterModule
