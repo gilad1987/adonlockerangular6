@@ -1,0 +1,31 @@
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+    <div>Adon<span>locker</span></div>
+</div>
+<br>
+<div class="login">
+    <form novalidate [formGroup]="form" (submit)="submit()">
+        <mat-form-field>
+            <input matInput placeholder="User name" formControlName="username">
+            <mat-error *ngIf="form.controls.username.invalid && form.controls.username.dirty">Invalid event username
+            </mat-error>
+            <mat-error *ngIf="!form.controls.username.dirty">Username is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password">
+            <mat-error *ngIf="form.controls.password.invalid && form.controls.password.dirty">Invalid password
+            </mat-error>
+            <mat-error *ngIf="!form.controls.password.dirty">Password is required</mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <div *ngIf="invalidCredentials">
+            Username or Password is invalid.
+        </div>
+
+        <button  mat-raised-button type="submit" [disabled]="formIsInvalid">Click me!</button>
+    </form>
+</div>

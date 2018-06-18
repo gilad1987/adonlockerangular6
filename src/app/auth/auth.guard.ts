@@ -8,7 +8,10 @@ import {Observable} from "rxjs/index";
     providedIn: 'root'
 })
 export class AuthGuard implements CanLoad, CanActivate {
-    constructor(private authService: AuthService, private route: Router) {
+    constructor(
+        private authService: AuthService,
+        private router: Router
+    ) {
     }
 
     canLoad(): Observable<boolean> | boolean {
@@ -16,7 +19,7 @@ export class AuthGuard implements CanLoad, CanActivate {
         const hasPermission$ = this.authService.checkPermissions();
         hasPermission$.subscribe((hasPermission) => {
             console.log('hasPermission', hasPermission);
-            this.route.navigateByUrl('/login');
+            this.router.navigateByUrl('/login');
         });
         return hasPermission$;
     }
@@ -24,7 +27,7 @@ export class AuthGuard implements CanLoad, CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         const canActivate$ = this.authService.isLoggedIn();
         canActivate$.subscribe((canActivate) => {
-            this.route.navigateByUrl('/login');
+            this.router.navigateByUrl('/login');
         });
 
         return canActivate$;

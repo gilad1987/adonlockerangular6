@@ -9,10 +9,12 @@ import {AuthModule} from './auth/auth.module';
 
 import {AppComponent} from './app.component';
 import {PreloadAllModules, RouterModule, Routes} from "@angular/router";
-import {LoginComponent} from './dashboard/containers/login/login.component';
+import {LoginComponent} from './dashboard/components/login/login.component';
 import {ROUTES} from './routes';
 
 import {Store} from './services/store/store';
+import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -26,6 +28,7 @@ import {Store} from './services/store/store';
         ReactiveFormsModule,
         MaterialModule,
         DashboardModule,
+        HttpClientModule,
         SiteModule,
         RouterModule.forRoot(ROUTES, {
                 // enableTracing: true,
@@ -34,6 +37,9 @@ import {Store} from './services/store/store';
     ],
     providers: [
         Store
+    ],
+    exports: [
+        // RouterModule
     ],
     bootstrap: [
         AppComponent
