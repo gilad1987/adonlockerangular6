@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, throwError} from "rxjs/index";
-import {User} from "./user.interface";
+import {throwError} from "rxjs/index";
 import {Store} from "../services/store/store";
 import {HttpClient} from "@angular/common/http";
-import {catchError, first, map} from "rxjs/internal/operators";
+import {catchError} from "rxjs/internal/operators";
 import {UserService} from "../services/user/user.service";
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -13,15 +13,12 @@ export class AuthService {
 
     constructor(private store: Store,
                 private userService: UserService,
-                private http: HttpClient) {
+                private http: HttpClient,
+                private router: Router) {
     }
 
     public get token() {
         return localStorage.getItem('token');
-    }
-
-    checkPermissions() {
-        return of(false);
     }
 
     async isLoggedIn() {
@@ -41,6 +38,7 @@ export class AuthService {
     }
 
     logout() {
-
+        localStorage.removeItem('token');
+        this.router.navigate(['/']);
     }
 }

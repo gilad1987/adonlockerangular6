@@ -39,7 +39,6 @@ export class UserService {
     logout() {
         localStorage.removeItem('token');
         this.store.set('user', undefined);
-        console.log('redirect from logout');
         this.router.navigate(['login']);
     }
 }
