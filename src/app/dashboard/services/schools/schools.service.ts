@@ -15,7 +15,7 @@ export class SchoolsService {
                 private http: HttpClient) {
     }
 
-    get(force = false) {
+    get$(force = false) {
 
         if (force && this.store.value.schools) {
             return this.schools$;

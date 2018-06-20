@@ -33,7 +33,7 @@ export class SchoolsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.schoolsService.get();
+        this.schoolsService.get$();
     }
 
 }

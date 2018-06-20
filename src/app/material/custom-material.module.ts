@@ -35,6 +35,8 @@ import {
     MatTooltipModule,
 } from '@angular/material';
 
+import { SatPopoverModule } from '@ncstate/sat-popover';
+
 @NgModule({
     exports: [
         MatAutocompleteModule,
@@ -69,6 +71,7 @@ import {
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
+        SatPopoverModule,
     ],
 })
 export class MaterialModule {

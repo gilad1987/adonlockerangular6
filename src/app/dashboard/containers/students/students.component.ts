@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {StudentsService} from "../../services/sudents/students.service";
 import {HttpClient} from "@angular/common/http";
 import {merge, Observable, of} from "rxjs/index";
@@ -12,9 +12,9 @@ import {MatPaginator, MatSort} from "@angular/material";
 })
 export class StudentsComponent implements OnInit {
 
-    displayedColumns = ['id', 'first_name', 'last_name', 'school_name','locker_id', 'class', 'phone_number','email','note','edit'];
+    displayedColumns = ['id', 'first_name', 'last_name', 'school_name', 'locker_id', 'class', 'phone_number', 'email', 'note'];
     exampleDatabase: ExampleHttpDao | null;
-    data: = [];
+    data = [];
 
     resultsLength = 0;
     isLoadingResults = true;
@@ -23,9 +23,15 @@ export class StudentsComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
+    @Input() schools$: Observable<any>;
+
+
     constructor(private http: HttpClient) {
     }
 
+    onFirstNameEdit(event){
+        console.log(event)
+    }
     ngOnInit() {
         this.exampleDatabase = new ExampleHttpDao(this.http);
 
@@ -75,7 +81,7 @@ export class ExampleHttpDao {
     constructor(private http: HttpClient) {
     }
 
-    getRepoIssues(sort: string, order: string, page: number): Observable {
+    getRepoIssues(sort: string, order: string, page: number): Observable<any> {
         const href = 'https://api.github.com/search/issues';
         const requestUrl =
             `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;

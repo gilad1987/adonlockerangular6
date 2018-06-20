@@ -1,74 +1,96 @@
 <div class="example-container mat-elevation-z8" dir="rtl">
-  <div class="example-loading-shade"
-       *ngIf="isLoadingResults || isRateLimitReached">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-      GitHub's API rate limit has been reached. It will be reset in one minute.
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+            GitHub's API rate limit has been reached. It will be reset in one minute.
+        </div>
     </div>
-  </div>
 
-  <div class="example-table-container">
+    <div class="example-table-container">
 
-    <table mat-table [dataSource]="data" class="example-table"
-           matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
-      <!-- Number Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>#</th>
-        <td mat-cell *matCellDef="let row">{{ row._id }}</td>
-      </ng-container>
+        <table mat-table [dataSource]="data" class="example-table"
+               matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+            <!-- Number Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let row">{{ row._id }}</td>
+            </ng-container>
 
-      <!-- Title Column -->
-      <ng-container matColumnDef="first_name">
-        <th mat-header-cell *matHeaderCellDef>שם פרטי</th>
-        <td mat-cell *matCellDef="let row">{{ row.first_name }}</td>
-      </ng-container>
+            <!-- Title Column -->
+            <ng-container matColumnDef="first_name">
+                <th mat-header-cell *matHeaderCellDef>שם פרטי</th>
+                <td mat-cell *matCellDef="let row">
 
-      <!-- State Column -->
-      <ng-container matColumnDef="last_name">
-        <th mat-header-cell *matHeaderCellDef>שם משפחה</th>
-        <td mat-cell *matCellDef="let row">{{ row.last_name }}</td>
-      </ng-container>
+                    <span [satPopoverAnchorFor]="contactPopover" (click)="contactPopover.toggle()">
+                    {{row.first_name}}
+                    </span>
 
-      <ng-container matColumnDef="school_name">
-        <th mat-header-cell *matHeaderCellDef>בית ספר</th>
-        <td mat-cell *matCellDef="let row">{{ row.school ? row.school.name : ''}}</td>
-      </ng-container>
+                    <sat-popover #contactPopover hasBackdrop (closed)="onFirstNameEdit(row.first_name)">
+                        <div class="popover-wrapper">
+                            <mat-form-field>
+                                <input matInput maxLength="140" name="comment" [value]="row.first_name">
+                                <mat-hint align="end">{{20 || 0}}/140</mat-hint>
+                            </mat-form-field>
+                            <div>
 
-      <ng-container matColumnDef="locker_id">
-        <th mat-header-cell *matHeaderCellDef>לוקר ID </th>
-        <td mat-cell *matCellDef="let row">{{ row.locker ? row.locker._id : ''}}</td>
-      </ng-container>
+                                <button mat-button type="button" color="primary">CANCEL</button>
+                                <button mat-button type="submit" color="primary">SAVE</button>
+                            </div>
+                        </div>
+                    </sat-popover>
 
-      <ng-container matColumnDef="class">
-        <th mat-header-cell *matHeaderCellDef>כיתה</th>
-        <td mat-cell *matCellDef="let row">{{ row.class ? row.class : ''}}</td>
-      </ng-container>
+                </td>
+            </ng-container>
 
-      <ng-container matColumnDef="phone_number">
-        <th mat-header-cell *matHeaderCellDef>טלפון</th>
-        <td mat-cell *matCellDef="let row">{{ row.phone_number ? row.phone_number : ''}}</td>
-      </ng-container>
+            <!-- State Column -->
+            <ng-container matColumnDef="last_name">
+                <th mat-header-cell *matHeaderCellDef>שם משפחה</th>
+                <td mat-cell *matCellDef="let row">{{ row.last_name }}</td>
+            </ng-container>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>אימייל</th>
-        <td mat-cell *matCellDef="let row">{{ row.email ? row.email : ''}}</td>
-      </ng-container>
+            <ng-container matColumnDef="school_name">
+                <th mat-header-cell *matHeaderCellDef>בית ספר</th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-select [value]="row.school?._id" placeholder="בחר בית ספר..">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let school of schools$ | async" [value]="school._id">
+                            {{ school.name }}
+                        </mat-option>
+                    </mat-select>
+                </td>
+            </ng-container>
 
-      <ng-container matColumnDef="note">
-        <th mat-header-cell *matHeaderCellDef>הערות</th>
-        <td mat-cell *matCellDef="let row">{{ row.note ? row.note : ''}}</td>
-      </ng-container>
+            <ng-container matColumnDef="locker_id">
+                <th mat-header-cell *matHeaderCellDef>לוקר ID</th>
+                <td mat-cell *matCellDef="let row">{{ row.locker ? row.locker._id : ''}}</td>
+            </ng-container>
 
-      <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let row">edit</td>
-      </ng-container>
+            <ng-container matColumnDef="class">
+                <th mat-header-cell *matHeaderCellDef>כיתה</th>
+                <td mat-cell *matCellDef="let row">{{ row.class ? row.class : ''}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="phone_number">
+                <th mat-header-cell *matHeaderCellDef>טלפון</th>
+                <td mat-cell *matCellDef="let row">{{ row.phone_number ? row.phone_number : ''}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>אימייל</th>
+                <td mat-cell *matCellDef="let row">{{ row.email ? row.email : ''}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="note">
+                <th mat-header-cell *matHeaderCellDef>הערות</th>
+                <td mat-cell *matCellDef="let row">{{ row.note ? row.note : ''}}</td>
+            </ng-container>
 
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
 
-  <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+    <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
 </div>
