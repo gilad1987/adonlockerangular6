@@ -8,12 +8,11 @@ import {SiteModule} from './site/site.module';
 import {AuthModule} from './auth/auth.module';
 
 import {AppComponent} from './app.component';
-import {PreloadAllModules, RouterModule, Routes} from "@angular/router";
+import { RouterModule} from "@angular/router";
 import {LoginComponent} from './dashboard/components/login/login.component';
 import {ROUTES} from './routes';
 
 import {Store} from './services/store/store';
-import {HttpModule} from "@angular/http";
 import {HttpClientModule} from "@angular/common/http";
 
 import {UserService} from "./services/user/user.service";
@@ -24,8 +23,8 @@ import {UserService} from "./services/user/user.service";
         LoginComponent,
     ],
     imports: [
-        BrowserAnimationsModule,
         BrowserModule,
+        BrowserAnimationsModule,
         AuthModule,
         ReactiveFormsModule,
         MaterialModule,

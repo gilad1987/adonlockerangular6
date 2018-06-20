@@ -3,7 +3,9 @@ import {BehaviorSubject, Observable} from 'rxjs/index';
 import {distinctUntilChanged, map} from 'rxjs/internal/operators';
 
 const state: State = {
-    user: undefined
+    user: undefined,
+    schools: undefined,
+    students: undefined
 };
 
 export class Store {

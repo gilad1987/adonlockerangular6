@@ -126,6 +126,8 @@
   "defaultProject": "adonlockerangular6",
   "schematics": {
     "@schematics/angular:component": {
+      "flat": true,
+      "spec": true,
       "styleext": "scss"
     }
   }

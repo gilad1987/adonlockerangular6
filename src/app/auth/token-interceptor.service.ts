@@ -28,6 +28,6 @@ export class TokenInterceptorService implements HttpInterceptor {
                 }
 
                 return event;
-            });
+            }));
     }
 }

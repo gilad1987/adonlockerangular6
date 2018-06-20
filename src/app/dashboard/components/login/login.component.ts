@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
             .login(this.f.username.value, this.f.password.value)
             .subscribe(
                 (res) => {
-                    this.router.navigate('dashboard');
+                    this.router.navigate(['dashboard']);
                 },
                 (error) => {
                     if (error.status === 401) {
