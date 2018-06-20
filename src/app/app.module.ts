@@ -16,13 +16,11 @@ import {Store} from './services/store/store';
 import {HttpClientModule} from "@angular/common/http";
 
 import {UserService} from "./services/user/user.service";
-import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        InlineEditComponent,
     ],
     imports: [
         BrowserModule,
@@ -43,7 +41,7 @@ import { InlineEditComponent } from './components/inline-edit/inline-edit.compon
         UserService
     ],
     exports: [
-        // RouterModule
+
     ],
     bootstrap: [
         AppComponent

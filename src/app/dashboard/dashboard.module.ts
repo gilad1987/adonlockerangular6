@@ -11,6 +11,7 @@ import { SchoolsComponent } from './containers/schools/schools.component';
 import { StudentsComponent } from './containers/students/students.component';
 import {MaterialModule} from '../material/custom-material.module';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         DashboardComponent,
         SchoolsComponent,
         StudentsComponent,
+        InlineEditComponent,
     ]
 })
 export class DashboardModule {

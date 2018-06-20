@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-inline-edit',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inline-edit.component.scss']
 })
 export class InlineEditComponent implements OnInit {
+
+  @Input()
+  model;
 
   constructor() { }
 

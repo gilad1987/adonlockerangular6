@@ -27,17 +27,7 @@
                     </span>
 
                     <sat-popover #contactPopover hasBackdrop (closed)="onFirstNameEdit(row.first_name)">
-                        <div class="popover-wrapper">
-                            <mat-form-field>
-                                <input matInput maxLength="140" name="comment" [value]="row.first_name">
-                                <mat-hint align="end">{{20 || 0}}/140</mat-hint>
-                            </mat-form-field>
-                            <div>
-
-                                <button mat-button type="button" color="primary">CANCEL</button>
-                                <button mat-button type="submit" color="primary">SAVE</button>
-                            </div>
-                        </div>
+                        <app-inline-edit [model]="row"></app-inline-edit>
                     </sat-popover>
 
                 </td>
