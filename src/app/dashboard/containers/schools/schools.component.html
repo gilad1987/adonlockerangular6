@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <td>שם בית ספר</td>
+    <td>מחיר</td>
+    <td>תפוסה</td>
+  </tr>
+</table>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let school of schools$ | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <table>
+          <tr>
+            <td>{{school.name}}</td>
+            <td>{{school.total}} מתוך {{school.used}}</td>
+          </tr>
+        </table>
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+
+    School data
+  </mat-expansion-panel>
+
+</mat-accordion>
