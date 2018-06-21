@@ -12,7 +12,7 @@ import {isDevMode} from '@angular/core';
 })
 export class AuthService {
 
-    private BASE_URL = isDevMode ? 'http://localhost:9091' : 'http://https://devapi.adonlockerrent.co.il';
+    private BASE_URL = isDevMode() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';
 
     constructor(private store: Store,
                 private http: HttpClient,

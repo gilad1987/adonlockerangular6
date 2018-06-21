@@ -408,7 +408,7 @@ var AuthService = /** @class */ (function () {
         this.store = store;
         this.http = http;
         this.router = router;
-        this.BASE_URL = _angular_core__WEBPACK_IMPORTED_MODULE_0__["isDevMode"] ? 'http://localhost:9091' : 'http://https://devapi.adonlockerrent.co.il';
+        this.BASE_URL = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["isDevMode"])() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';
     }
     Object.defineProperty(AuthService.prototype, "token", {
         get: function () {
@@ -1370,7 +1370,7 @@ var SchoolsService = /** @class */ (function () {
         this.store = store;
         this.http = http;
         this.schools$ = this.store.select('schools');
-        this.BASE_URL = _angular_core__WEBPACK_IMPORTED_MODULE_0__["isDevMode"] ? 'http://localhost:9091' : 'http://https://devapi.adonlockerrent.co.il';
+        this.BASE_URL = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["isDevMode"])() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';
     }
     SchoolsService.prototype.get$ = function (force) {
         var _this = this;
@@ -1438,7 +1438,7 @@ var StudentsService = /** @class */ (function () {
         this.http = http;
         this.students$ = this.store.select('students');
         this.totalStudents$ = new rxjs_index__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
-        this.BASE_URL = _angular_core__WEBPACK_IMPORTED_MODULE_0__["isDevMode"] ? 'http://localhost:9091' : 'http://https://devapi.adonlockerrent.co.il';
+        this.BASE_URL = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["isDevMode"])() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';
     }
     StudentsService.prototype.get$ = function (force, page) {
         var _this = this;
