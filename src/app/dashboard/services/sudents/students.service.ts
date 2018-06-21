@@ -4,12 +4,20 @@ import {Store} from "../../../services/store/store";
 import {HttpClient} from "@angular/common/http";
 import {catchError, map, tap} from "rxjs/internal/operators";
 
+import {Student} from '../../models/student.interface';
+
+interface StudentPage {
+    total: number;
+    students: [Student];
+    page: number;
+}
+
 @Injectable({
     providedIn: 'root'
 })
 export class StudentsService {
 
-    public students$: Observable<any> = this.store.select('students');
+    public students$: Observable<[Student]> = this.store.select('students');
     public totalStudents$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
     constructor(private store: Store,
@@ -24,7 +32,7 @@ export class StudentsService {
 
         return this.http.get(`http://localhost:9091/api/students?page=${page}`)
             .pipe(tap(
-                (res: any) => {
+                (res: StudentPage) => {
                     this.totalStudents$.next(res.total);
                     this.store.set('students', res.students);
                 },
@@ -38,12 +46,13 @@ export class StudentsService {
     }
 
     update(newStudent) {
-        const students = this.store.value.students.slice().map((student) => student._id === newStudent._id ? newStudent : student);
+
 
         return this.http.patch(`http://localhost:9091/api/students/${newStudent._id}`, newStudent)
             .pipe(
                 tap(
-                    (res: any) => {
+                    (res: Student) => {
+                        const students = this.store.value.students.slice().map((student) => student._id === newStudent._id ? res : student);
                         this.store.set('students', students);
                     },
                     (error) => {

@@ -1,11 +1,11 @@
 <span (click)="displayInlineEdit()" *ngIf="!toggleDisplayInlineEdit">{{model}}</span>
 
-<div *ngIf="toggleDisplayInlineEdit">
-    <span [satPopoverAnchorFor]="element"
+<div *ngIf="toggleDisplayInlineEdit && isTypeField">
+    <span [satPopoverAnchorFor]="popover"
           (click)="element.toggle()">{{model}}</span>
 
     <sat-popover
-            #element
+            #popover
             hasBackdrop>
 
         <div class="popover-wrapper">
@@ -22,6 +22,18 @@
             </form>
         </div>
     </sat-popover>
+</div>
+
+<div *ngIf="toggleDisplayInlineEdit && isTypeSelect">
+    <mat-select
+            [value]="selected?._id"
+            (selectionChange)="selectionChange($event)"
+            #select>
+        <mat-option>לא נבחר בית ספר</mat-option>
+        <mat-option *ngFor="let school of collection$ | async" [value]="school._id">
+            {{ school.name }}
+        </mat-option>
+    </mat-select>
 </div>
 
 

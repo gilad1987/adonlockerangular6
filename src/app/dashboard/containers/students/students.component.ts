@@ -26,7 +26,6 @@ export class StudentsComponent implements OnInit {
 
     dataSource: ExampleDataSource;
 
-    public students$ = this.studentService.get$(true, 1);
     public totalStudents$: BehaviorSubject<number> = this.studentService.totalStudents$;
 
     public schools$ = this.schoolsService.get$();
@@ -75,7 +74,7 @@ export class StudentsComponent implements OnInit {
                 catchError((err, caught) => {
                     this.isLoadingResults = false;
                     this.isRateLimitReached = true;
-                    return of([]);
+                    return of(caught);
                 })
             ).subscribe();
     }

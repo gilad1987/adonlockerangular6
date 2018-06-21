@@ -19,6 +19,7 @@
                 <td mat-cell *matCellDef="let row">
 
                     <app-inline-edit [model]="row.first_name" placeholder="שם פרטי"
+                                     [type]=" 'field' "
                                      (update)="update('first_name',$event,row)"></app-inline-edit>
                 </td>
             </ng-container>
@@ -28,6 +29,7 @@
                 <th mat-header-cell *matHeaderCellDef>שם משפחה</th>
                 <td mat-cell *matCellDef="let row">
                     <app-inline-edit [model]="row.last_name" placeholder="שם משפחה"
+                                     [type]=" 'field' "
                                      (update)="update('last_name',$event,row)"></app-inline-edit>
                 </td>
 
@@ -36,12 +38,11 @@
             <ng-container matColumnDef="school_name">
                 <th mat-header-cell *matHeaderCellDef>בית ספר</th>
                 <td mat-cell *matCellDef="let row">
-                    <mat-select [value]="row.school?._id" placeholder="בחר בית ספר..">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let school of schools$ | async" [value]="school._id">
-                            {{ school.name }}
-                        </mat-option>
-                    </mat-select>
+                    <app-inline-edit [model]="row.school?.name"
+                                     [collection]="schools$"
+                                     [selected]="row.school"
+                                     [type]=" 'select' "
+                                     (update)="update('school_id',$event,row)"></app-inline-edit>
                 </td>
             </ng-container>
 
