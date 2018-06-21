@@ -38,7 +38,7 @@
             (selectionChange)="selectionChange($event)"
             (openedChange)="selectOpenedChange($event)"
             #select>
-        <mat-option>לא נבחר בית ספר</mat-option>
+        <mat-option [value]="null">לא נבחר בית ספר</mat-option>
         <mat-option *ngFor="let school of collection$ | async" [value]="school._id">
             {{ school.name }}
         </mat-option>

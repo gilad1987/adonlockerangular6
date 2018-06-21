@@ -1,9 +1,8 @@
-import {Component, ElementRef, EventEmitter, Host, Input, OnInit, Optional, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {SatPopover} from "@ncstate/sat-popover";
-import {filter} from "rxjs/internal/operators";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs/index";
-import {MatOption, MatSelect} from "@angular/material";
+import {MatSelect} from "@angular/material";
 
 @Component({
     selector: 'app-inline-edit',
@@ -13,7 +12,7 @@ import {MatOption, MatSelect} from "@angular/material";
 export class InlineEditComponent implements OnInit {
 
     @Input()
-    model: any;
+    model: any = null;
 
     @Input()
     type: string;
