@@ -15,9 +15,7 @@ import {SchoolsService} from "../../services/schools/schools.service";
 export class StudentsComponent implements OnInit {
 
     displayedColumns = ['id', 'first_name', 'last_name', 'school_name', 'locker_id', 'class', 'phone_number', 'email', 'note'];
-    exampleDatabase: ExampleHttpDao | null;
 
-    resultsLength = 0;
     isLoadingResults = true;
     isRateLimitReached = false;
 
@@ -30,8 +28,7 @@ export class StudentsComponent implements OnInit {
 
     public schools$ = this.schoolsService.get$();
 
-    constructor(private http: HttpClient,
-                private schoolsService: SchoolsService,
+    constructor(private schoolsService: SchoolsService,
                 private studentService: StudentsService) {
     }
 
