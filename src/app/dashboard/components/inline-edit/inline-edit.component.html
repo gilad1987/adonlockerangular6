@@ -1,8 +1,8 @@
 <span (click)="displayInlineEdit()" *ngIf="!toggleDisplayInlineEdit">{{model}}</span>
 
-<div *ngIf="toggleDisplayInlineEdit && isTypeField">
+<div *ngIf="toggleDisplayInlineEdit && (isField || isTextarea)">
     <span [satPopoverAnchorFor]="popover"
-          (click)="element.toggle()">{{model}}</span>
+          (click)="popover.toggle()">{{model}}</span>
 
     <sat-popover
             #popover
@@ -10,8 +10,13 @@
 
         <div class="popover-wrapper">
             <form [formGroup]="form" (submit)="onSubmit()">
-                <mat-form-field>
+                <mat-form-field *ngIf="isField">
                     <input matInput maxLength="140" formControlName="formModel" [placeholder]="placeholder">
+                    <mat-hint align="end">{{f.formModel.value?.length || 0}}/140</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="isTextarea">
+                    <textarea matInput maxLength="140" formControlName="formModel" [placeholder]="placeholder" [mat-autosize]="true"></textarea>
                     <mat-hint align="end">{{f.formModel.value?.length || 0}}/140</mat-hint>
                 </mat-form-field>
 
@@ -24,7 +29,7 @@
     </sat-popover>
 </div>
 
-<div *ngIf="toggleDisplayInlineEdit && isTypeSelect">
+<div *ngIf="toggleDisplayInlineEdit && isSelect">
     <mat-select
             [value]="selected?._id"
             (selectionChange)="selectionChange($event)"
@@ -35,5 +40,6 @@
         </mat-option>
     </mat-select>
 </div>
+
 
 

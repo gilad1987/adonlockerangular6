@@ -44,11 +44,15 @@ export class InlineEditComponent implements OnInit {
         return this.form.controls;
     }
 
-    get isTypeField() {
+    get isField() {
         return this.type === 'field';
     }
 
-    get isTypeSelect() {
+    get isTextarea() {
+        return this.type === 'textarea';
+    }
+
+    get isSelect() {
         return this.type === 'select';
     }
 
@@ -63,20 +67,20 @@ export class InlineEditComponent implements OnInit {
 
     onSubmit() {
         if (this.popover) {
-            this.popover.close();
-            this.update.emit(this.f.formModel.value);
+            this.emitUpdate(this.f.formModel.value);
         }
     }
 
     onCancel() {
         if (this.popover) {
             this.popover.close();
-            this.update.emit();
         }
     }
 
     displayInlineEdit() {
         this.toggleDisplayInlineEdit = !this.toggleDisplayInlineEdit;
+
+        // setTimeout for run open popover after ui element render
         setTimeout(() => {
             if (this.popover) {
                 this.popover.open();
@@ -88,8 +92,21 @@ export class InlineEditComponent implements OnInit {
         }, 0);
     }
 
-
     selectionChange(selected) {
-        this.update.emit(selected.value);
+        this.emitUpdate(selected.value);
+    }
+
+    emitUpdate(value) {
+
+        if (this.model !== value) {
+            this.update.emit(value || null);
+        }
+
+        if (this.popover) {
+            this.popover.close();
+        }
+
+        this.toggleDisplayInlineEdit = !this.toggleDisplayInlineEdit;
+
     }
 }

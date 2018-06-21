@@ -37,10 +37,6 @@ export class StudentsComponent implements OnInit {
 
     update(prop: string, value: string, item) {
 
-        if (typeof value === 'undefined') {
-            return;
-        }
-
         setTimeout(() => {
             this.studentService.update({
                 ...item, [prop]: value
