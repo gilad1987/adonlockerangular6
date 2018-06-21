@@ -74,20 +74,6 @@ export class StudentsComponent implements OnInit {
 }
 
 
-/** An example database that the data source uses to retrieve data for the table. */
-export class ExampleHttpDao {
-    constructor(private http: HttpClient) {
-    }
-
-    getRepoIssues(sort: string, order: string, page: number): Observable<any> {
-        const href = 'https://api.github.com/search/issues';
-        const requestUrl =
-            `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
-
-        return this.http.get('http://localhost:9091/api/students');
-    }
-}
-
 export class ExampleDataSource extends DataSource<any> {
 
     constructor(private students$: Observable<any>) {

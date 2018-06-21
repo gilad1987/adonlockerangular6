@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Store} from "../../../services/store/store";
 import {Observable, throwError} from "rxjs/index";
 import {catchError, tap} from "rxjs/internal/operators";
+import {isDevMode} from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +11,8 @@ import {catchError, tap} from "rxjs/internal/operators";
 export class SchoolsService {
 
     public schools$: Observable<any> = this.store.select('schools');
+
+    private BASE_URL = isDevMode ? 'http://localhost:9091' : 'http://https://devapi.adonlockerrent.co.il';
 
     constructor(private store: Store,
                 private http: HttpClient) {
@@ -21,7 +24,7 @@ export class SchoolsService {
             return this.schools$;
         }
 
-        this.http.get('http://localhost:9091/api/schools')
+        this.http.get(`${this.BASE_URL}/api/schools`)
             .pipe(
                 tap(
                     (schools) => this.store.set('schools', schools),

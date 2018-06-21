@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, map, tap} from "rxjs/internal/operators";
 
 import {Student} from '../../models/student.interface';
+import {isDevMode} from '@angular/core';
 
 interface StudentPage {
     total: number;
@@ -20,6 +21,8 @@ export class StudentsService {
     public students$: Observable<[Student]> = this.store.select('students');
     public totalStudents$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
+    private BASE_URL = isDevMode ? 'http://localhost:9091' : 'http://https://devapi.adonlockerrent.co.il';
+
     constructor(private store: Store,
                 private http: HttpClient) {
     }
@@ -30,7 +33,7 @@ export class StudentsService {
             return this.students$;
         }
 
-        return this.http.get(`http://localhost:9091/api/students?page=${page}`)
+        return this.http.get(`${this.BASE_URL}/api/students?page=${page}`)
             .pipe(tap(
                 (res: StudentPage) => {
                     this.totalStudents$.next(res.total);
@@ -48,7 +51,7 @@ export class StudentsService {
     update(newStudent) {
 
 
-        return this.http.patch(`http://localhost:9091/api/students/${newStudent._id}`, newStudent)
+        return this.http.patch(`${this.BASE_URL}/api/students/${newStudent._id}`, newStudent)
             .pipe(
                 tap(
                     (res: Student) => {

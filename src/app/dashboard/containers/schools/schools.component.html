@@ -9,13 +9,21 @@
             </span>
 
             <span class="details">
-                <span class="bold">תפוסה:</span> <span> {{school.used}} </span>מתוך<span> {{school.total}} </span>
-                <span *ngIf="school.city">
+                <span class="column">
+                    <span class="bold">תפוסה:</span> <span> {{school.used}} </span>מתוך<span> {{school.total}} </span>
+                </span>
+                <span class="column" *ngIf="school.city">
                     <span class="bold"> | עיר:</span> <span>  {{school.city.name}} </span>
                 </span>
-                <span class="bold"> | מחיר תא:</span> <span>  {{school.price}} </span>
-                <span class="bold"> | פקדון:</span> <span>  {{school.deposit_price}} </span>
-                <span class="bold"> | כתובת:</span> <span>  {{school.address}} </span>
+                <span class="column">
+                    <span class="bold"> | מחיר תא:</span> <span>  {{school.price}} </span>
+                </span>
+                <span class="column">
+                    <span class="bold"> | פקדון:</span> <span>  {{school.deposit_price}} </span>
+                </span>
+                <span class="column">
+                    <span class="bold"> | כתובת:</span> <span>  {{school.address}} </span>
+                </span>
             </span>
       </mat-panel-title>
 

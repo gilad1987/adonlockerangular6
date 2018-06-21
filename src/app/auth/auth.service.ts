@@ -3,14 +3,16 @@ import {throwError} from "rxjs/index";
 import {Store} from "../services/store/store";
 import {HttpClient} from "@angular/common/http";
 import {catchError, tap} from "rxjs/internal/operators";
-import {UserService} from "../services/user/user.service";
 import {Router} from "@angular/router";
 import {User} from "./user.interface";
+import {isDevMode} from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
+
+    private BASE_URL = isDevMode ? 'http://localhost:9091' : 'http://https://devapi.adonlockerrent.co.il';
 
     constructor(private store: Store,
                 private http: HttpClient,
@@ -33,7 +35,7 @@ export class AuthService {
 
     private getUser$() {
         return this.http
-            .get('http://localhost:9091/api/users/me')
+            .get(`${this.BASE_URL}/api/users/me`)
             .pipe(tap(
                 (user: User) => this.store.set('user', user),
                 (error) => {
@@ -47,7 +49,7 @@ export class AuthService {
 
     public login(email, password) {
         return this.http
-            .post('http://localhost:9091/auth/local', {email, password})
+            .post(`${this.BASE_URL}/auth/local`, {email, password})
             .pipe(catchError((err, caught) => throwError(err)));
     }
 
