@@ -35,6 +35,8 @@ export class InlineEditComponent implements OnInit {
 
     private form: FormGroup;
 
+    public loading: boolean = false;
+
     public toggleDisplayInlineEdit: boolean = false;
 
     constructor() {
@@ -99,6 +101,7 @@ export class InlineEditComponent implements OnInit {
     emitUpdate(value) {
 
         if (this.model !== value) {
+            this.loading = true;
             this.update.emit(value || null);
         }
 

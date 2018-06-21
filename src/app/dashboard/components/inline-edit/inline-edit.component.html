@@ -1,4 +1,6 @@
-<span (click)="displayInlineEdit()" *ngIf="!toggleDisplayInlineEdit">{{model}}</span>
+<span (click)="displayInlineEdit()" *ngIf="!toggleDisplayInlineEdit && !loading">{{model}}</span>
+
+<mat-spinner [diameter]="20" *ngIf="loading" style="margin: 0 auto"></mat-spinner>
 
 <div *ngIf="toggleDisplayInlineEdit && (isField || isTextarea)">
     <span [satPopoverAnchorFor]="popover"
@@ -16,7 +18,8 @@
                 </mat-form-field>
 
                 <mat-form-field *ngIf="isTextarea">
-                    <textarea matInput maxLength="140" formControlName="formModel" [placeholder]="placeholder" [mat-autosize]="true"></textarea>
+                    <textarea matInput maxLength="140" formControlName="formModel" [placeholder]="placeholder"
+                              [mat-autosize]="true"></textarea>
                     <mat-hint align="end">{{f.formModel.value?.length || 0}}/140</mat-hint>
                 </mat-form-field>
 

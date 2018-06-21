@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {throwError} from "rxjs/index";
 import {Store} from "../services/store/store";
 import {HttpClient} from "@angular/common/http";
-import {catchError,tap} from "rxjs/internal/operators";
+import {catchError, tap} from "rxjs/internal/operators";
 import {UserService} from "../services/user/user.service";
 import {Router} from "@angular/router";
 import {User} from "./user.interface";
