@@ -38,7 +38,7 @@ export class StudentsComponent implements OnInit {
             this.studentService.update({
                 ...item, [prop]: value
             });
-        }, 0);
+        },0);
     }
 
     ngOnInit() {

@@ -79,8 +79,18 @@ export class InlineEditComponent implements OnInit {
         }
     }
 
-    displayInlineEdit() {
+    selectOpenedChange(isOpen) {
+        if (!isOpen) {
+            this.toggleDisplayInlineEditable();
+        }
+    }
+
+    toggleDisplayInlineEditable() {
         this.toggleDisplayInlineEdit = !this.toggleDisplayInlineEdit;
+    }
+
+    displayInlineEdit() {
+        this.toggleDisplayInlineEditable();
 
         // setTimeout for run open popover after ui element render
         setTimeout(() => {
@@ -109,7 +119,7 @@ export class InlineEditComponent implements OnInit {
             this.popover.close();
         }
 
-        this.toggleDisplayInlineEdit = !this.toggleDisplayInlineEdit;
+        this.toggleDisplayInlineEditable();
 
     }
 }

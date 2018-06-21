@@ -27,3 +27,29 @@
 .element-row.expanded {
   border-bottom-color: transparent;
 }
+
+mat-panel-title{
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+
+  flex-flow: row wrap;
+
+  .details{
+    flex: 1 100%;
+    font-size: 14px;
+    color: #00000080;
+  }
+  
+  span{
+    //&:first-child{
+    //  align-self: center;
+    //  margin: 0 0 0 auto;
+    //
+    //}
+  }
+}
+
+.bold{font-weight: bold}
+
+
