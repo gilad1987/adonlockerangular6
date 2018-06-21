@@ -1,11 +1,27 @@
-<div class="popover-wrapper">
-    <mat-form-field>
-        <input matInput maxLength="140" name="comment" [value]="model.first_name">
-        <mat-hint align="end">{{20 || 0}}/140</mat-hint>
-    </mat-form-field>
-    <div>
+<span (click)="displayInlineEdit()" *ngIf="!toggleDisplayInlineEdit">{{model}}</span>
 
-        <button mat-button type="button" color="primary">CANCEL</button>
-        <button mat-button type="submit" color="primary">SAVE</button>
-    </div>
+<div *ngIf="toggleDisplayInlineEdit">
+    <span [satPopoverAnchorFor]="element"
+          (click)="element.toggle()">{{model}}</span>
+
+    <sat-popover
+            #element
+            hasBackdrop>
+
+        <div class="popover-wrapper">
+            <form [formGroup]="form" (submit)="onSubmit()">
+                <mat-form-field>
+                    <input matInput maxLength="140" formControlName="formModel" [placeholder]="placeholder">
+                    <mat-hint align="end">{{f.formModel.value?.length || 0}}/140</mat-hint>
+                </mat-form-field>
+
+                <div class="actions">
+                    <button mat-button type="submit" color="primary">שמור</button>
+                    <button mat-button type="button" color="primary" (click)="onCancel()">בטל</button>
+                </div>
+            </form>
+        </div>
+    </sat-popover>
 </div>
+
+

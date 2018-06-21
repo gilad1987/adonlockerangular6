@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
 
     public form: FormGroup;
     public invalidCredentials: boolean = false;
-    private referrer: string;
 
+    private referrer: string;
 
     constructor(private auth: AuthService,
                 private route: ActivatedRoute,

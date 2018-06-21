@@ -4,5 +4,20 @@
   display: block;
   background: #f9f9f9;
   border-radius: 2px;
-  padding: 7px 12px;
+  padding: 21px 30px;
+}
+
+:host{
+  width: 100%;
+  display: block;
+  min-height: 19px;
+
+
+}
+
+:host span{
+  width: 100%;
+  display: block;
+  min-height: 19px;
+  cursor: pointer;
 }

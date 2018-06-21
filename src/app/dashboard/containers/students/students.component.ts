@@ -1,9 +1,11 @@
 import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {StudentsService} from "../../services/sudents/students.service";
 import {HttpClient} from "@angular/common/http";
-import {merge, Observable, of} from "rxjs/index";
-import {catchError, map, startWith, switchMap} from "rxjs/internal/operators";
+import {BehaviorSubject, merge, Observable, of} from "rxjs/index";
+import {catchError, map, startWith, switchMap, tap} from "rxjs/internal/operators";
 import {MatPaginator, MatSort} from "@angular/material";
+import {DataSource} from "@angular/cdk/collections";
+import {SchoolsService} from "../../services/schools/schools.service";
 
 @Component({
     selector: 'app-students',
@@ -14,7 +16,6 @@ export class StudentsComponent implements OnInit {
 
     displayedColumns = ['id', 'first_name', 'last_name', 'school_name', 'locker_id', 'class', 'phone_number', 'email', 'note'];
     exampleDatabase: ExampleHttpDao | null;
-    data = [];
 
     resultsLength = 0;
     isLoadingResults = true;
@@ -23,58 +24,63 @@ export class StudentsComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    @Input() schools$: Observable<any>;
+    dataSource: ExampleDataSource;
 
+    public students$ = this.studentService.get$(true, 1);
+    public totalStudents$: BehaviorSubject<number> = this.studentService.totalStudents$;
 
-    constructor(private http: HttpClient) {
+    public schools$ = this.schoolsService.get$();
+
+    constructor(private http: HttpClient,
+                private schoolsService: SchoolsService,
+                private studentService: StudentsService) {
     }
 
-    onFirstNameEdit(event){
-        console.log(event)
+    update(prop: string, value: string, item) {
+
+        if (typeof value === 'undefined') {
+            return;
+        }
+
+        setTimeout(() => {
+            this.studentService.update({
+                ...item, [prop]: value
+            });
+        }, 0);
     }
+
     ngOnInit() {
-        this.exampleDatabase = new ExampleHttpDao(this.http);
 
-        // If the user changes the sort order, reset back to the first page.
-        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+        this.dataSource = new ExampleDataSource(this.studentService.students$);
+        // // If the user changes the sort order, reset back to the first page.
+        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 1);
 
-        merge(this.sort.sortChange, this.paginator.page)
+
+        merge(this.paginator.page)
             .pipe(
                 startWith({}),
                 switchMap(() => {
                     this.isLoadingResults = true;
-                    return this.exampleDatabase!.getRepoIssues(
-                        this.sort.active, this.sort.direction, this.paginator.pageIndex);
+                    return this.studentService.get$(true, this.paginator.pageIndex + 1);
+                    // this.exampleDatabase!.getRepoIssues(
+                    //     this.sort.active, this.sort.direction, this.paginator.pageIndex);
                 }),
-                map(data => {
+                map(res => {
                     // Flip flag to show that loading has finished.
                     this.isLoadingResults = false;
                     this.isRateLimitReached = false;
-                    this.resultsLength = data.total;
-
-                    return data.students;
+                    // this.resultsLength = res.total;
+                    return res;
                 }),
-                // catchError(() => {
-                //     this.isLoadingResults = false;
-                //     // Catch if the GitHub API has reached its rate limit. Return empty data.
-                //     this.isRateLimitReached = true;
-                //     return of([]);
-                // })
-            ).subscribe(data => this.data = data);
+                catchError((err, caught) => {
+                    this.isLoadingResults = false;
+                    this.isRateLimitReached = true;
+                    return of([]);
+                })
+            ).subscribe();
     }
 }
 
-export interface GithubApi {
-    items: GithubIssue[];
-    total_count: number;
-}
-
-export interface GithubIssue {
-    created_at: string;
-    number: string;
-    state: string;
-    title: string;
-}
 
 /** An example database that the data source uses to retrieve data for the table. */
 export class ExampleHttpDao {
@@ -87,5 +93,20 @@ export class ExampleHttpDao {
             `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
 
         return this.http.get('http://localhost:9091/api/students');
+    }
+}
+
+export class ExampleDataSource extends DataSource<any> {
+
+    constructor(private students$: Observable<any>) {
+        super();
+    }
+
+    /** Connect function called by the table to retrieve one stream containing the data to render. */
+    connect(): Observable<any> {
+        return this.students$;
+    }
+
+    disconnect() {
     }
 }

@@ -10,10 +10,8 @@ import {SchoolsService} from "../../services/schools/schools.service";
 export class DashboardComponent implements OnInit {
 
     public user$ = this.userService.user$;
-    public schools$ = this.schoolsService.get$();
 
-    constructor(private userService: UserService,
-                private schoolsService: SchoolsService) {
+    constructor(private userService: UserService) {
     }
 
     ngOnInit() {
