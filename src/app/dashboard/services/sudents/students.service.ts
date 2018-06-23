@@ -19,6 +19,7 @@ interface StudentPage {
 export class StudentsService {
 
     public students$: Observable<[Student]> = this.store.select('students');
+    public studentsSearchResults$: Observable<[Student]> = this.store.select('studentsSearchResults');
     public totalStudents$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
     private BASE_URL = isDevMode() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';

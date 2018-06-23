@@ -10,6 +10,9 @@ import {DataSource} from "@angular/cdk/collections";
 import {SchoolsService} from "../../services/schools/schools.service";
 import {flatMap} from "tslint/lib/utils";
 
+import {Fuse} from 'Fuse.js';
+import {Store} from "../../../services/store/store";
+
 @Component({
     selector: 'app-students',
     templateUrl: './students.component.html',
@@ -35,7 +38,8 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     public schools$ = this.schoolsService.get$();
 
-    constructor(private schoolsService: SchoolsService,
+    constructor(private store: Store,
+                private schoolsService: SchoolsService,
                 private studentService: StudentsService) {
     }
 
@@ -54,7 +58,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit() {
 
-        this.dataSource = new ExampleDataSource(this.studentService.students$);
+        this.dataSource = new ExampleDataSource(this.studentService.studentsSearchResults$);
         // // If the user changes the sort order, reset back to the first page.
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 1);
 
@@ -94,12 +98,34 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
                 debounceTime(750),
                 distinctUntilChanged(),
                 switchMap((query: string) => {
-                    return this.studentService.get$(true, this.paginator.pageIndex + 1, query);
+
+
+                    const newObs = Observable((obs) => {
+                        const options = {
+                            shouldSort: true,
+                            threshold: 0.6,
+                            location: 0,
+                            distance: 100,
+                            maxPatternLength: 32,
+                            minMatchCharLength: 1,
+                            keys: [
+                                "title",
+                                "author.firstName"
+                            ]
+                        };
+                        const fuse = new Fuse(this.store.value.students, options); // "list" is the item array
+                        const results = fuse.search(query);
+
+                        obs.next(results);
+                        obs.complete();
+                    });
+
+                    return newObs; // this.studentService.get$(true, this.paginator.pageIndex + 1, query);
                 }),
                 catchError((err, caught) => {
                     console.log('err', err);
                     console.log('caught', caught);
-                    return of(caught);
+                    return of(err);
                 })).subscribe();
     }
 }

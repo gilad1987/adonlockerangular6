@@ -5,7 +5,8 @@ import {distinctUntilChanged, map} from 'rxjs/internal/operators';
 const state: State = {
     user: undefined,
     schools: undefined,
-    students: undefined
+    students: undefined,
+    studentsSearchResults: undefined,
 };
 
 export class Store {

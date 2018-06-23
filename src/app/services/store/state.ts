@@ -5,4 +5,5 @@ export interface State {
     user: User;
     schools: [any];
     students: [Student];
+    studentsSearchResults:[Student];
 }
