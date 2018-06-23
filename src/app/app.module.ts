@@ -16,13 +16,12 @@ import {Store} from './services/store/store';
 import {HttpClientModule} from "@angular/common/http";
 
 import {UserService} from "./services/user/user.service";
-import { MenuComponent } from './components/menu/menu.component';
+
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        MenuComponent,
     ],
     imports: [
         BrowserModule,

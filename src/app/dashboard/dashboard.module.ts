@@ -13,6 +13,7 @@ import {MaterialModule} from '../material/custom-material.module';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { MenuComponent } from './components/menu/menu.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {ReactiveFormsModule} from "@angular/forms";
         SchoolsComponent,
         StudentsComponent,
         InlineEditComponent,
+        MenuComponent,
     ]
 })
 export class DashboardModule {
