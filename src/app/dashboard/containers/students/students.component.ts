@@ -98,13 +98,16 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
                 debounceTime(750),
                 distinctUntilChanged(),
                 switchMap((query: string) => {
+                    this.isLoadingResults = true;
                     return this.studentService.get$(true, this.paginator.pageIndex + 1, query);
                 }),
                 catchError((err, caught) => {
                     console.log('err', err);
                     console.log('caught', caught);
                     return of(err);
-                })).subscribe();
+                })).subscribe(() => {
+                this.isLoadingResults = false;
+            });
     }
 
     localAutocompleteStudentsSerach(query) {
