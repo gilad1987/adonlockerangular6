@@ -4,6 +4,7 @@ import {AuthGuard} from "../auth/auth.guard";
 import {LoginComponent} from "./components/login/login.component";
 import {SchoolsComponent} from "./containers/schools/schools.component";
 import {StudentsComponent} from "./containers/students/students.component";
+import {StudentsPageComponent} from "./components/students-page/students-page.component";
 
 export const ROUTES: Routes = [
     {
@@ -21,7 +22,7 @@ export const ROUTES: Routes = [
             },
             {
                 path: 'students',
-                component: StudentsComponent
+                component: StudentsPageComponent
             }
         ]
     }
