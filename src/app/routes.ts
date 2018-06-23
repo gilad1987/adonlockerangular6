@@ -6,7 +6,7 @@ import {LoginComponent} from "./dashboard/components/login/login.component";
 export const ROUTES: Routes = [
     {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: '/dashboard/students',
         pathMatch: 'full'
     },
     {

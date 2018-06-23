@@ -14,6 +14,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { MenuComponent } from './components/menu/menu.component';
+import { StudentsPageComponent } from './components/students-page/students-page.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MenuComponent } from './components/menu/menu.component';
         StudentsComponent,
         InlineEditComponent,
         MenuComponent,
+        StudentsPageComponent,
     ]
 })
 export class DashboardModule {

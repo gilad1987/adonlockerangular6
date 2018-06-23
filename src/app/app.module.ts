@@ -29,9 +29,9 @@ import {UserService} from "./services/user/user.service";
         AuthModule,
         ReactiveFormsModule,
         MaterialModule,
-        DashboardModule,
         HttpClientModule,
         SiteModule,
+        DashboardModule,
         RouterModule.forRoot(ROUTES, {
                 // enableTracing: true,
             }

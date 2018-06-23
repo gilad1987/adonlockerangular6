@@ -1,14 +1,14 @@
-<span dir="rtl">
-
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let school of schools$ | async">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
+<div class="app-max-width" dir="rtl">
+    <mat-toolbar>בתי ספר</mat-toolbar>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let school of schools$ | async">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
             <span>
               {{school.name}}
             </span>
 
-            <span class="details">
+                    <span class="details">
                 <span class="column">
                     <span class="bold">תפוסה:</span> <span> {{school.used}} </span>מתוך<span> {{school.total}} </span>
                 </span>
@@ -25,13 +25,13 @@
                     <span class="bold"> | כתובת:</span> <span>  {{school.address}} </span>
                 </span>
             </span>
-      </mat-panel-title>
+                </mat-panel-title>
 
-    </mat-expansion-panel-header>
+            </mat-expansion-panel-header>
 
-    School data
-  </mat-expansion-panel>
+            School data
+        </mat-expansion-panel>
 
-</mat-accordion>
-</span>
+    </mat-accordion>
+</div>
 

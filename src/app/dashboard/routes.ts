@@ -9,25 +9,20 @@ export const ROUTES: Routes = [
     {
         path: 'dashboard',
         canActivate: [AuthGuard],
-        component: DashboardComponent
-    },
-    {
-        path: 'dashboard/schools/:id',
-        canActivate: [AuthGuard],
-        component: SchoolsComponent
-    },
-    {
-        path: 'dashboard/schools',
-        canActivate: [AuthGuard],
-        component: SchoolsComponent
-    },
-    {
-        path: 'dashboard/students',
-        canActivate: [AuthGuard],
-        component: StudentsComponent
-    },
-    {
-        path: 'login',
-        component: LoginComponent
+        component: DashboardComponent,
+        children: [
+            {
+                path: 'schools/:id',
+                component: SchoolsComponent
+            },
+            {
+                path: 'schools',
+                component: SchoolsComponent
+            },
+            {
+                path: 'students',
+                component: StudentsComponent
+            }
+        ]
     }
 ];
