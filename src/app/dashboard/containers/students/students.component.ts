@@ -1,18 +1,21 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, AfterViewInit, OnDestroy} from '@angular/core';
 import {StudentsService} from "../../services/sudents/students.service";
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, merge, Observable, of} from "rxjs/index";
-import {catchError, map, startWith, switchMap, tap} from "rxjs/internal/operators";
+import {BehaviorSubject, fromEvent, merge, Observable, of, Subscription} from "rxjs/index";
+import {
+    catchError, debounceTime, distinctUntilChanged, map, pluck, startWith, switchMap
+} from "rxjs/internal/operators";
 import {MatPaginator, MatSort} from "@angular/material";
 import {DataSource} from "@angular/cdk/collections";
 import {SchoolsService} from "../../services/schools/schools.service";
+import {flatMap} from "tslint/lib/utils";
 
 @Component({
     selector: 'app-students',
     templateUrl: './students.component.html',
     styleUrls: ['./students.component.scss']
 })
-export class StudentsComponent implements OnInit {
+export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     displayedColumns = ['id', 'first_name', 'last_name', 'school_name', 'locker_id', 'class', 'phone_number', 'email', 'note'];
 
@@ -21,8 +24,12 @@ export class StudentsComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+    @ViewChild('filter') filter;
 
     dataSource: ExampleDataSource;
+
+    private filterSubscription$: Subscription;
+    private paginatorSubscription$: Subscription;
 
     public totalStudents$: BehaviorSubject<number> = this.studentService.totalStudents$;
 
@@ -38,7 +45,11 @@ export class StudentsComponent implements OnInit {
             this.studentService.update({
                 ...item, [prop]: value
             });
-        },0);
+        }, 0);
+    }
+
+    ngAfterViewInit() {
+        this.initFilter(this.filter.nativeElement);
     }
 
     ngOnInit() {
@@ -48,17 +59,14 @@ export class StudentsComponent implements OnInit {
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 1);
 
 
-        merge(this.paginator.page)
+        this.paginatorSubscription$ = merge(this.paginator.page)
             .pipe(
                 startWith({}),
                 switchMap(() => {
                     this.isLoadingResults = true;
                     return this.studentService.get$(true, this.paginator.pageIndex + 1);
-                    // this.exampleDatabase!.getRepoIssues(
-                    //     this.sort.active, this.sort.direction, this.paginator.pageIndex);
                 }),
                 map(res => {
-                    // Flip flag to show that loading has finished.
                     this.isLoadingResults = false;
                     this.isRateLimitReached = false;
                     // this.resultsLength = res.total;
@@ -72,10 +80,27 @@ export class StudentsComponent implements OnInit {
             ).subscribe();
     }
 
-    applyFilter(filterValue: string) {
-        filterValue = filterValue.trim(); // Remove whitespace
-        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-        // this.dataSource.filter = filterValue;
+    ngOnDestroy() {
+        this.filterSubscription$.unsubscribe();
+        this.paginatorSubscription$.unsubscribe();
+    }
+
+    initFilter(el: HTMLElement) {
+
+        this.filterSubscription$ = fromEvent(el, "keyup")
+            .pipe(
+                pluck("target"),
+                pluck("value"),
+                debounceTime(750),
+                distinctUntilChanged(),
+                switchMap((query: string) => {
+                    return this.studentService.get$(true, this.paginator.pageIndex + 1, query);
+                }),
+                catchError((err, caught) => {
+                    console.log('err', err);
+                    console.log('caught', caught);
+                    return of(caught);
+                })).subscribe();
     }
 }
 

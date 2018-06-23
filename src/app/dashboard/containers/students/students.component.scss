@@ -92,6 +92,13 @@ th.mat-header-cell {
   justify-content: center;
 }
 
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  padding: 20px 20px 0;
+  box-sizing: border-box;
+}
+
 @media only screen and (max-width: 900px) {
 
   .mat-table {
@@ -132,6 +139,5 @@ th.mat-header-cell {
     font-weight: 400;
     color: #757575;
   }
-
 
 }
