@@ -4,29 +4,29 @@
         <mat-expansion-panel *ngFor="let school of schools$ | async">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-            <span>
-              {{school.name}}
-            </span>
+                    <div class="school-name">
+                        {{school.name}}
+                    </div>
 
-                    <span class="details">
-                <span class="column">
-                    <span class="bold">תפוסה:</span> <span> {{school.used}} </span>מתוך<span> {{school.total}} </span>
-                </span>
-                <span class="column" *ngIf="school.city">
-                    <span class="bold"> | עיר:</span> <span>  {{school.city.name}} </span>
-                </span>
-                <span class="column">
-                    <span class="bold"> | מחיר תא:</span> <span>  {{school.price}} </span>
-                </span>
-                <span class="column">
-                    <span class="bold"> | פקדון:</span> <span>  {{school.deposit_price}} </span>
-                </span>
-                <span class="column">
-                    <span class="bold"> | כתובת:</span> <span>  {{school.address}} </span>
-                </span>
-            </span>
+                    <div class="details">
+                        <div class="column">
+                            <span class="bold">תפוסה:</span>
+                            <span> {{school.used}} </span>מתוך<span> {{school.total}} </span>
+                        </div>
+                        <div class="column">
+                            <span class="bold">  עיר:</span> <span>  {{school.city ? school.city.name : 'חסר'}} </span>
+                        </div>
+                        <div class="column">
+                            <span class="bold">  מחיר תא:</span> <span>  {{school.price}} </span>
+                        </div>
+                        <div class="column">
+                            <span class="bold">  פקדון:</span> <span>  {{school.deposit_price}} </span>
+                        </div>
+                        <div class="column">
+                            <span class="bold">  כתובת:</span> <span>  {{school.address}} </span>
+                        </div>
+                    </div>
                 </mat-panel-title>
-
             </mat-expansion-panel-header>
 
             School data
