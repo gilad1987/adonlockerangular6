@@ -42,7 +42,7 @@ export class StudentsService {
                     this.store.set('students', res.students);
                 },
                 (error) => {
-                    console.error(error);
+                    console.error('StudentsService.get$', error);
                     return catchError(error);
                 })
             ).pipe(map(res => {
@@ -62,6 +62,7 @@ export class StudentsService {
                         this.store.set('students', students);
                     },
                     (error) => {
+                        console.error('StudentsService.update', error);
                         return catchError(error);
                     }
                 )

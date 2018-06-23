@@ -24,6 +24,7 @@
     "@angular/router": "^6.0.3",
     "@ncstate/sat-popover": "^2.1.1",
     "core-js": "^2.5.4",
+    "fuse.js": "^3.2.1",
     "material-design-icons": "^3.0.1",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
