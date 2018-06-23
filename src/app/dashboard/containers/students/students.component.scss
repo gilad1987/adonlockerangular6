@@ -71,9 +71,9 @@ th.mat-header-cell {
 
 tr.mat-header-row th {
   position: sticky;
-  top: 0;
+  top: 77px;
   z-index: 1000;
-  background: white
+  background: white;
 }
 
 td.mat-cell,
@@ -97,6 +97,15 @@ th.mat-header-cell {
   width: 100%;
   padding: 20px 20px 0;
   box-sizing: border-box;
+}
+
+mat-form-field {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background: white;
+  height: 77px;
+  display: block;
 }
 
 @media only screen and (max-width: 900px) {

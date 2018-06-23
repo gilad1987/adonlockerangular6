@@ -1,17 +1,17 @@
 import {Component, OnInit, ViewChild, Input, AfterViewInit, OnDestroy} from '@angular/core';
-import {StudentsService} from "../../services/sudents/students.service";
-import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, fromEvent, merge, Observable, of, Subscription} from "rxjs/index";
+import {StudentsService} from '../../services/sudents/students.service';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject, fromEvent, merge, Observable, of, Subscription} from 'rxjs/index';
 import {
     catchError, debounceTime, distinctUntilChanged, map, pluck, startWith, switchMap
-} from "rxjs/internal/operators";
-import {MatPaginator, MatSort} from "@angular/material";
-import {DataSource} from "@angular/cdk/collections";
-import {SchoolsService} from "../../services/schools/schools.service";
-import {flatMap} from "tslint/lib/utils";
+} from 'rxjs/internal/operators';
+import {MatPaginator, MatSort} from '@angular/material';
+import {DataSource} from '@angular/cdk/collections';
+import {SchoolsService} from '../../services/schools/schools.service';
+import {flatMap} from 'tslint/lib/utils';
 
-import {Fuse} from 'Fuse.js';
-import {Store} from "../../../services/store/store";
+import {Store} from '../../../services/store/store';
+const Fuse = require('fuse.js');
 
 @Component({
     selector: 'app-students',
@@ -58,7 +58,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit() {
 
-        this.dataSource = new ExampleDataSource(this.studentService.studentsSearchResults$);
+        this.dataSource = new ExampleDataSource(this.studentService.students$);
         // // If the user changes the sort order, reset back to the first page.
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 1);
 
@@ -91,42 +91,76 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     initFilter(el: HTMLElement) {
 
-        this.filterSubscription$ = fromEvent(el, "keyup")
+        this.filterSubscription$ = fromEvent(el, 'keyup')
             .pipe(
-                pluck("target"),
-                pluck("value"),
+                pluck('target'),
+                pluck('value'),
                 debounceTime(750),
                 distinctUntilChanged(),
                 switchMap((query: string) => {
-
-
-                    const newObs = Observable((obs) => {
-                        const options = {
-                            shouldSort: true,
-                            threshold: 0.6,
-                            location: 0,
-                            distance: 100,
-                            maxPatternLength: 32,
-                            minMatchCharLength: 1,
-                            keys: [
-                                "title",
-                                "author.firstName"
-                            ]
-                        };
-                        const fuse = new Fuse(this.store.value.students, options); // "list" is the item array
-                        const results = fuse.search(query);
-
-                        obs.next(results);
-                        obs.complete();
-                    });
-
-                    return newObs; // this.studentService.get$(true, this.paginator.pageIndex + 1, query);
+                    return this.studentService.get$(true, this.paginator.pageIndex + 1, query);
                 }),
                 catchError((err, caught) => {
                     console.log('err', err);
                     console.log('caught', caught);
                     return of(err);
                 })).subscribe();
+    }
+
+    localAutocompleteStudentsSerach(query) {
+        return new Observable((obs) => {
+            const options = {
+                shouldSort: true,
+                threshold: 0.9,
+                location: 0,
+                distance: 5,
+                maxPatternLength: 32,
+                minMatchCharLength: 1,
+                includeScore: true,
+                keys: [
+                    '_id',
+                    'first_name',
+                    'last_name',
+                    'class',
+                    'paid',
+                    'note',
+                    'email',
+                    'phone_number',
+                    'school.active',
+                    'school.address',
+                    'school.deposit_price',
+                    'school.name',
+                    'school.price',
+                    'locker.code',
+                    'locker.code_master',
+                    'locker.lock_id',
+                    'locker.note',
+                    'locker.column.name',
+                    'locker.column.number',
+                    'locker.column.cabinet.number',
+                    'locker.column.cabinet.description',
+                    'locker.column.cabinet.name',
+                    'locker.column.cabinet.number',
+                    'locker.column.cabinet.section.name',
+                    'locker.column.cabinet.section.name',
+                    'locker.column.cabinet.section.note',
+                    'locker.column.cabinet.section.number',
+
+                ]
+            };
+
+            try {
+                const fuse = new Fuse(this.store.value.students, options); // 'list' is the item array
+                const results = fuse.search(query);
+                debugger;
+                obs.next(results);
+            } catch (err) {
+                obs.error(err);
+            }
+
+            obs.complete();
+        });
+
     }
 }
 
