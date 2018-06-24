@@ -1,6 +1,14 @@
 <div class="app-max-width">
-    <a mat-button [routerLink]="['']">ראשי</a>
-    <a mat-button [routerLink]="['students']">סטודנטים</a>
-    <a mat-button [routerLink]="['schools']">בתי ספר</a>
-    <a mat-button [routerLink]="['users']">משתמשים</a>
+    <a mat-button [routerLink]="['/dashboard']"
+       [routerLinkActive]="['mat-raised-button','mat-primary']"
+       [routerLinkActiveOptions]="{exact:true}">ראשי</a>
+    <a mat-button [routerLink]="['students']"
+       [routerLinkActive]="['mat-raised-button','mat-primary']"
+       [routerLinkActiveOptions]="{exact:true}">סטודנטים</a>
+    <a mat-button [routerLink]="['schools']"
+       [routerLinkActive]="['mat-raised-button','mat-primary']"
+       [routerLinkActiveOptions]="{exact:true}">בתי ספר</a>
+    <a mat-button [routerLink]="['users']"
+       [routerLinkActive]="['mat-raised-button','mat-primary']"
+       [routerLinkActiveOptions]="{exact:true}">משתמשים</a>
 </div>

@@ -25,5 +25,9 @@ export const ROUTES: Routes = [
                 component: StudentsPageComponent
             }
         ]
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     }
 ];

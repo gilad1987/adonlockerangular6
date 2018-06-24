@@ -18,10 +18,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {UserService} from "./services/user/user.service";
 
 
+
+
+
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
+
+
     ],
     imports: [
         BrowserModule,
@@ -36,13 +41,14 @@ import {UserService} from "./services/user/user.service";
                 // enableTracing: true,
             }
         ),
+
+
     ],
     providers: [
         Store,
         UserService
     ],
     exports: [
-
     ],
     bootstrap: [
         AppComponent

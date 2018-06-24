@@ -14,7 +14,9 @@
                             <span> {{school.used}} </span>מתוך<span> {{school.total}} </span>
                         </div>
                         <div class="column">
-                            <span class="bold">  עיר:</span> <span>  {{school.city ? school.city.name : 'חסר'}} </span>
+                            <span class="bold">  עיר:</span>
+                            <span *ngIf="school.city">  {{school.city.name}}</span>
+                            <span *ngIf="!school.city" class="missed"> חסר </span>
                         </div>
                         <div class="column">
                             <span class="bold">  מחיר תא:</span> <span>  {{school.price}} </span>
