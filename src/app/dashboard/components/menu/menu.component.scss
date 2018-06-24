@@ -11,3 +11,9 @@ app-menu{
   display: block;
   margin-top: 20px;
 }
+
+.mobile-menu:host{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100px;
+}

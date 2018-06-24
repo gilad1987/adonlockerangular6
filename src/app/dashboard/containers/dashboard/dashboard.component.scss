@@ -2,3 +2,46 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.open-menu{
+  margin-left: auto;
+  font-size: 31px;
+}
+
+
+/* -----------------responsive-----------------------*/
+
+/* desktop */
+@media screen and (max-width: 1024px) {
+  .al-r-desktop {
+    display: none
+  }
+}
+
+/* tablet */
+@media screen and (min-width: 1025px) {
+  .al-r-mobile-tablet,
+  .al-r-tablet {
+    display: none
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .al-r-tablet {
+    display: none
+  }
+}
+
+/* mobile */
+@media screen and (min-width: 481px) {
+  .al-r-mobile {
+    display: none
+  }
+}
+
+/* ---------------end responsive---------------------*/

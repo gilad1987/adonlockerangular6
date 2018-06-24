@@ -40,23 +40,19 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
     public schools$ = this.schoolsService.get$();
 
     constructor(private store: Store,
-                private overlay: Overlay,
                 private schoolsService: SchoolsService,
                 private studentService: StudentsService) {
     }
 
     update(prop: string, value: string, item) {
-
-        setTimeout(() => {
-            this.studentService.update({
-                ...item, [prop]: value
-            });
-        }, 0);
+        this.studentService.update({
+            ...item, [prop]: value
+        });
     }
 
     ngAfterViewInit() {
         this.initFilter(this.filter.nativeElement);
-        // this.overlay.create();
+
     }
 
     ngOnInit() {
