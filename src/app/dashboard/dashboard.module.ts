@@ -16,6 +16,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { MenuComponent } from './components/menu/menu.component';
 import { StudentsPageComponent } from './components/students-page/students-page.component';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
         InlineEditComponent,
         MenuComponent,
         StudentsPageComponent,
+        DashboardPageComponent,
     ]
 })
 export class DashboardModule {

@@ -11,7 +11,8 @@ app-schools {
 
 body {
   margin: 0;
-  padding: 0
+  padding: 0;
+  background-color: #fafafa;
 }
 
 @import "./assets/fontawesome-free-5.1.0-web/scss/variables";
@@ -37,3 +38,13 @@ mat-drawer-container {
   //justify-content: center;
   //flex-direction: column;
 }
+
+app-root{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.button-add-new{
+  margin-right: auto;
+}
+

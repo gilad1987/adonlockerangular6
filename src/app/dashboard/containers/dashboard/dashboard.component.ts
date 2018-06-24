@@ -8,8 +8,6 @@ import {UserService} from "../../../services/user/user.service";
 })
 export class DashboardComponent implements OnInit {
 
-    public user$ = this.userService.user$;
-
     constructor(private userService: UserService) {
     }
 
