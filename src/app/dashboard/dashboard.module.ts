@@ -15,7 +15,7 @@ import { InlineEditComponent } from './components/inline-edit/inline-edit.compon
 import {ReactiveFormsModule} from "@angular/forms";
 import { MenuComponent } from './components/menu/menu.component';
 import { StudentsPageComponent } from './components/students-page/students-page.component';
-
+import {OverlayModule} from '@angular/cdk/overlay';
 
 @NgModule({
     imports: [
@@ -24,6 +24,7 @@ import { StudentsPageComponent } from './components/students-page/students-page.
         MaterialModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
+        OverlayModule,
         RouterModule.forChild(<Routes>ROUTES)
     ],
     exports: [

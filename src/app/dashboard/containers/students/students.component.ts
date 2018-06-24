@@ -11,6 +11,7 @@ import {SchoolsService} from '../../services/schools/schools.service';
 import {flatMap} from 'tslint/lib/utils';
 
 import {Store} from '../../../services/store/store';
+import {Overlay} from "@angular/cdk/overlay";
 const Fuse = require('fuse.js');
 
 @Component({
@@ -39,6 +40,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
     public schools$ = this.schoolsService.get$();
 
     constructor(private store: Store,
+                private overlay: Overlay,
                 private schoolsService: SchoolsService,
                 private studentService: StudentsService) {
     }
@@ -54,6 +56,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngAfterViewInit() {
         this.initFilter(this.filter.nativeElement);
+        // this.overlay.create();
     }
 
     ngOnInit() {
