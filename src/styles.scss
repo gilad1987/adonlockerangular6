@@ -24,12 +24,12 @@ body, html {
   height: 100%;
 }
 
-app-dashboard {
+app-dashboard-page {
   min-height: 100%;
   display: flex;
+  box-sizing: border-box;
   /* flex-direction: column; */
   /* display: block; */
-  box-sizing: border-box;
 }
 
 mat-drawer-container {
