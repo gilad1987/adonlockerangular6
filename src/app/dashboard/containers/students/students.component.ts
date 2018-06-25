@@ -21,7 +21,7 @@ const Fuse = require('fuse.js');
 })
 export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    displayedColumns = ['id', 'first_name', 'last_name', 'school_name', 'locker_id', 'class', 'phone_number', 'email', 'note'];
+    displayedColumns = ['id', 'first_name', 'last_name', 'school_name', 'locker_id', 'class', 'phone_number', 'email', 'note','remove'];
 
     isLoadingResults = true;
     isRateLimitReached = false;
