@@ -17,6 +17,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { StudentsPageComponent } from './components/students-page/students-page.component';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
+import { UsersPageComponent } from './components/users-page/users-page.component';
 
 @NgModule({
     imports: [
@@ -40,6 +41,7 @@ import { DashboardPageComponent } from './components/dashboard-page/dashboard-pa
         MenuComponent,
         StudentsPageComponent,
         DashboardPageComponent,
+        UsersPageComponent,
     ]
 })
 export class DashboardModule {
