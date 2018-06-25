@@ -18,6 +18,7 @@ import { StudentsPageComponent } from './components/students-page/students-page.
 import {OverlayModule} from '@angular/cdk/overlay';
 import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
+import { DynamicFormBuilderComponent } from './components/dynamic-form-builder/dynamic-form-builder.component';
 
 @NgModule({
     imports: [
@@ -42,6 +43,7 @@ import { UsersPageComponent } from './components/users-page/users-page.component
         StudentsPageComponent,
         DashboardPageComponent,
         UsersPageComponent,
+        DynamicFormBuilderComponent,
     ]
 })
 export class DashboardModule {
