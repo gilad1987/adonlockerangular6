@@ -10,8 +10,8 @@
   box-shadow: 1px 2px 7px 0px #c3c3c3;
   border-radius: 3px;
   border: 1px solid #d4d4d4;
-
-
+  transition: opacity 300ms ease-in-out,transform 300ms ease-in-out;
+  opacity: 0;
 }
 
 .relative{

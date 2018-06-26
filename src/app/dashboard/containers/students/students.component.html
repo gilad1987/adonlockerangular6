@@ -59,8 +59,13 @@
 
             <ng-container matColumnDef="locker_id">
                 <th mat-header-cell *matHeaderCellDef>לוקר ID</th>
-                <td mat-cell *matCellDef="let row" class='title' data-title="לוקר id">{{ row.locker ? row.locker._id
-                    : ''}}
+                <td mat-cell *matCellDef="let row" class='title' data-title="לוקר id">
+                    <app-tooltip [label]="row.locker._id" *ngIf="row.locker">
+                        <div><span class="bold">שם מתחם:</span><span>איריס</span></div>
+                        <div><span class="bold">שם ארון:</span><span>שם של פרח</span></div>
+                        <div><span class="bold">מספר ארון:</span><span>321</span></div>
+                        <div><span class="bold">מספר תא:</span><span>233</span></div>
+                    </app-tooltip>
                 </td>
             </ng-container>
 
