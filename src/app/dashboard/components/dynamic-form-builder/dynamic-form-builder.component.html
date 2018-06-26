@@ -1,3 +1,8 @@
-<p>
-  dynamic-form-builder works!
-</p>
+<form [formGroup]="form">
+    <div *ngFor="let field of fields">
+        <app-dynamic-field-builder [field]="field" [control]="form.controls[field.name]" [form]="form"></app-dynamic-field-builder>
+    </div>
+
+    <button mat-raised-button>בטל</button>
+    <button mat-raised-button color="primary" [disabled]="!form.touched || (form.touched && form.invalid)">שלח</button>
+</form>

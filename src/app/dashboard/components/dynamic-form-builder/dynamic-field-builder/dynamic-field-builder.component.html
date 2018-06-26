@@ -1,3 +1,12 @@
-<p>
-  dynamic-field-builder works!
-</p>
+<div [ngSwitch]="field.type" [formGroup]="form">
+    <mat-form-field *ngSwitchCase="'input'">
+        <input matInput
+               [placeholder]="field.placeholder"
+               [value]="field.value"
+               [type]="field.inputType"
+               [formControl]="control" autocomplete="false">
+            <mat-error *ngFor="let validation of field.validations">
+                <span *ngIf="hasError(validation.name)">{{validation.text}}</span>
+            </mat-error>
+    </mat-form-field>
+</div>
