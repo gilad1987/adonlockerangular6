@@ -1,0 +1,34 @@
+.tooltip-label{
+  position: relative;
+  display: inline-block;
+}
+.tooltip-content{
+  display: inline-block;
+  position: fixed;
+  background: white;
+  transform: translate(45px,-160px);
+  box-shadow: 1px 2px 7px 0px #c3c3c3;
+  border-radius: 3px;
+  border: 1px solid #d4d4d4;
+
+
+}
+
+.relative{
+  position: relative;
+  padding: 10px;
+  &:after{
+    content: '';
+    position: absolute;
+    border: 10px solid #ffffff;
+    display: block;
+    bottom: -17px;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    right: 0;
+    left: 0;
+    max-width: 3px;
+    margin: 0 auto;
+  }
+}

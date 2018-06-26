@@ -22,6 +22,7 @@ import {DynamicFormBuilderComponent} from './components/dynamic-form-builder/dyn
 import {DynamicFieldBuilderComponent} from './components/dynamic-form-builder/dynamic-field-builder/dynamic-field-builder.component';
 import {AddNewStudentComponent} from './components/add-new-student/add-new-student.component';
 import { AddNewSchoolComponent } from './components/add-new-school/add-new-school.component';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
 
 @NgModule({
     imports: [
@@ -50,6 +51,7 @@ import { AddNewSchoolComponent } from './components/add-new-school/add-new-schoo
         DynamicFieldBuilderComponent,
         AddNewStudentComponent,
         AddNewSchoolComponent,
+        TooltipComponent,
     ],
     entryComponents: [
         AddNewStudentComponent

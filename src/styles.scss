@@ -39,11 +39,15 @@ mat-drawer-container {
   //flex-direction: column;
 }
 
-app-root{
+app-root {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.button-add-new{
+.button-add-new {
   margin-right: auto;
+}
+
+.bold {
+  font-weight: bold
 }
