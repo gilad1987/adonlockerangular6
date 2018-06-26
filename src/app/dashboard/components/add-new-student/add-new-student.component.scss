@@ -1,0 +1,9 @@
+:host{
+  display: block;
+  min-width: 500px;
+}
+@media screen and (max-width: 600px) {
+  :host{
+    min-width: 0;
+  }
+}

@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Overlay} from "@angular/cdk/overlay";
 import {StudentsComponent} from "../../containers/students/students.component";
 import {ComponentPortal} from "@angular/cdk/portal";
+import {MatDialog} from "@angular/material";
+import {AddNewStudentComponent} from "../add-new-student/add-new-student.component";
 
 @Component({
     selector: 'app-students-page',
@@ -10,7 +12,8 @@ import {ComponentPortal} from "@angular/cdk/portal";
 })
 export class StudentsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    constructor(private overlay: Overlay) {
+    constructor(private overlay: Overlay,
+                public dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -25,6 +28,10 @@ export class StudentsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnDestroy() {
 
+    }
+
+    openDialogAddStudent() {
+        let dialogRef = this.dialog.open(AddNewStudentComponent,{});
     }
 
 }

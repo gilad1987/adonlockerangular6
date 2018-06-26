@@ -3,6 +3,10 @@
         <app-dynamic-field-builder [field]="field" [control]="form.controls[field.name]" [form]="form"></app-dynamic-field-builder>
     </div>
 
-    <button mat-raised-button>בטל</button>
-    <button mat-raised-button color="primary" [disabled]="!form.touched || (form.touched && form.invalid)">שלח</button>
+    <div class="action-buttons">
+        <button mat-raised-button class="action-reset" color="warn" [disabled]="!form.touched">איפוס</button>
+        <button mat-raised-button>בטל</button>
+        <button mat-raised-button color="primary" [disabled]="!form.touched || (form.touched && form.invalid)">שלח</button>
+
+    </div>
 </form>

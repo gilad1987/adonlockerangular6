@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
 import {Validators} from "@angular/forms";
+import {of} from "rxjs/index";
 
 @Component({
     selector: 'app-add-new-student',
@@ -18,9 +19,9 @@ export class AddNewStudentComponent implements OnInit {
             value: '',
             validations: [
                 {
-                    name: 'minlength',
-                    fn: Validators.minLength(2),
-                    text: 'חובה להכניס לפחות 2 תווים'
+                    name: 'required',
+                    fn: Validators.required,
+                    text: 'שדה חובה'
                 },
                 {
                     name: 'minlength',
@@ -47,27 +48,28 @@ export class AddNewStudentComponent implements OnInit {
             name: 'schoolName',
             placeholder: 'שם בית ספר',
             value: '',
-            options: [
+            options: of([
                 {
-                    text: '',
-                    value: ''
+                    value: '1',
+                    text: 'משה שרת'
                 }
-            ],
+            ]),
             validations: [
+                {
+                    name: 'required',
+                    fn: Validators.required,
+                    text: 'שדה חובה'
+                },
                 {
                     name: 'minlength',
                     fn: Validators.minLength(2),
                     text: 'חובה להכניס לפחות 2 תווים'
-                }, {
-                    name: 'required',
-                    fn: Validators.required,
-                    text: 'שדה חובה'
                 }
             ]
         },
         {
             type: 'input',
-            name: 'class',
+            name: '_class',
             placeholder: 'כיתה',
             value: '',
             validations: [
@@ -128,7 +130,7 @@ export class AddNewStudentComponent implements OnInit {
             value: '',
             validations: [
                 {
-                    name: 'phoneNumber',
+                    name: 'required',
                     fn: Validators.required,
                     text: 'מספר הטלפון אינו תקין.'
                 }

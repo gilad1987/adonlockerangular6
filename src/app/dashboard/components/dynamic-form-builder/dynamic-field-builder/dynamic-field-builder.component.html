@@ -9,4 +9,12 @@
                 <span *ngIf="hasError(validation.name)">{{validation.text}}</span>
             </mat-error>
     </mat-form-field>
+
+    <mat-form-field *ngSwitchCase="'dropdown'">
+        <mat-select [placeholder]="field.placeholder">
+            <mat-option *ngFor="let item of field.options | async" [value]="item.value">
+                {{ item.text }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>

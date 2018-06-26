@@ -7,20 +7,21 @@ import {RouterModule, Routes} from "@angular/router";
 import {AuthModule} from '../auth/auth.module';
 
 import {ROUTES} from './routes';
-import { SchoolsComponent } from './containers/schools/schools.component';
-import { StudentsComponent } from './containers/students/students.component';
+import {SchoolsComponent} from './containers/schools/schools.component';
+import {StudentsComponent} from './containers/students/students.component';
 import {MaterialModule} from '../material/custom-material.module';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
+import {InlineEditComponent} from './components/inline-edit/inline-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import { MenuComponent } from './components/menu/menu.component';
-import { StudentsPageComponent } from './components/students-page/students-page.component';
+import {MenuComponent} from './components/menu/menu.component';
+import {StudentsPageComponent} from './components/students-page/students-page.component';
 import {OverlayModule} from '@angular/cdk/overlay';
-import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
-import { UsersPageComponent } from './components/users-page/users-page.component';
-import { DynamicFormBuilderComponent } from './components/dynamic-form-builder/dynamic-form-builder.component';
-import { DynamicFieldBuilderComponent } from './components/dynamic-form-builder/dynamic-field-builder/dynamic-field-builder.component';
-import { AddNewStudentComponent } from './components/add-new-student/add-new-student.component';
+import {DashboardPageComponent} from './components/dashboard-page/dashboard-page.component';
+import {UsersPageComponent} from './components/users-page/users-page.component';
+import {DynamicFormBuilderComponent} from './components/dynamic-form-builder/dynamic-form-builder.component';
+import {DynamicFieldBuilderComponent} from './components/dynamic-form-builder/dynamic-field-builder/dynamic-field-builder.component';
+import {AddNewStudentComponent} from './components/add-new-student/add-new-student.component';
+import { AddNewSchoolComponent } from './components/add-new-school/add-new-school.component';
 
 @NgModule({
     imports: [
@@ -48,6 +49,10 @@ import { AddNewStudentComponent } from './components/add-new-student/add-new-stu
         DynamicFormBuilderComponent,
         DynamicFieldBuilderComponent,
         AddNewStudentComponent,
+        AddNewSchoolComponent,
+    ],
+    entryComponents: [
+        AddNewStudentComponent
     ]
 })
 export class DashboardModule {
