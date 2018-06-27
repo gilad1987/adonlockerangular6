@@ -1,22 +1,33 @@
 .tooltip-label{
   position: relative;
   display: inline-block;
+  padding: 10px;
 }
-.tooltip-content{
-  display: inline-block;
-  position: fixed;
-  background: white;
-  transform: translate(45px,-160px);
-  box-shadow: 1px 2px 7px 0px #c3c3c3;
-  border-radius: 3px;
-  border: 1px solid #d4d4d4;
-  transition: opacity 300ms ease-in-out,transform 300ms ease-in-out;
-  opacity: 0;
+:host ::ng-deep {
+  .tooltip-content{
+    display: inline-block;
+    position: fixed;
+    background: white;
+    transform: translate(45px,-160px);
+    box-shadow: 1px 2px 7px 0px #c3c3c3;
+    border-radius: 3px;
+    border: 1px solid #d4d4d4;
+    transition: opacity 300ms ease-in-out,transform 300ms ease-in-out;
+    opacity: 0;
+    z-index: 1004;
+
+    .relative{
+      div{
+        margin: 4px 0;
+      }
+    }
+  }
+
 }
 
 .relative{
   position: relative;
-  padding: 10px;
+  padding: 16px;
   &:after{
     content: '';
     position: absolute;

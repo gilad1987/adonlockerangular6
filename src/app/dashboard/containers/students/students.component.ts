@@ -21,7 +21,7 @@ const Fuse = require('fuse.js');
 })
 export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    displayedColumns = ['id', 'first_name', 'last_name', 'school_name', 'locker_id', 'class', 'phone_number', 'email', 'note','remove'];
+    displayedColumns = ['id', 'first_name', 'last_name', 'school_name', 'locker_id', 'class', 'phone_number', 'email', 'note', 'remove'];
 
     isLoadingResults = true;
     isRateLimitReached = false;
@@ -164,6 +164,49 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
         });
 
     }
+
+    getSectionName(locker) {
+        try {
+            const column = locker.column;
+            const cabinet = column.cabinet;
+            const section = cabinet.section;
+            return `${section.name}`;
+        } catch (e) {
+            return '';
+        }
+    }
+
+    getCabinetName(locker) {
+        try {
+            const column = locker.column;
+            const cabinet = column.cabinet;
+            return `${cabinet.name}`;
+        } catch (e) {
+            return '';
+        }
+    }
+
+    getColumnNumber(locker) {
+        try {
+            const column = locker.column;
+            const cabinet = column.cabinet;
+            return `${cabinet.number}`;
+        } catch (e) {
+            return '';
+        }
+    }
+
+    getLockerNumber(locker) {
+        try {
+            const column = locker.column;
+            const lockerNumber = `${locker['order'] + 1}0${column.order + 1}`;
+            return `${lockerNumber}`;
+        } catch (e) {
+            return '';
+        }
+    }
+
+
 }
 
 
