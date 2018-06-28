@@ -5,7 +5,7 @@ import {BehaviorSubject, fromEvent, merge, Observable, of, Subscription} from 'r
 import {
     catchError, debounceTime, distinctUntilChanged, map, pluck, startWith, switchMap
 } from 'rxjs/internal/operators';
-import {MatPaginator, MatSort} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import {SchoolsService} from '../../services/schools/schools.service';
 import {flatMap} from 'tslint/lib/utils';
@@ -39,7 +39,8 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     public schools$ = this.schoolsService.get$();
 
-    constructor(private store: Store,
+    constructor(public dialog: MatDialog,
+                private store: Store,
                 private schoolsService: SchoolsService,
                 private studentService: StudentsService) {
     }
@@ -206,6 +207,9 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
+    openConfirmDeleteDialog(student) {
+
+    }
 
 }
 
@@ -216,7 +220,6 @@ export class ExampleDataSource extends DataSource<any> {
         super();
     }
 
-    /** Connect function called by the table to retrieve one stream containing the data to render. */
     connect(): Observable<any> {
         return this.students$;
     }

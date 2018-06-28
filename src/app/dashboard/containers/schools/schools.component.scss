@@ -74,4 +74,28 @@ mat-panel-title{
   margin-right: auto;
 }
 
+@media only screen and (max-width: 900px) {
+  mat-panel-title{
+    .details{
+      .column{
+
+        &:nth-child(3){
+          text-align: left;
+        }
+
+        &:nth-child(3),
+        &:nth-child(1){
+          font-size: 12px;
+        }
+
+        &:nth-child(2),
+        &:nth-child(4),
+        &:nth-child(5){
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 

@@ -31,7 +31,7 @@ export class StudentsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     openDialogAddStudent() {
-        let dialogRef = this.dialog.open(AddNewStudentComponent,{});
+        let dialogRef = this.dialog.open(AddNewStudentComponent, {});
     }
 
 }
