@@ -11,7 +11,7 @@
     </mat-form-field>
 
     <mat-form-field *ngSwitchCase="'dropdown'">
-        <mat-select [placeholder]="field.placeholder">
+        <mat-select [placeholder]="field.placeholder" [formControl]="control">
             <mat-option *ngFor="let item of field.options | async" [value]="item.value">
                 {{ item.text }}
             </mat-option>

@@ -1,12 +1,15 @@
-<form [formGroup]="form">
+<form [formGroup]="form" autocomplete="off">
     <div *ngFor="let field of fields">
         <app-dynamic-field-builder [field]="field" [control]="form.controls[field.name]" [form]="form"></app-dynamic-field-builder>
     </div>
 
     <div class="action-buttons">
-        <button mat-raised-button class="action-reset" color="warn" [disabled]="!form.touched">איפוס</button>
-        <button mat-raised-button>בטל</button>
-        <button mat-raised-button color="primary" [disabled]="!form.touched || (form.touched && form.invalid)">שלח</button>
+        <button mat-raised-button class="action-reset" color="warn" [disabled]="!form.touched" (click)="reset()">איפוס</button>
+        <button mat-raised-button (click)="cancel()">בטל</button>
+        <button mat-raised-button
+                color="primary"
+                (click)="submit()"
+                [disabled]="!form.touched || form.invalid">שלח</button>
 
     </div>
 </form>

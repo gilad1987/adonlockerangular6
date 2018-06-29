@@ -1,4 +1,9 @@
 <div dir="rtl">
+
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner></mat-spinner>
+  </div>
+
   <mat-toolbar>הוסף סטודנט חדש</mat-toolbar>
-  <app-dynamic-form-builder [fields]="fields" (submit)="onSubmit($event)" (cancel)="onCancel($event)"></app-dynamic-form-builder>
+  <app-dynamic-form-builder [fields]="fields" (onSubmit)="onSubmit($event)" (onCancel)="onCancel($event)"></app-dynamic-form-builder>
 </div>

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
 import {Validators} from "@angular/forms";
-import {of} from "rxjs/index";
+import {Subject} from "rxjs/index";
+import {SchoolsService} from "../../services/schools/schools.service";
 
 @Component({
     selector: 'app-add-new-student',
@@ -10,6 +11,7 @@ import {of} from "rxjs/index";
 })
 export class AddNewStudentComponent implements OnInit {
 
+    public subjectSchools = new Subject();
 
     public fields: Field[] = [
         {
@@ -48,12 +50,7 @@ export class AddNewStudentComponent implements OnInit {
             name: 'schoolName',
             placeholder: 'שם בית ספר',
             value: '',
-            options: of([
-                {
-                    value: '1',
-                    text: 'משה שרת'
-                }
-            ]),
+            options: this.subjectSchools.asObservable(),
             validations: [
                 {
                     name: 'required',
@@ -138,10 +135,26 @@ export class AddNewStudentComponent implements OnInit {
         }
     ];
 
-    constructor() {
+    constructor(private schoolsService: SchoolsService) {
+        this.schoolsService.get$().subscribe((schools) => {
+
+            if (!schools) {
+                return;
+            }
+
+            const options = schools.map((school) => {
+                return {
+                    text: school.name,
+                    value: school._id,
+                };
+            });
+
+            this.subjectSchools.next(options);
+        });
     }
 
     ngOnInit() {
+
     }
 
     onSubmit(event) {

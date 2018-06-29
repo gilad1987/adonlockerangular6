@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import {Field} from "./dynamic-field-builder/field.interface";
 
 @Component({
     selector: 'app-dynamic-form-builder',
@@ -13,13 +14,13 @@ export class DynamicFormBuilderComponent implements OnInit {
     fields;
 
     @Input()
-    initialData;
+    initialData = {};
 
     @Output()
-    submit: EventEmitter<string> = new EventEmitter<string>();
+    onSubmit: EventEmitter<string> = new EventEmitter<string>();
 
     @Output()
-    cancel: EventEmitter<string> = new EventEmitter<string>();
+    onCancel: EventEmitter<string> = new EventEmitter<string>();
 
     public form: FormGroup;
 
@@ -29,11 +30,26 @@ export class DynamicFormBuilderComponent implements OnInit {
     ngOnInit() {
 
         const controls = this.fields.reduce((fields, item) => {
-            fields[item.name] = new FormControl(item.value || '', item.validations.map((v) => v.fn));
+            const defaultValue = item.value || (this.initialData && this.initialData[item.name]) || '';
+            fields[item.name] = new FormControl(defaultValue, item.validations.map((v) => v.fn));
             return fields;
         }, {});
 
         this.form = new FormGroup(controls);
+    }
+
+    reset() {
+        this.form.reset();
+    }
+
+    cancel() {
+        debugger;
+        this.onCancel.emit();
+    }
+
+    submit() {
+        debugger;
+        this.onSubmit.emit(this.form.value);
     }
 
 }
