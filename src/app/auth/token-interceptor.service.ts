@@ -28,7 +28,7 @@ export class TokenInterceptorService implements HttpInterceptor {
         return next.handle(request)
             .pipe(tap((event: HttpEvent<any>) => {
 
-                    if (event instanceof HttpResponse && event.body.token) {
+                    if (event instanceof HttpResponse && event.body && event.body.token) {
                         localStorage.setItem('token', event.body.token);
                     }
                     return event;

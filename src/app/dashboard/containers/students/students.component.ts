@@ -12,6 +12,7 @@ import {flatMap} from 'tslint/lib/utils';
 
 import {Store} from '../../../services/store/store';
 import {Overlay} from "@angular/cdk/overlay";
+import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-dialog.component";
 const Fuse = require('fuse.js');
 
 @Component({
@@ -155,7 +156,6 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
             try {
                 const fuse = new Fuse(this.store.value.students, options); // 'list' is the item array
                 const results = fuse.search(query);
-                debugger;
                 obs.next(results);
             } catch (err) {
                 obs.error(err);
@@ -208,6 +208,15 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     openConfirmDeleteDialog(student) {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            data: {student},
+        });
+
+        dialogRef.afterClosed().subscribe(approvedToDelete => {
+            if (approvedToDelete) {
+                this.studentService.remove(student);
+            }
+        });
 
     }
 

@@ -57,7 +57,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
         ConfirmDialogComponent
     ],
     entryComponents: [
-        AddNewStudentComponent
+        AddNewStudentComponent,
+        ConfirmDialogComponent
     ]
 })
 export class DashboardModule {

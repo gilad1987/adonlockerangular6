@@ -1,10 +1,11 @@
-<mat-card>
+<mat-card dir="rtl">
     <mat-card-title>אתה הולך למחוק סטודנט, אתה מודע לזה?</mat-card-title>
-    <mat-card-subtitle>זה השם שלו... {{data.studentName}}</mat-card-subtitle>
+    <mat-card-subtitle>שלום, אני ({{data.student.fullName}}) הסטודנט\ית שאתה רוצה למחוק.</mat-card-subtitle>
     <form [formGroup]="confirmForm">
         <mat-card-content>
-            <div>אם אתה סגור שאתה רוצה למחוק אותי, אז בוא נראה אם אתה יכול לכתוב את המילה DELETE. :)</div>
+            <div>אם אתה סגור שאתה רוצה למחוק אותי, אז בוא נראה אם אתה יכול לכתוב את המילה DELETE.</div>
 
+            <br>
             <mat-form-field class="full-width">
                 <input matInput
                        placeholder="למחיקה הכנס את המילה DELETE"
@@ -12,8 +13,12 @@
                        autocomplete="false">
             </mat-form-field>
 
-            <button mat-raised-button>ביטול</button>
-            <button mat-raised-button color="warn" [disabled]="confirmForm.invalid">מחק</button>
+            <button mat-raised-button (click)="cancel()">ביטול</button>
+            <button mat-raised-button
+                    color="warn"
+                    [disabled]="confirmForm.invalid"
+                    (click)="approve()">מחק
+            </button>
 
         </mat-card-content>
     </form>

@@ -52,7 +52,7 @@ export class StudentsService {
             .pipe(catchError((err, caught) => throwError(caught)));
     }
 
-    update(newStudent) {
+    update(newStudent: Student) {
         return this.http.patch(`${this.BASE_URL}/api/students/${newStudent._id}`, newStudent)
             .pipe(
                 tap(
@@ -66,7 +66,25 @@ export class StudentsService {
                     }
                 )
             )
-            .pipe(catchError((err, caught) => throwError(err)))
+            // .pipe(catchError((err, caught) => throwError(err)))
+            .subscribe();
+    }
+
+    remove(student: Student) {
+        return this.http.delete(`${this.BASE_URL}/api/students/${student._id}`)
+            .pipe(
+                tap(
+                    (res: boolean) => {
+                        const students = this.store.value.students.slice().filter((s) => s._id !== student._id);
+                        this.store.set('students', students);
+                    },
+                    (error) => {
+                        console.error('StudentsService.delete', error);
+                        return catchError(error);
+                    }
+                )
+            )
+            // .pipe(catchError((err, caught) => throwError(err)))
             .subscribe();
     }
 
