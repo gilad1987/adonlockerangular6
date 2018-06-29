@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>אתה הולך למחוק סטודנט, אתה מודע לזה?</mat-card-title>
+    <mat-card-subtitle>זה השם שלו... {{data.studentName}}</mat-card-subtitle>
+    <form [formGroup]="confirmForm">
+        <mat-card-content>
+            <div>אם אתה סגור שאתה רוצה למחוק אותי, אז בוא נראה אם אתה יכול לכתוב את המילה DELETE. :)</div>
+
+            <mat-form-field class="full-width">
+                <input matInput
+                       placeholder="למחיקה הכנס את המילה DELETE"
+                       [formControl]="confirmForm.controls._delete"
+                       autocomplete="false">
+            </mat-form-field>
+
+            <button mat-raised-button>ביטול</button>
+            <button mat-raised-button color="warn" [disabled]="confirmForm.invalid">מחק</button>
+
+        </mat-card-content>
+    </form>
+</mat-card>
