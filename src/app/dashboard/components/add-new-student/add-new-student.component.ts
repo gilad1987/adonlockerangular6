@@ -11,6 +11,7 @@ import {SchoolsService} from "../../services/schools/schools.service";
 })
 export class AddNewStudentComponent implements OnInit {
 
+    public loading: boolean = false;
     public subjectSchools = new Subject();
 
     public fields: Field[] = [
@@ -159,6 +160,10 @@ export class AddNewStudentComponent implements OnInit {
 
     onSubmit(event) {
 
+    }
+
+    onCancel($event) {
+        
     }
 
 }
