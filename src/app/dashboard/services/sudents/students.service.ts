@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subject, throwError} from "rxjs/index";
-import {Store} from "../../../services/store/store";
-import {HttpClient} from "@angular/common/http";
-import {catchError, map, tap} from "rxjs/internal/operators";
+import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs/index';
+import {Store} from '../../../services/store/store';
+import {HttpClient} from '@angular/common/http';
+import {catchError, map, tap} from 'rxjs/internal/operators';
 
 import {Student} from '../../models/student.interface';
 import {isDevMode} from '@angular/core';
@@ -86,6 +86,26 @@ export class StudentsService {
             )
             // .pipe(catchError((err, caught) => throwError(err)))
             .subscribe();
+    }
+
+    add(student: Student) {
+        return this.http.post(`${this.BASE_URL}/api/students/`, student)
+            .pipe(
+                tap(
+                    (newStudent: Student) => {
+                        const students = this.store.value.students.slice();
+                        students.unshift(newStudent);
+                        debugger;
+                        this.store.set('students', students);
+                    },
+                    (error) => {
+                        console.error('StudentsService.delete', error);
+                        return catchError(error);
+                    }
+                )
+            );
+            // .pipe(catchError((err, caught) => throwError(err)))
+            // .subscribe();
     }
 
 }

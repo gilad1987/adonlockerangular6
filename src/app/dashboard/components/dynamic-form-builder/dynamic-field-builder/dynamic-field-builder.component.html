@@ -5,9 +5,9 @@
                [value]="field.value"
                [type]="field.inputType"
                [formControl]="control" autocomplete="false">
-            <mat-error *ngFor="let validation of field.validations">
-                <span *ngIf="hasError(validation.name)">{{validation.text}}</span>
-            </mat-error>
+        <mat-error *ngFor="let validation of field.validations">
+            <span *ngIf="hasError(validation.name)">{{validation.text}}</span>
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field *ngSwitchCase="'dropdown'">
@@ -16,5 +16,11 @@
                 {{ item.text }}
             </mat-option>
         </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngSwitchCase="'textarea'">
+        <textarea matInput
+                  [placeholder]="field.placeholder"
+                  [formControl]="control"></textarea>
     </mat-form-field>
 </div>

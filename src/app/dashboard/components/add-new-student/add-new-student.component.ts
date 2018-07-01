@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
-import {Validators} from "@angular/forms";
-import {Subject} from "rxjs/index";
-import {SchoolsService} from "../../services/schools/schools.service";
+import {Validators} from '@angular/forms';
+import {Subject} from 'rxjs/index';
+import {SchoolsService} from '../../services/schools/schools.service';
+import {MatDialogRef} from '@angular/material';
+import {StudentsService} from '../../services/sudents/students.service';
 
 @Component({
     selector: 'app-add-new-student',
@@ -17,7 +19,7 @@ export class AddNewStudentComponent implements OnInit {
     public fields: Field[] = [
         {
             type: 'input',
-            name: 'firstName',
+            name: 'first_name',
             placeholder: 'שם פרטי',
             value: '',
             validations: [
@@ -35,7 +37,7 @@ export class AddNewStudentComponent implements OnInit {
         }
         , {
             type: 'input',
-            name: 'lastName',
+            name: 'last_name',
             placeholder: 'שם משפחה',
             value: '',
             validations: [
@@ -48,7 +50,7 @@ export class AddNewStudentComponent implements OnInit {
         },
         {
             type: 'dropdown',
-            name: 'schoolName',
+            name: 'school_id',
             placeholder: 'שם בית ספר',
             value: '',
             options: this.subjectSchools.asObservable(),
@@ -97,14 +99,18 @@ export class AddNewStudentComponent implements OnInit {
         },
         {
             type: 'input',
-            name: 'phoneNumber',
+            name: 'phone_number',
             placeholder: 'טלפון',
             value: '',
             validations: [
                 {
-                    name: 'phoneNumber',
-                    fn: Validators.email,
-                    text: 'מספר הטלפון אינו תקין.'
+                    name: 'minlength',
+                    fn: Validators.minLength(2),
+                    text: 'חובה להכניס לפחות 2 תווים'
+                }, {
+                    name: 'required',
+                    fn: Validators.required,
+                    text: 'שדה חובה'
                 }
             ]
         },
@@ -136,7 +142,10 @@ export class AddNewStudentComponent implements OnInit {
         }
     ];
 
-    constructor(private schoolsService: SchoolsService) {
+    constructor(
+        private schoolsService: SchoolsService,
+        private studentsService: StudentsService,
+        public dialogRef: MatDialogRef<AddNewStudentComponent>) {
         this.schoolsService.get$().subscribe((schools) => {
 
             if (!schools) {
@@ -159,11 +168,18 @@ export class AddNewStudentComponent implements OnInit {
     }
 
     onSubmit(event) {
-
+        this.loading = true;
+        const sub = this.studentsService.add(event).subscribe(() => {
+            this.loading = true;
+            this.dialogRef.close();
+        }, () => {
+            this.loading = false;
+            // this.dialogRef.close();
+        });
     }
 
     onCancel($event) {
-        
+        this.dialogRef.close();
     }
 
 }

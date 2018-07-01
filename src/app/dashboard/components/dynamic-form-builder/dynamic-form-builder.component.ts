@@ -43,12 +43,10 @@ export class DynamicFormBuilderComponent implements OnInit {
     }
 
     cancel() {
-        debugger;
         this.onCancel.emit();
     }
 
     submit() {
-        debugger;
         this.onSubmit.emit(this.form.value);
     }
 

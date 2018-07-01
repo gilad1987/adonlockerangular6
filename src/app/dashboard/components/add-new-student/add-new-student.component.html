@@ -1,9 +1,13 @@
 <div dir="rtl">
 
-  <div class="example-loading-shade" *ngIf="loading">
-    <mat-spinner></mat-spinner>
-  </div>
+    <div class="example-loading-shade" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
 
-  <mat-toolbar>הוסף סטודנט חדש</mat-toolbar>
-  <app-dynamic-form-builder [fields]="fields" (onSubmit)="onSubmit($event)" (onCancel)="onCancel($event)"></app-dynamic-form-builder>
+    <mat-toolbar>הוסף סטודנט חדש</mat-toolbar>
+
+    <mat-dialog-content>
+        <app-dynamic-form-builder [fields]="fields" (onSubmit)="onSubmit($event)"
+                                  (onCancel)="onCancel($event)"></app-dynamic-form-builder>
+    </mat-dialog-content>
 </div>
