@@ -1,44 +1,36 @@
-<div class="app-max-width" dir="rtl">
-    <mat-toolbar>
-   בתי ספר
-        <button mat-button color="primary" class="button-add-new">
-            <span>הוסף חדש</span>
-        </button>
-    </mat-toolbar>
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let school of schools$ | async">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <div class="school-name">
-                        {{school.name}}
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let school of schools$ | async">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <div class="school-name">
+                    {{school.name}}
+                </div>
+
+                <div class="details">
+                    <div class="column">
+                        <span class="bold">תפוסה:</span>
+                        <span> {{school.used}} </span>מתוך<span> {{school.total}} </span>
                     </div>
-
-                    <div class="details">
-                        <div class="column">
-                            <span class="bold">תפוסה:</span>
-                            <span> {{school.used}} </span>מתוך<span> {{school.total}} </span>
-                        </div>
-                        <div class="column">
-                            <span class="bold">  עיר:</span>
-                            <span *ngIf="school.city">  {{school.city.name}}</span>
-                            <span *ngIf="!school.city" class="missed"> חסר </span>
-                        </div>
-                        <div class="column">
-                            <span class="bold">  מחיר תא:</span> <span>  ₪{{school.price}}</span>
-                        </div>
-                        <div class="column">
-                            <span class="bold">  פקדון:</span> <span>  ₪{{school.deposit_price}}</span>
-                        </div>
-                        <div class="column">
-                            <span class="bold">  כתובת:</span> <span>  {{school.address}} </span>
-                        </div>
+                    <div class="column">
+                        <span class="bold">  עיר:</span>
+                        <span *ngIf="school.city">  {{school.city.name}}</span>
+                        <span *ngIf="!school.city" class="missed"> חסר </span>
                     </div>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
+                    <div class="column">
+                        <span class="bold">  מחיר תא:</span> <span>  ₪{{school.price}}</span>
+                    </div>
+                    <div class="column">
+                        <span class="bold">  פקדון:</span> <span>  ₪{{school.deposit_price}}</span>
+                    </div>
+                    <div class="column">
+                        <span class="bold">  כתובת:</span> <span>  {{school.address}} </span>
+                    </div>
+                </div>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
 
-            School data
-        </mat-expansion-panel>
+        School data
+    </mat-expansion-panel>
 
-    </mat-accordion>
-</div>
+</mat-accordion>
 

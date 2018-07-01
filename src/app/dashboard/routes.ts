@@ -6,6 +6,7 @@ import {SchoolsComponent} from "./containers/schools/schools.component";
 import {StudentsPageComponent} from "./components/students-page/students-page.component";
 import {DashboardPageComponent} from "./components/dashboard-page/dashboard-page.component";
 import {UsersPageComponent} from "./components/users-page/users-page.component";
+import {SchoolsPageComponent} from './components/schools-page/schools-page.component';
 
 export const ROUTES: Routes = [
     {
@@ -23,7 +24,7 @@ export const ROUTES: Routes = [
             },
             {
                 path: 'schools',
-                component: SchoolsComponent
+                component: SchoolsPageComponent
             },
             {
                 path: 'students',
