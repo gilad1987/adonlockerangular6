@@ -1,12 +1,33 @@
-.app-max-width{
+.app-max-width {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-mat-toolbar{
+mat-toolbar {
   margin: 20px 0;
 }
 
-.button-add-new{
+.button-add-new {
   margin-right: auto;
+}
+
+.button-add-new-mobile {
+  display: none
+}
+
+@media only screen and (max-width: 900px) {
+  .button-add-new {
+    display: none
+  }
+  .button-add-new-mobile {
+    display: block;
+    position: fixed;
+    left: 43px;
+    bottom: 44px;
+  }
+
+  mat-toolbar{
+    margin: 0;
+    background: transparent;
+  }
 }
