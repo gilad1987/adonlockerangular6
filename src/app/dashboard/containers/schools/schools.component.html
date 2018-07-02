@@ -1,5 +1,5 @@
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let school of schools$ | async">
+    <mat-expansion-panel *ngFor="let school of schools$ | async" (opened)="onPanelOpen(school)" [expanded]="isDisplayExpanded(school)">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 <div class="school-name">
@@ -29,8 +29,13 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        School data
+        <a mat-raised-button color="primary" [routerLink]="['sections']">מתחמים</a>
     </mat-expansion-panel>
 
 </mat-accordion>
+
+
+<div class="view-side-form">
+    <router-outlet></router-outlet>
+</div>
 

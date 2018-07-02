@@ -26,6 +26,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { SchoolsPageComponent } from './components/schools-page/schools-page.component';
 import { SchoolComponent } from './containers/school/school.component';
+import { SectionsComponent } from './containers/sections/sections.component';
 
 
 @NgModule({
@@ -58,11 +59,14 @@ import { SchoolComponent } from './containers/school/school.component';
         TooltipComponent,
         ConfirmDialogComponent,
         SchoolsPageComponent,
-        SchoolComponent
+        SchoolComponent,
+        SectionsComponent
     ],
     entryComponents: [
         AddNewStudentComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        SchoolComponent,
+
     ]
 })
 export class DashboardModule {
