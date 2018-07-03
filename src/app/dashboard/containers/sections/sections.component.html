@@ -9,7 +9,7 @@
             </a>
             <span>מתחמים</span>
         </div>
-        <button mat-raised-button color="primary" tooltip="צור מתחם">+ צור חדש</button>
+        <button mat-raised-button color="primary" tooltip="יצירת מתחם חדש">צור חדש +</button>
     </mat-toolbar>
 
     <div class="school-name">
@@ -17,17 +17,7 @@
     </div>
 
     <div class="section-card-wrapper" *ngIf="school">
-        <!--<div class="add">-->
-        <!--<mat-card>-->
-        <!--<mat-card-title>-->
-        <!--<i class="material-icons">add</i>-->
-        <!--הוסף מתחם חדש-->
-        <!--</mat-card-title>-->
-        <!--</mat-card>-->
-        <!--</div>-->
-
         <div class="card-sections">
-
             <app-section *ngFor="let section of school.sections" [section]="section"></app-section>
         </div>
     </div>
