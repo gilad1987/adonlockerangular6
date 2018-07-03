@@ -27,6 +27,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { SchoolsPageComponent } from './components/schools-page/schools-page.component';
 import { SchoolComponent } from './containers/school/school.component';
 import { SectionsComponent } from './containers/sections/sections.component';
+import { SectionComponent } from './components/section/section.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { SectionsComponent } from './containers/sections/sections.component';
         ConfirmDialogComponent,
         SchoolsPageComponent,
         SchoolComponent,
-        SectionsComponent
+        SectionsComponent,
+        SectionComponent
     ],
     entryComponents: [
         AddNewStudentComponent,
