@@ -1,8 +1,8 @@
 import {AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '../../../services/store/store';
-import {Observable, Subject, Subscription} from 'rxjs/index';
+import {Observable} from 'rxjs/index';
 import {SchoolsService} from '../../services/schools/schools.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 @Component({
@@ -12,29 +12,37 @@ import {Location} from '@angular/common';
 })
 export class SchoolsComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-    private routerSub: Subscription;
+    private render: boolean = false;
 
     public schools$: Observable<any> = this.store.select('schools');
     public schoolId: number;
+    public selected = {};
 
     constructor(private store: Store,
                 private route: ActivatedRoute,
                 private location: Location,
+                private router: Router,
+                private cdRef: ChangeDetectorRef,
                 private schoolsService: SchoolsService) {
     }
 
     ngOnInit() {
         this.schoolsService.get$();
-        this.schoolId = Number(this.route.snapshot.params.id);
+        this.schoolId = Number(this.route.snapshot.params.schoolId);
     }
 
     onPanelOpen(school) {
-        this.location.replaceState(`dashboard/schools/${school._id}`);
+        this.selected = school;
 
+        if (this.router.url.indexOf('sections') === -1) {
+            this.location.replaceState(`dashboard/schools/${school._id}`);
+            setTimeout(() => {
+                this.cdRef.detectChanges();
+            }, 0);
+        }
     }
 
     ngOnDestroy() {
-        this.routerSub.unsubscribe();
     }
 
     ngAfterViewChecked() {
@@ -43,6 +51,7 @@ export class SchoolsComponent implements OnInit, OnDestroy, AfterViewChecked {
     isDisplayExpanded(school) {
         return school._id === this.schoolId;
     }
+
 }
 
 

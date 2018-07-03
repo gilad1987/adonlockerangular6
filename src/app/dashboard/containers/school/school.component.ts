@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
 
 import {
     trigger,
@@ -7,40 +7,29 @@ import {
     animate,
     transition
 } from '@angular/animations';
+import {SchoolsService} from '../../services/schools/schools.service';
 
 @Component({
     selector: 'app-school',
     templateUrl: './school.component.html',
     styleUrls: ['./school.component.scss'],
-    animations: [
-        trigger('move', [
-            state('_in', style({
-                backgroundColor: '#blue',
-                transform: 'translateX(800px)'
-            })),
-            state('out', style({
-                backgroundColor: '#cfd8dc',
-                transform: 'scale(1.1)'
-            })),
-            transition('_in <=> out', animate('1000ms ease-in')),
-        ])
-    ]
 })
-export class SchoolComponent implements OnInit, AfterViewInit {
+export class SchoolComponent implements OnInit {
 
-    animate = '';
+    @Input('schoolId') schoolId: number;
 
-    constructor() {
+    @Input('selected') selected;
+
+    constructor(private schoolsService: SchoolsService) {
+
     }
 
     ngOnInit() {
+        this.loadSchool();
     }
 
-    ngAfterViewInit() {
-        setTimeout(() => {
-            this.animate = '_in';
-        }, 600);
+    loadSchool() {
+        this.schoolsService.getById$(this.schoolId).subscribe();
     }
-
 
 }

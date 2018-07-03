@@ -4,8 +4,75 @@
       margin: 0;
     }
     background: white;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0;
     height: 100%;
+    box-shadow: 0 0 10px -5px rgba(0,0,0,0.2), 0 0 24px 2px rgba(0,0,0,0.14), 0 0 30px 5px rgba(0,0,0,0.12);
+  }
+
+}
+
+.title {
+  flex: 1
+}
+
+.sub-title {
+  font-size: 14px;
+  color: #8c8c8c;
+  .label {
+  }
+}
+
+.back {
+  min-width: 0;
+  top: -2px;
+}
+
+.section-card-wrapper {
+  display: flex;
+  justify-content: right;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  max-height: calc(100% - 64px);
+
+  mat-card {
+    display: block;
+    //margin: 7.5px 15px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .add {
+    width: 100%;
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    padding: 10px;
+    background: white;
+    mat-card-title {
+      text-align: center;
+    }
+  }
+
+  .card-sections {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    flex-wrap: wrap;
+
+    mat-card {
+      //width: calc(50% - 22.5px);
+      width: 31%;
+      margin: 1%;
+
+      &:nth-child(odd) {
+        //margin-left: 7.5px;
+      }
+
+      &:nth-child(even) {
+        //margin-right: 7.5px;
+      }
+    }
   }
 }

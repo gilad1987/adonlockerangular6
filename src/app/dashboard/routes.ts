@@ -20,7 +20,7 @@ export const ROUTES: Routes = [
                 component: DashboardComponent
             },
             {
-                path: 'schools/:id',
+                path: 'schools/:schoolId',
                 component: SchoolsPageComponent,
                 children: [
                     {path: 'sections', component: SectionsComponent},

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {throwError} from "rxjs/index";
-import {Store} from "../services/store/store";
-import {HttpClient} from "@angular/common/http";
-import {catchError, tap} from "rxjs/internal/operators";
-import {Router} from "@angular/router";
-import {User} from "./user.interface";
+import {throwError} from 'rxjs/index';
+import {Store} from '../services/store/store';
+import {HttpClient} from '@angular/common/http';
+import {catchError, tap} from 'rxjs/internal/operators';
+import {Router} from '@angular/router';
+import {User} from './user.interface';
 import {isDevMode} from '@angular/core';
 
 @Injectable({
@@ -31,6 +31,23 @@ export class AuthService {
         }
 
         return await !!user;
+        // return new Observable((obs) => {
+        //     debugger;
+        //     const user = this.store.value.user;
+        //
+        //     if (!this.token) {
+        //         obs.next(false);
+        //         obs.complete();
+        //         return;
+        //     }
+        //
+        //     if (!user) {
+        //         this.getUser$().subscribe(
+        //             (_user) => obs.next(typeof _user !== 'undefined'),
+        //             (error) => obs.error(error));
+        //     }
+        // });
+
     }
 
     private getUser$() {

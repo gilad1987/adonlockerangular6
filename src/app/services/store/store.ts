@@ -6,6 +6,7 @@ const state: State = {
     user: undefined,
     schools: undefined,
     students: undefined,
+    school: undefined,
     studentsSearchResults: undefined,
 };
 

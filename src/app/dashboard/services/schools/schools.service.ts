@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Store} from "../../../services/store/store";
-import {Observable, throwError} from "rxjs/index";
-import {catchError, tap} from "rxjs/internal/operators";
+import {HttpClient} from '@angular/common/http';
+import {Store} from '../../../services/store/store';
+import {Observable, throwError} from 'rxjs/index';
+import {catchError, tap} from 'rxjs/internal/operators';
 import {isDevMode} from '@angular/core';
 
 @Injectable({
@@ -37,5 +37,18 @@ export class SchoolsService {
             .subscribe();
 
         return this.schools$;
+    }
+
+    getById$(id) {
+        return this.http.get(`${this.BASE_URL}/api/schools/${id}`)
+            .pipe(
+                tap(
+                    (school) => this.store.set('school', school),
+                    (error) => {
+                        return catchError(error);
+                    }
+                )
+            )
+            .pipe(catchError((err, caught) => throwError(err)));
     }
 }

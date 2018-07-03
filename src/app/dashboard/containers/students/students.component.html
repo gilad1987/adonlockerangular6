@@ -51,8 +51,9 @@
                                          [selected]="row.school"
                                          [type]=" 'select' "
                                          (update)="update('school_id',$event,row)"></app-inline-edit>
-                        <a [routerLink]="['/dashboard/schools/',row.school._id]" *ngIf="row.school"> <i
-                                class="material-icons">arrow_back</i> </a>
+                        <a [routerLink]="['/dashboard/schools/',row.school._id]" *ngIf="row.school">
+                            <i class="material-icons">arrow_back</i>
+                        </a>
                     </span>
                 </td>
             </ng-container>
