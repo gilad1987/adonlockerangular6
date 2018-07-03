@@ -9,37 +9,26 @@
             </a>
             <span>מתחמים</span>
         </div>
-        <div class="sub-title">
-            <strong class="label">בית ספר: </strong> {{ ( school$ | async )?.name }}
-        </div>
+        <button mat-raised-button color="primary" tooltip="צור מתחם">+ צור חדש</button>
     </mat-toolbar>
 
+    <div class="school-name">
+        <strong class="label">בית ספר: </strong> {{ ( school$ | async )?.name }}
+    </div>
+
     <div class="section-card-wrapper" *ngIf="school">
-        <div class="add">
-            <mat-card>
-                <mat-card-title>
-                    <i class="material-icons">add</i>
-                    הוסף מתחם חדש
-                </mat-card-title>
-            </mat-card>
-        </div>
+        <!--<div class="add">-->
+        <!--<mat-card>-->
+        <!--<mat-card-title>-->
+        <!--<i class="material-icons">add</i>-->
+        <!--הוסף מתחם חדש-->
+        <!--</mat-card-title>-->
+        <!--</mat-card>-->
+        <!--</div>-->
 
         <div class="card-sections">
-            <mat-card *ngFor="let section of school.sections">
-                <mat-card-title>{{section.name}}</mat-card-title>
-                <mat-card-subtitle>
-                    <div><span>מספר ארונות: </span> {{section.cabinets?.length}}</div>
-                </mat-card-subtitle>
 
-                <mat-card-content>
-                    <div><span>סה״כ תאים: </span> {{ getLockers(section?.cabinets).length}}</div>
-                    <div><span>תאים פנויים: </span> {{ getAvailableLockers(section?.cabinets).length}}</div>
-                    <div><span>תאים תפוסים: </span> {{ getAssignedLockers(section?.cabinets).length}}</div>
-                    <div><span>תאים שמורים: </span> {{ getReservedLockers(section?.cabinets).length}}</div>
-
-                </mat-card-content>
-                <a [routerLink]="[section._id,'cabinets']" mat-raised-button>הצג ארונות</a>
-            </mat-card>
+            <app-section *ngFor="let section of school.sections" [section]="section"></app-section>
         </div>
     </div>
 </div>

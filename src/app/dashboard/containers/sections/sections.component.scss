@@ -16,11 +16,14 @@
   flex: 1
 }
 
-.sub-title {
-  font-size: 14px;
+.school-name {
+  font-size: 16px;
   color: #8c8c8c;
-  .label {
-  }
+  padding: 1%;
+  margin-top: 10px;
+  background: white;
+  position: sticky;
+  top: 0;
 }
 
 .back {
@@ -61,7 +64,7 @@
     justify-content: right;
     flex-wrap: wrap;
 
-    mat-card {
+    app-section {
       //width: calc(50% - 22.5px);
       width: 31%;
       margin: 1%;

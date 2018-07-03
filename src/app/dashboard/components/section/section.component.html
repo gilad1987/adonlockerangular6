@@ -1,3 +1,15 @@
-<p>
-  section works!
-</p>
+<mat-card>
+    <mat-card-title>{{section.name}}</mat-card-title>
+    <mat-card-subtitle>
+        <div><span>מספר ארונות: </span> {{section.cabinets?.length}}</div>
+    </mat-card-subtitle>
+
+    <mat-card-content>
+        <div><span>סה״כ תאים: </span> {{ lockersCount}}</div>
+        <div><span>תאים פנויים: </span> {{ availableCount}}</div>
+        <div><span>תאים תפוסים: </span> {{ assignedCount}}</div>
+        <div><span>תאים שמורים: </span> {{ reservedCount}}</div>
+
+    </mat-card-content>
+    <a [routerLink]="[section._id,'cabinets']" mat-raised-button>הצג ארונות</a>
+</mat-card>

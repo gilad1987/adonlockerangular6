@@ -37,31 +37,6 @@ export class SectionsComponent implements OnInit, OnDestroy {
         this.bodyRef.classList.remove('prevent-scrolling');
     }
 
-    getLockers(cabinets) {
-        return cabinets.reduce((collection, item) => {
-            return collection.concat((item.columns || []));
-        }, []).reduce((collection, item) => {
-            return collection.concat((item.lockers || []));
-        }, []);
-    }
-
-
-    getAvailableLockers(cabinets) {
-        return this.filterLockerByStatus(cabinets, 0);
-    }
-
-    getAssignedLockers(cabinets) {
-        return this.filterLockerByStatus(cabinets, 2);
-    }
-
-    getReservedLockers(cabinets) {
-        return this.filterLockerByStatus(cabinets, 1);
-    }
-
-    filterLockerByStatus(cabinets, status) {
-        const lockers = this.getLockers(cabinets);
-        return lockers.filter((locker) => locker.status === status);
-    }
 
 
 }
