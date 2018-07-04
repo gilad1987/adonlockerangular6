@@ -102,16 +102,42 @@ app-root {
 }
 
 // show locker button in section
-.actions{
-  .mat-button-wrapper{
-    display: flex;
-    align-items: center;
-    span{
-      flex: 1;
-    }
+app-section{
+  .actions{
+    .mat-button-wrapper{
+      display: flex;
+      align-items: center;
+      span{
+        flex: 1;
+      }
 
-    i{
-      color: black;
+      i{
+        color: black;
+      }
     }
   }
+}
+
+[dir="rtl"] td.mat-cell:last-child,
+[dir="rtl"] td.mat-footer-cell:last-child,
+[dir="rtl"] th.mat-header-cell:last-child {
+  padding-right: 0;
+  padding-left: 24px;
+}
+
+[dir="rtl"] td.mat-cell:first-child,
+[dir="rtl"] td.mat-footer-cell:first-child,
+[dir="rtl"] th.mat-header-cell:first-child {
+  padding-right: 24px;
+  padding-left: 0px;
+}
+
+[dir="rtl"] th.mat-header-cell {
+  text-align: right
+}
+
+[dir="rtl"] td.mat-cell,
+[dir="rtl"] td.mat-footer-cell,
+[dir="rtl"] th.mat-header-cell {
+  padding: 0 10px;
 }

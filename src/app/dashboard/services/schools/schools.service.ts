@@ -20,7 +20,7 @@ export class SchoolsService {
 
     get$(force = false) {
 
-        if (force && this.store.value.schools) {
+        if (!force && this.store.value.schools) {
             return this.schools$;
         }
 

@@ -1,4 +1,9 @@
 import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {User} from '../../../auth/user.interface';
+import {Store} from '../../../services/store/store';
+import {UserService} from '../../../services/user/user.service';
+import {UsersService} from '../../../services/users/users.service';
 
 @Component({
     selector: 'app-users-page',
@@ -7,7 +12,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UsersPageComponent implements OnInit {
 
-    constructor() {
+    public users$: Observable<[User]> = this.store.select('users');
+
+    constructor(
+        private store: Store,
+        private usersService: UsersService) {
     }
 
     ngOnInit() {

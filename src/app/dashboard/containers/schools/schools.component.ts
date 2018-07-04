@@ -12,8 +12,6 @@ import {Location} from '@angular/common';
 })
 export class SchoolsComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-    private render: boolean = false;
-
     public schools$: Observable<any> = this.store.select('schools');
     public schoolId: number;
     public selected = {};
@@ -34,7 +32,7 @@ export class SchoolsComponent implements OnInit, OnDestroy, AfterViewChecked {
     onPanelOpen(school) {
         this.selected = school;
 
-            console.log(school);
+            // console.log(school);
         // if (this.router.url.indexOf('sections') === -1) {
         //     this.location.replaceState(`dashboard/schools/${school._id}`);
         //     setTimeout(() => {

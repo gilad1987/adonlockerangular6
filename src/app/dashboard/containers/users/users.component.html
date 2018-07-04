@@ -1,3 +1,68 @@
-<p>
-  users works!
-</p>
+<span dir="rtl">
+    <div class="example-container mat-elevation-z8" >
+
+    <table mat-table [dataSource]="dataSource" class="example-table"
+           matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+        <!-- Number Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let row;" class='title' data-title="id">{{ row._id }}</td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="first_name">
+            <th mat-header-cell *matHeaderCellDef>שם פרטי</th>
+            <td mat-cell *matCellDef="let row" class='title' data-title="שם פרטי">
+
+                <app-inline-edit [model]="row.first_name" [placeholder]=" 'שם פרטי' "
+                                 [type]=" 'field' "
+                                 (update)="update('first_name',$event,row)"></app-inline-edit>
+            </td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="last_name">
+            <th mat-header-cell *matHeaderCellDef>שם משפחה</th>
+            <td mat-cell *matCellDef="let row" class='title' data-title="שם משפחה">
+                <app-inline-edit [model]="row.last_name" [placeholder]=" 'שם משפחה' "
+                                 [type]=" 'field' "
+                                 (update)="update('last_name',$event,row)"></app-inline-edit>
+
+
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>טלפון</th>
+            <td mat-cell *matCellDef="let row" class='title' data-title="טלפון">
+                <app-inline-edit [model]="row.phone" [placeholder]=" 'טלפון' "
+                                 [type]=" 'field' "
+                                 (update)="update('phone',$event,row)"></app-inline-edit>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>אימייל</th>
+            <td mat-cell *matCellDef="let row" class='title' data-title="אימייל">
+                <app-inline-edit [model]="row.email" [placeholder]=" 'אימייל' "
+                                 [type]=" 'field' "
+                                 (update)="update('email',$event,row)"></app-inline-edit>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef>סוג הרשאה</th>
+            <td mat-cell *matCellDef="let row" class='title' data-title="role">
+                <app-inline-edit [model]="row.role" [placeholder]=" 'הרשאה' "
+                                 [type]=" 'field' "
+                                 (update)="update('role',$event,row)"></app-inline-edit>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+</span>
