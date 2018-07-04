@@ -4,6 +4,7 @@ import {distinctUntilChanged, map} from 'rxjs/internal/operators';
 
 const state: State = {
     user: undefined,
+    users: undefined,
     schools: undefined,
     students: undefined,
     school: undefined,

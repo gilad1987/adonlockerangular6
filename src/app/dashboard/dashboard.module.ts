@@ -28,6 +28,7 @@ import { SchoolsPageComponent } from './components/schools-page/schools-page.com
 import { SchoolComponent } from './containers/school/school.component';
 import { SectionsComponent } from './containers/sections/sections.component';
 import { SectionComponent } from './components/section/section.component';
+import { UsersComponent } from './containers/users/users.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { SectionComponent } from './components/section/section.component';
         SchoolsPageComponent,
         SchoolComponent,
         SectionsComponent,
-        SectionComponent
+        SectionComponent,
+        UsersComponent
     ],
     entryComponents: [
         AddNewStudentComponent,
