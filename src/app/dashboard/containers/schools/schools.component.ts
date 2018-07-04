@@ -33,12 +33,12 @@ export class SchoolsComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.selected = school;
 
             // console.log(school);
-        // if (this.router.url.indexOf('sections') === -1) {
-        //     this.location.replaceState(`dashboard/schools/${school._id}`);
-        //     setTimeout(() => {
-        //         this.cdRef.detectChanges();
-        //     }, 0);
-        // }
+        if (this.router.url.indexOf('sections') === -1) {
+            this.location.replaceState(`dashboard/schools/${school._id}`);
+            setTimeout(() => {
+                this.cdRef.detectChanges();
+            }, 0);
+        }
     }
 
     ngOnDestroy() {
