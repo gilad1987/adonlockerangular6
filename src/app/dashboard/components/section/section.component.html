@@ -5,10 +5,29 @@
     </mat-card-subtitle>
 
     <mat-card-content>
-        <div><span>סה״כ תאים: </span> {{ lockersCount}}</div>
-        <div><span>תאים פנויים: </span> {{ availableCount}}</div>
-        <div><span>תאים תפוסים: </span> {{ assignedCount}}</div>
-        <div><span>תאים שמורים: </span> {{ reservedCount}}</div>
+        <div class="locker-stats-title">
+            סטטוס תאים:
+        </div>
+
+        <div class="locker-stats-data">
+            <div title="סה״כ {{lockersCount}}">
+                <span>{{ lockersCount}}</span>
+                <span>סה״כ </span>
+            </div>
+            <div title="פנויים {{ availableCount}}">
+                <span>{{ availableCount}}</span>
+                <span> פנויים</span>
+
+            </div>
+            <div title="תפוסים {{ assignedCount}}">
+                <span>{{ assignedCount}}</span>
+                <span> תפוסים</span>
+            </div>
+            <div title="שמורים {{ reservedCount}}">
+                <span>{{ reservedCount}}</span>
+                <span> שמורים</span>
+            </div>
+        </div>
 
     </mat-card-content>
 

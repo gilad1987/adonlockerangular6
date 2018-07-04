@@ -1,16 +1,40 @@
-.actions{
+
+.actions {
   margin: 0 -24px -24px -24px !important;
   padding-top: 10px;
-  a{
+  a {
     width: 100%;
     border-top: 1px solid #ebebeb;
     box-shadow: none;
     text-align: right;
     padding: 0 24px;
 
-
-    &:hover{
-      box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2), 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12);
+    &:hover {
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
     }
   }
 }
+
+mat-card-content {
+
+  .locker-stats-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin:36px 0 9px 0;
+  }
+
+  .locker-stats-data {
+    display: flex;
+    div {
+      flex: 1 1 25%;
+      span:first-child {
+        display: block;
+        font-size: 28px;
+      }
+      span:last-child {
+
+      }
+    }
+  }
+}
+
