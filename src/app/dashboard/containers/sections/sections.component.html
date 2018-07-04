@@ -13,7 +13,7 @@
     </mat-toolbar>
 
     <div class="school-name">
-        <strong class="label">בית ספר: </strong> {{ ( school$ | async )?.name }}
+        <strong class="label">בית ספר: </strong> {{ ( school$ | async )?.name }} - {{ ( school$ | async )?._id }}
     </div>
 
     <div class="section-card-wrapper" *ngIf="school">

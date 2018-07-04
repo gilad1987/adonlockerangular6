@@ -21,7 +21,7 @@ export class SchoolComponent implements OnInit {
     @Input('selected') selected;
 
     constructor(private schoolsService: SchoolsService) {
-console.log('school');
+
     }
 
     ngOnInit() {
