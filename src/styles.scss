@@ -100,3 +100,17 @@ app-root {
 [tooltip]:before {
   position: absolute;
 }
+
+.actions{
+  .mat-button-wrapper{
+    display: flex;
+    align-items: center;
+    span{
+      flex: 1;
+    }
+
+    i{
+      color: black;
+    }
+  }
+}

@@ -11,5 +11,11 @@
         <div><span>תאים שמורים: </span> {{ reservedCount}}</div>
 
     </mat-card-content>
-    <a [routerLink]="[section._id,'cabinets']" mat-raised-button>הצג ארונות</a>
+
+    <div class="actions">
+        <a [routerLink]="[section._id,'cabinets']" mat-raised-button>
+            <span>הצג ארונות</span>
+            <i class="fas fa-angle-left"></i>
+        </a>
+    </div>
 </mat-card>
