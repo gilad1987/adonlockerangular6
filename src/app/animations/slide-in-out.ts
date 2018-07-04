@@ -42,7 +42,7 @@ export const slideInOutAnimation =
             // animation and styles at end of transition
             animate('1s ease-in-out', style({
                 // transition the right position to -400% which slides the content out of view
-                right: '-100%',
+                right: '-150%',
 
                 // transition the background opacity to 0 to fade it out
                 backgroundColor: 'rgba(0, 0, 0, 0)'
