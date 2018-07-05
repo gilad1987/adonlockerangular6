@@ -14,7 +14,20 @@
 }
 
 .title {
-  flex: 1
+  flex: 1;
+  display: flex;
+  .bread-crumbs{
+    font-size: 14px;
+    line-height: initial;
+
+    .current-state{
+      font-size: 19px;
+    }
+
+    div:not(.current-state){
+      color: #0000007a;
+    }
+  }
 }
 
 .school-name {
@@ -68,7 +81,7 @@
     app-section {
       //width: calc(50% - 22.5px);
       width: 29%;
-      margin: 2%;
+      margin: 2.16%;
 
       &:nth-child(odd) {
         //margin-left: 7.5px;

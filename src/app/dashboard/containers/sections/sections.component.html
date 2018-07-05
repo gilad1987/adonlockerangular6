@@ -7,14 +7,17 @@
                class="back">
                 <i class="material-icons">arrow_forward</i>
             </a>
-            <span>מתחמים</span>
+            <span class="bread-crumbs">
+                <div class="current-state">
+                    מתחמים
+                </div>
+                <div>
+                    <strong class="label">בית ספר: </strong> {{ ( school$ | async )?.name }}
+                </div>
+            </span>
         </div>
         <button mat-raised-button color="primary" tooltip="יצירת מתחם חדש">צור חדש +</button>
     </mat-toolbar>
-
-    <div class="school-name">
-        <strong class="label">בית ספר: </strong> {{ ( school$ | async )?.name }} - {{ ( school$ | async )?._id }}
-    </div>
 
     <div class="section-card-wrapper" *ngIf="school">
         <div class="card-sections">
