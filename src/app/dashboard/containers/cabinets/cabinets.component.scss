@@ -10,3 +10,25 @@
   }
 
 }
+
+.title {
+  flex: 1;
+  display: flex;
+  .bread-crumbs{
+    font-size: 14px;
+    line-height: initial;
+
+    .current-state{
+      font-size: 19px;
+    }
+
+    div:not(.current-state){
+      color: #0000007a;
+    }
+  }
+}
+
+.back {
+  min-width: 0;
+  top: -2px;
+}

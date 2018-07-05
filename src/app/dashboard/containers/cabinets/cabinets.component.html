@@ -1,6 +1,23 @@
 <div class="content">
-  <p>
-    cabinets works!
-  </p>
+  <mat-toolbar>
+    <div class="title">
+      <a mat-button
+         (click)="goBack()"
+         tooltip="חזרה למתחמים"
+         class="back">
+        <i class="material-icons">arrow_forward</i>
+      </a>
+      <span class="bread-crumbs">
+                <div class="current-state">
+                    ארונות
+                </div>
+                <div>
+                    <strong class="label">בית ספר: </strong> {{ ( school$ | async )?.name }} ,
+                    <strong class="label">מתחם: </strong> {{ section?.name }}
+                </div>
+            </span>
+    </div>
+    <button mat-raised-button color="primary" tooltip="יצירת מתחם חדש">צור חדש +</button>
+  </mat-toolbar>
 
 </div>
