@@ -1,10 +1,12 @@
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let school of schools$ | async" (opened)="onPanelOpen(school)"
+    <mat-expansion-panel *ngFor="let school of schools$ | async"
+                         (opened)="onPanelOpen(school)"
+                         [attr.data-schoolId]="school._id"
                          [expanded]="isDisplayExpanded(school)">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                <div class="school-name">
-                    {{school.name}} - {{school._id}}
+                <div class="school-name" >
+                    {{school.name}}
                 </div>
 
                 <div class="details">

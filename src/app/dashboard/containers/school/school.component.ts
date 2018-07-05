@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, NgZone, OnChanges, OnInit} from '@angular/core';
 
 import {
     trigger,
