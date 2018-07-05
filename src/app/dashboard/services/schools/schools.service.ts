@@ -13,6 +13,8 @@ export class SchoolsService {
 
     public schools$: Observable<[School]> = this.store.select('schools');
 
+    private loading: boolean = false;
+
     private BASE_URL = isDevMode() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';
 
     constructor(private store: Store,
@@ -21,17 +23,19 @@ export class SchoolsService {
 
     get$(force = false): Observable<[School]> {
 
-        if (!force && this.store.value.schools) {
+        if (this.loading || (!force && this.store.value.schools)) {
             return this.schools$;
         }
 
+        this.loading = true;
         this.http.get(`${this.BASE_URL}/api/schools`)
             .pipe(
                 tap(
                     (schools) => this.store.set('schools', schools),
                     (error) => {
                         return catchError(error);
-                    }
+                    },
+                    () => this.loading = false
                 )
             )
             .pipe(catchError((err, caught) => throwError(err)))
