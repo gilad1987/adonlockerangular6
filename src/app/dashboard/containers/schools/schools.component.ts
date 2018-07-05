@@ -1,8 +1,4 @@
 import {
-    AfterContentInit,
-    AfterViewChecked,
-    AfterViewInit,
-    ChangeDetectorRef,
     Component,
     ElementRef,
     OnDestroy,
@@ -13,6 +9,7 @@ import {Observable, Subscription} from 'rxjs/index';
 import {SchoolsService} from '../../services/schools/schools.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {School} from '../../models/school.interface';
 
 @Component({
     selector: 'app-schools',
@@ -21,9 +18,9 @@ import {Location} from '@angular/common';
 })
 export class SchoolsComponent implements OnInit, OnDestroy {
 
-    public schools$: Observable<any> = this.store.select('schools');
+    public schools$: Observable<[School]> = this.store.select('schools');
     public schoolId: number;
-    public selected = {};
+    public selected: School;
     private scrollToCurrentSchoolElement = false;
     private paramsSub: Subscription;
 
@@ -51,11 +48,19 @@ export class SchoolsComponent implements OnInit, OnDestroy {
     onPanelOpen(school) {
         this.selected = school;
         if (this.router.url.indexOf('sections') === -1) {
+
+            /**
+             * Change url without load all app
+             */
             this.location.replaceState(`dashboard/schools/${school._id}`);
+
+            /**
+             * for links will update after replaceState(change url)
+             */
             this.router.navigate(['dashboard', 'schools', school._id]);
 
             if (this.scrollToCurrentSchoolElement) {
-                setTimeout(()=>{
+                setTimeout(() => {
                     const currentAccordionElem = this.elementRef.nativeElement.querySelector(`[data-schoolId="${this.selected._id}"]`);
                     if (currentAccordionElem) {
                         currentAccordionElem.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
@@ -63,7 +68,7 @@ export class SchoolsComponent implements OnInit, OnDestroy {
 
                     this.scrollToCurrentSchoolElement = false;
                     this.paramsSub.unsubscribe();
-                },0);
+                }, 0);
             }
 
         }
@@ -72,7 +77,6 @@ export class SchoolsComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.paramsSub.unsubscribe();
     }
-
 
 
     isDisplayExpanded(school) {

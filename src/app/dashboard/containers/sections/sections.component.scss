@@ -7,7 +7,7 @@
     max-width: 1000px;
     margin: 0;
     height: 100%;
-    box-shadow: 0 0 10px -5px rgba(0,0,0,0.2), 0 0 24px 2px rgba(0,0,0,0.14), 0 0 30px 5px rgba(0,0,0,0.12);
+    box-shadow: 0 0 10px -5px rgba(0, 0, 0, 0.2), 0 0 24px 2px rgba(0, 0, 0, 0.14), 0 0 30px 5px rgba(0, 0, 0, 0.12);
   }
 
 }
@@ -78,4 +78,32 @@
       }
     }
   }
+}
+
+@media screen and (max-width: 800px) {
+  .section-card-wrapper{
+
+    .card-sections {
+      app-section {
+        width: 46%;
+        margin: 2%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .section-card-wrapper{
+    .card-sections {
+      justify-content: center;
+      app-section {
+        width: 80%;
+        margin: 5%;
+        .actions{
+          margin: 0 -16px -24px -16px !important;
+        }
+      }
+    }
+  }
+
 }

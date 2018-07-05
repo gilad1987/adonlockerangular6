@@ -20,7 +20,7 @@ mat-card-content {
   .locker-stats-title {
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin:36px 0 9px 0;
+    margin: 36px 0 9px 0;
   }
 
   .locker-stats-data {
@@ -30,12 +30,18 @@ mat-card-content {
       span:first-child {
         display: block;
         font-size: 28px;
-        color: rgba(0,0,0,0.54);
+        color: rgba(0, 0, 0, 0.54);
       }
       span:last-child {
         font-size: 13px;
       }
     }
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .actions {
+    margin: 0 -16px -24px -16px !important;
   }
 }
 
