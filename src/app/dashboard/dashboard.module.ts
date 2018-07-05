@@ -30,6 +30,7 @@ import { SectionsComponent } from './containers/sections/sections.component';
 import { SectionComponent } from './components/section/section.component';
 import { UsersComponent } from './containers/users/users.component';
 import { CabinetsComponent } from './containers/cabinets/cabinets.component';
+import { TransactionPageComponent } from './components/transaction-page/transaction-page.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { CabinetsComponent } from './containers/cabinets/cabinets.component';
         SectionsComponent,
         SectionComponent,
         UsersComponent,
-        CabinetsComponent
+        CabinetsComponent,
+        TransactionPageComponent
     ],
     entryComponents: [
         AddNewStudentComponent,

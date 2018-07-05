@@ -9,6 +9,7 @@ import {UsersPageComponent} from './components/users-page/users-page.component';
 import {SchoolsPageComponent} from './components/schools-page/schools-page.component';
 import {SectionsComponent} from './containers/sections/sections.component';
 import {CabinetsComponent} from './containers/cabinets/cabinets.component';
+import {TransactionPageComponent} from './components/transaction-page/transaction-page.component';
 
 export const ROUTES: Routes = [
     {
@@ -47,6 +48,10 @@ export const ROUTES: Routes = [
             {
                 path: 'users',
                 component: UsersPageComponent
+            },
+            {
+                path: 'transactions',
+                component: TransactionPageComponent
             }
         ]
     },
