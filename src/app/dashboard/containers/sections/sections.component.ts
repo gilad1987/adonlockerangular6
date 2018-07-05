@@ -2,6 +2,8 @@ import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {slideInOutAnimation} from '../../../animations/slide-in-out';
 import {Store} from '../../../services/store/store';
 import {Location} from '@angular/common';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 @Component({
     selector: 'app-sections',
@@ -16,8 +18,12 @@ export class SectionsComponent implements OnInit, OnDestroy {
     public school: any;
     private bodyRef = document.querySelector('body');
 
+    private paramsSub: Subscription;
+
     constructor(
         private location: Location,
+        private router: Router,
+        private route: ActivatedRoute,
         private store: Store) {
     }
 
@@ -27,6 +33,13 @@ export class SectionsComponent implements OnInit, OnDestroy {
         });
 
         this.bodyRef.classList.add('prevent-scrolling');
+
+        // console.log('route',this.route);
+        // this.paramsSub = this.router.events.subscribe((event) => {
+        //     if (event instanceof NavigationEnd) {
+        //         console.log(event);
+        //     }
+        // });
     }
 
     goBack() {
@@ -36,7 +49,6 @@ export class SectionsComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.bodyRef.classList.remove('prevent-scrolling');
     }
-
 
 
 }

@@ -18,7 +18,7 @@ import {School} from '../../models/school.interface';
 })
 export class SchoolsComponent implements OnInit, OnDestroy {
 
-    public schools$: Observable<[School]> = this.store.select('schools');
+    public schools$: Observable<[School]> = this.schoolsService.get$();
     public schoolId: number;
     public selected: School;
     private scrollToCurrentSchoolElement = false;
@@ -33,9 +33,10 @@ export class SchoolsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.schoolsService.get$();
 
-        this.schoolId = Number(this.route.snapshot.params.schoolId);
+        if (this.route.snapshot.params.schoolId) {
+            this.schoolId = Number(this.route.snapshot.params.schoolId);
+        }
 
         this.paramsSub = this.route.params.subscribe((params) => {
             if (params.schoolId) {

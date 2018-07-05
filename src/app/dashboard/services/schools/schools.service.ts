@@ -4,13 +4,14 @@ import {Store} from '../../../services/store/store';
 import {Observable, throwError} from 'rxjs/index';
 import {catchError, tap} from 'rxjs/internal/operators';
 import {isDevMode} from '@angular/core';
+import {School} from '../../models/school.interface';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SchoolsService {
 
-    public schools$: Observable<any> = this.store.select('schools');
+    public schools$: Observable<[School]> = this.store.select('schools');
 
     private BASE_URL = isDevMode() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';
 
@@ -18,7 +19,7 @@ export class SchoolsService {
                 private http: HttpClient) {
     }
 
-    get$(force = false) {
+    get$(force = false): Observable<[School]> {
 
         if (!force && this.store.value.schools) {
             return this.schools$;

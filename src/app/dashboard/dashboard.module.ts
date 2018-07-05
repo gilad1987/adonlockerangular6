@@ -29,6 +29,7 @@ import { SchoolComponent } from './containers/school/school.component';
 import { SectionsComponent } from './containers/sections/sections.component';
 import { SectionComponent } from './components/section/section.component';
 import { UsersComponent } from './containers/users/users.component';
+import { CabinetsComponent } from './containers/cabinets/cabinets.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { UsersComponent } from './containers/users/users.component';
         SchoolComponent,
         SectionsComponent,
         SectionComponent,
-        UsersComponent
+        UsersComponent,
+        CabinetsComponent
     ],
     entryComponents: [
         AddNewStudentComponent,

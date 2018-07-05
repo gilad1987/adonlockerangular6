@@ -8,6 +8,7 @@ import {DashboardPageComponent} from './components/dashboard-page/dashboard-page
 import {UsersPageComponent} from './components/users-page/users-page.component';
 import {SchoolsPageComponent} from './components/schools-page/schools-page.component';
 import {SectionsComponent} from './containers/sections/sections.component';
+import {CabinetsComponent} from './containers/cabinets/cabinets.component';
 
 export const ROUTES: Routes = [
     {
@@ -20,15 +21,24 @@ export const ROUTES: Routes = [
                 component: DashboardComponent
             },
             {
+                path: 'schools',
+                component: SchoolsPageComponent
+            },
+            {
                 path: 'schools/:schoolId',
                 component: SchoolsPageComponent,
                 children: [
-                    {path: 'sections', component: SectionsComponent},
+                    {
+                        path: 'sections',
+                        component: SectionsComponent,
+                        children: [
+                            {
+                                path: ':sectionId/cabinets',
+                                component: CabinetsComponent
+                            },
+                        ]
+                    },
                 ]
-            },
-            {
-                path: 'schools',
-                component: SchoolsPageComponent
             },
             {
                 path: 'students',
