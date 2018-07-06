@@ -28,7 +28,6 @@ export class CabinetsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeParamsSub = this.route.params.subscribe((params) => {
-            console.log(params);
             this.school$.subscribe((school) => {
                 if (school) {
                     const sectionId = Number(params.sectionId);
