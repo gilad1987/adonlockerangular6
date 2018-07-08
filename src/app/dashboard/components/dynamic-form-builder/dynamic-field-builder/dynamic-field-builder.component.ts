@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Field} from './field.interface';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-dynamic-field-builder',
@@ -19,6 +19,7 @@ export class DynamicFieldBuilderComponent implements OnInit {
     }
 
     constructor() {
+
     }
 
     hasError(errorName) {

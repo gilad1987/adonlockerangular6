@@ -4,11 +4,12 @@ import {StudentsComponent} from "../../containers/students/students.component";
 import {ComponentPortal} from "@angular/cdk/portal";
 import {MatDialog} from "@angular/material";
 import {AddNewStudentComponent} from "../add-new-student/add-new-student.component";
+import {pageFadeInOutAnimation} from '../../../animations/page-fade-in-out';
 
 @Component({
     selector: 'app-students-page',
     templateUrl: './students-page.component.html',
-    styleUrls: ['./students-page.component.scss']
+    styleUrls: ['./students-page.component.scss'],
 })
 export class StudentsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 

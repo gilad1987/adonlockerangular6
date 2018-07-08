@@ -1,12 +1,12 @@
 import {ValidationErrors, Validator, ValidatorFn} from '@angular/forms';
 import {Observable} from "rxjs/index";
 
-interface DropdownOption {
-    value: string;
+export interface DropdownOption {
     text: string;
+    value: number;
 }
 
-interface InputValidator {
+export interface InputValidator {
     name: string;
     fn: ValidatorFn | ValidationErrors;
     text: string;
@@ -18,6 +18,7 @@ export interface Field {
     inputType?: 'text' | 'number' | 'email';
     value?: string;
     placeholder?: string;
-    options?: Array<DropdownOption> | Observable<any>;
+    // options?: Array<DropdownOption> | Observable<[DropdownOption]>;
+    options?:  Observable<any>;
     validations?: Array<InputValidator>;
 }

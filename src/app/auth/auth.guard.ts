@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
-import {CanLoad, CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
 import {AuthService} from './auth.service';
-import {Observable} from "rxjs/index";
-import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -18,13 +16,14 @@ export class AuthGuard implements CanActivate {
         try {
             const isLoggedUser = await this.authService.isLoggedIn();
             if (isLoggedUser) {
-                return true;
+                return await true;
             }
         } catch (error) {
+            this.router.navigate(['login']);
         }
 
         this.router.navigate(['login']);
 
-        return false;
+        return await false;
     }
 }

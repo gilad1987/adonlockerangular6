@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {DropdownOption, Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
 import {Validators} from '@angular/forms';
-import {Subject} from 'rxjs/index';
+import {BehaviorSubject, Subject, Subscription} from 'rxjs/index';
 import {SchoolsService} from '../../services/schools/schools.service';
 import {MatDialogRef} from '@angular/material';
 import {StudentsService} from '../../services/sudents/students.service';
@@ -11,10 +11,12 @@ import {StudentsService} from '../../services/sudents/students.service';
     templateUrl: './add-new-student.component.html',
     styleUrls: ['./add-new-student.component.scss']
 })
-export class AddNewStudentComponent implements OnInit {
+export class AddNewStudentComponent implements OnInit, OnDestroy {
 
     public loading: boolean = false;
-    public subjectSchools = new Subject();
+    public subjectSchools = new BehaviorSubject<DropdownOption[]>(undefined);
+
+    private optionsSub: Subscription;
 
     public fields: Field[] = [
         {
@@ -146,13 +148,17 @@ export class AddNewStudentComponent implements OnInit {
         private schoolsService: SchoolsService,
         private studentsService: StudentsService,
         public dialogRef: MatDialogRef<AddNewStudentComponent>) {
-        this.schoolsService.get$().subscribe((schools) => {
+
+    }
+
+    ngOnInit() {
+        this.optionsSub = this.schoolsService.get$().subscribe((schools) => {
 
             if (!schools) {
                 return;
             }
 
-            const options = schools.map((school) => {
+            const options: DropdownOption[] = schools.map((school) => {
                 return {
                     text: school.name,
                     value: school._id,
@@ -163,8 +169,8 @@ export class AddNewStudentComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-
+    ngOnDestroy() {
+        this.optionsSub.unsubscribe();
     }
 
     onSubmit(event) {
