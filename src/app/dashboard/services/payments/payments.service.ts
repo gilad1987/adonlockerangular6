@@ -22,7 +22,7 @@ export class PaymentsService {
 
     get$(force = false): Observable<[any]> {
 
-        if (this.loading || (!force && this.store.value.schools)) {
+        if (this.loading || (!force && this.store.value.transactions)) {
             return this.payments$;
         }
 

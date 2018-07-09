@@ -9,9 +9,10 @@ import {Observable} from 'rxjs';
 })
 export class TransactionPageComponent implements OnInit {
 
-    public columns: Array<any> = ['_id', 'price', 'status', 'product_type',
+    public columns: Array<any> = [
+        '_id', 'price', 'status', 'product_type',
         'ErrorMessage', 'StatusCode',
-        'TransactionPelecardId','TransactionUpdateTime'
+        'TransactionPelecardId', 'TransactionUpdateTime'
     ];
     public transactions$: Observable<[any]> = this.paymentsService.payments$;
 
