@@ -10,6 +10,7 @@ import {SchoolsPageComponent} from './components/schools-page/schools-page.compo
 import {SectionsComponent} from './containers/sections/sections.component';
 import {CabinetsComponent} from './containers/cabinets/cabinets.component';
 import {TransactionPageComponent} from './components/transaction-page/transaction-page.component';
+import {NotificationsPageComponent} from './components/notifications-page/notifications-page.component';
 
 export const ROUTES: Routes = [
     {
@@ -52,6 +53,10 @@ export const ROUTES: Routes = [
             {
                 path: 'transactions',
                 component: TransactionPageComponent
+            },
+            {
+                path: 'notifications',
+                component: NotificationsPageComponent
             }
         ]
     },

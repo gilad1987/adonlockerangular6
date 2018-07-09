@@ -9,6 +9,8 @@ const state: State = {
     students: undefined,
     school: undefined,
     studentsSearchResults: undefined,
+    transactions: undefined,
+    notifications: undefined,
 };
 
 export class Store {

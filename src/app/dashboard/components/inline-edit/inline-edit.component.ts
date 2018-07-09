@@ -30,6 +30,7 @@ export class InlineEditComponent implements OnInit {
     update: EventEmitter<string> = new EventEmitter<string>();
 
     @ViewChild('popover') popover: SatPopover;
+
     @ViewChild('select') select: MatSelect;
 
     private form: FormGroup;

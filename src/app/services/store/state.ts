@@ -8,4 +8,6 @@ export interface State {
     school: any;
     students: [Student];
     studentsSearchResults: [Student];
+    transactions: [any];
+    notifications: [any];
 }

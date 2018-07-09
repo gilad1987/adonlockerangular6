@@ -1,0 +1,11 @@
+.example-container{
+  table{
+    min-width: 100%;
+  }
+}
+
+[dir="rtl"] td.mat-cell,
+[dir="rtl"] td.mat-footer-cell,
+[dir="rtl"] th.mat-header-cell {
+  max-width: 250px;
+}
