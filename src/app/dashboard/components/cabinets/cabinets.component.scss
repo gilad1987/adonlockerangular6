@@ -1,19 +1,25 @@
 :host {
   z-index: 3;
   .content {
-    overflow: hidden;
+    overflow-y: scroll;
     background: white;
     max-width: 1200px;
     margin: 0;
     height: 100%;
     box-shadow: 0 0 10px -5px rgba(0, 0, 0, 0.2), 0 0 24px 2px rgba(0, 0, 0, 0.14), 0 0 30px 5px rgba(0, 0, 0, 0.12);
   }
+  mat-toolbar{
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    border-bottom: 1px solid #e7e8e8;
+  }
 
   .cabinets {
     display: flex;
     justify-content: right;
     flex-wrap: wrap;
-    height: calc(100% - 64px);
+    //height: calc(100% - 64px);
     overflow-y: scroll;
 
     app-cabinet {
@@ -62,8 +68,23 @@
   :host {
     .cabinets {
       app-cabinet {
-        width: calc(95% - 2px);
+        width: calc(48% - 2px);
       }
     }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  :host{
+
+    .cabinets{
+      app-cabinet {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+    }
+
   }
 }

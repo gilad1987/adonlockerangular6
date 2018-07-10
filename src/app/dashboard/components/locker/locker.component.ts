@@ -1,9 +1,10 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-locker',
     templateUrl: './locker.component.html',
-    styleUrls: ['./locker.component.scss']
+    styleUrls: ['./locker.component.scss'],
+
 })
 export class LockerComponent implements OnInit, OnChanges {
 

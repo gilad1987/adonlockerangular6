@@ -1,9 +1,9 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-cabinet',
     templateUrl: './cabinet.component.html',
-    styleUrls: ['./cabinet.component.scss']
+    styleUrls: ['./cabinet.component.scss'],
 })
 export class CabinetComponent implements OnInit, OnChanges {
 
@@ -14,7 +14,6 @@ export class CabinetComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        console.log(this.cabinet);
     }
 
     ngOnChanges(changes) {

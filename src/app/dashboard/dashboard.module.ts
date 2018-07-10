@@ -25,19 +25,19 @@ import {AddNewSchoolComponent} from './components/add-new-school/add-new-school.
 import {TooltipComponent} from './components/tooltip/tooltip.component';
 import {ConfirmDialogComponent} from './components/confirm-dialog/confirm-dialog.component';
 import {SchoolsPageComponent} from './components/schools-page/schools-page.component';
-import {SchoolComponent} from './containers/school/school.component';
-import {SectionsComponent} from './containers/sections/sections.component';
+import {SchoolComponent} from './components/school/school.component';
+import {SectionsComponent} from './components/sections/sections.component';
 import {SectionComponent} from './components/section/section.component';
 import {UsersComponent} from './containers/users/users.component';
-import {CabinetsComponent} from './containers/cabinets/cabinets.component';
+import {CabinetsComponent} from './components/cabinets/cabinets.component';
 import {TransactionPageComponent} from './components/transaction-page/transaction-page.component';
 import {AlTableComponent} from './components/al-table/al-table.component';
 import {NotificationsPageComponent} from './components/notifications-page/notifications-page.component';
-import { LockersComponent } from './components/lockers/lockers.component';
-import { LockerComponent } from './components/locker/locker.component';
-import { CabinetComponent } from './components/cabinet/cabinet.component';
-import { ColumnsComponent } from './components/columns/columns.component';
-import { ColumnComponent } from './components/column/column.component';
+import {LockersComponent} from './components/lockers/lockers.component';
+import {LockerComponent} from './components/locker/locker.component';
+import {CabinetComponent} from './components/cabinet/cabinet.component';
+import {ColumnsComponent} from './components/columns/columns.component';
+import {ColumnComponent} from './components/column/column.component';
 
 
 @NgModule({
