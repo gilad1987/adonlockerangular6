@@ -1,0 +1,13 @@
+:host{
+  display: flex;
+
+  mat-toolbar{
+
+  }
+  .columns{
+    flex: 1;
+    flex-wrap: nowrap;
+    display: flex;
+    padding: 12px;
+  }
+}

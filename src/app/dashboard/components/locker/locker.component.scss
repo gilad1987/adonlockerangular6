@@ -1,0 +1,40 @@
+:host{
+  display: block;
+  position: relative;
+  background-color: #ebf8fe;
+  border: 2px solid #898989;
+  height: 150px;
+  padding: 5px;
+  margin: 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  max-width: 69px;
+  min-width: 68px;
+
+  font-family: 'Arimo', sans-serif;
+  text-align: center;
+
+  p{
+    font-size:13px;
+    font-weight: bold;
+    margin: 7px 0;
+
+    &:first-child{
+      font-size: initial;
+      font-weight: inherit;
+      margin-bottom: 13px;
+    }
+
+    span{
+      font-size:12px;
+      font-weight: normal;
+    }
+  }
+
+  &:hover{
+    background-color: #035096;
+    border: 2px solid #000;
+    color: #cacaca;
+  }
+}
