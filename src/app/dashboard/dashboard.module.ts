@@ -33,6 +33,11 @@ import {CabinetsComponent} from './containers/cabinets/cabinets.component';
 import {TransactionPageComponent} from './components/transaction-page/transaction-page.component';
 import {AlTableComponent} from './components/al-table/al-table.component';
 import {NotificationsPageComponent} from './components/notifications-page/notifications-page.component';
+import { LockersComponent } from './components/lockers/lockers.component';
+import { LockerComponent } from './components/locker/locker.component';
+import { CabinetComponent } from './components/cabinet/cabinet.component';
+import { ColumnsComponent } from './components/columns/columns.component';
+import { ColumnComponent } from './components/column/column.component';
 
 
 @NgModule({
@@ -72,7 +77,12 @@ import {NotificationsPageComponent} from './components/notifications-page/notifi
         CabinetsComponent,
         TransactionPageComponent,
         AlTableComponent,
-        NotificationsPageComponent
+        NotificationsPageComponent,
+        LockersComponent,
+        LockerComponent,
+        CabinetComponent,
+        ColumnsComponent,
+        ColumnComponent
     ],
     entryComponents: [
         AddNewStudentComponent,

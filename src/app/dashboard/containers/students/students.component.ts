@@ -11,8 +11,9 @@ import {SchoolsService} from '../../services/schools/schools.service';
 import {flatMap} from 'tslint/lib/utils';
 
 import {Store} from '../../../services/store/store';
-import {Overlay} from "@angular/cdk/overlay";
-import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-dialog.component";
+import {Overlay} from '@angular/cdk/overlay';
+import {ConfirmDialogComponent} from '../../components/confirm-dialog/confirm-dialog.component';
+
 const Fuse = require('fuse.js');
 
 @Component({
@@ -69,7 +70,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
                 startWith({}),
                 switchMap(() => {
                     this.isLoadingResults = true;
-                    return this.studentService.get$(true, this.paginator.pageIndex + 1);
+                    return this.getPage(this.paginator.pageIndex + 1);
                 }),
                 map(res => {
                     this.isLoadingResults = false;
@@ -90,13 +91,17 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.paginatorSubscription$.unsubscribe();
     }
 
+    getPage(number) {
+        return this.studentService.get$(true, number);
+    }
+
     initFilter(el: HTMLElement) {
 
         this.filterSubscription$ = fromEvent(el, 'keyup')
             .pipe(
                 pluck('target'),
                 pluck('value'),
-                debounceTime(750),
+                debounceTime(1250),
                 distinctUntilChanged(),
                 switchMap((query: string) => {
                     this.isLoadingResults = true;

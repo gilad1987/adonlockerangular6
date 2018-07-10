@@ -1,16 +1,12 @@
 import {trigger, state, animate, transition, style} from '@angular/animations';
 
 export const pageFadeInOutAnimation =
-    trigger('pageFadeInOutAnimation', [
-        transition('void => *', [
-            // 'From' Style
-            style({ opacity: 0.2}),
-            animate('250ms ease-in')
+    trigger('pageFadeInOut', [
+        transition(':enter', [
+            style({transform: 'translateY(-100%)'}),
+            animate('200ms ease-in', style({transform: 'translateY(0%)'}))
         ]),
-        transition('* => void', [
-            animate('250ms ease-in',
-                // 'To' Style
-                style({ opacity: 1 }),
-            )
+        transition(':leave', [
+            animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
         ])
     ]);

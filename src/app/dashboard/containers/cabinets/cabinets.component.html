@@ -20,4 +20,7 @@
     <button mat-raised-button color="primary" tooltip="יצירת ארון חדש">צור חדש +</button>
   </mat-toolbar>
 
+    <div class="cabinets">
+        <app-cabinet *ngFor="let cabinet of section?.cabinets" [cabinet]="cabinet"></app-cabinet>
+    </div>
 </div>
