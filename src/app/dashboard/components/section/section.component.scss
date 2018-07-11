@@ -1,3 +1,52 @@
+:host {
+  mat-card-title {
+    display: flex;
+    span {
+      flex: 1;
+    }
+
+    i.info,
+    i.menu {
+      display: none;
+      cursor: pointer;
+      position: relative;
+      top: 4px;
+    }
+
+    i.info {
+      position: relative;
+      top: 3px;
+      font-size: 17px;
+    }
+  }
+
+  .name {
+    &:hover {
+      i.info {
+        display: inline-block;
+      }
+    }
+  }
+
+  &:hover {
+    mat-card-title {
+      i.menu {
+        display: inline-block;
+      }
+    }
+  }
+
+  &::ng-deep{
+    app-tooltip {
+      font-size: 15px;
+      .relative {
+        padding: 9px;
+        max-width: 150px;
+      }
+    }
+
+  }
+}
 
 .actions {
   margin: 0 -24px -24px -24px !important;
@@ -11,6 +60,10 @@
 
     &:hover {
       box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    i {
+      font-size: 21px;
     }
   }
 }

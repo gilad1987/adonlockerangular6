@@ -1,8 +1,8 @@
 <span class="tooltip-label">
-  {{label}}
+  <ng-content select=".label"></ng-content>
   <span class="tooltip-content" #content>
     <div class="relative">
-      <ng-content></ng-content>
+      <ng-content select=".content"></ng-content>
     </div>
   </span>
 </span>

@@ -20,7 +20,7 @@ export class LockerComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.lockerNumber = (100 * (this.index + 1)) + (this.columnIndex+1);
+        this.lockerNumber = (100 * (this.index + 1)) + (this.columnIndex + 1);
     }
 
     ngOnChanges(changes) {

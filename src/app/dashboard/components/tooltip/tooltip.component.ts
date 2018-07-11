@@ -13,6 +13,8 @@ export class TooltipComponent implements OnInit, AfterViewInit, AfterContentInit
     private contentHeight;
     private contentWidth;
     private hostWidth;
+    private timeout = 300;
+    private timer;
 
     @Input()
     label;
@@ -21,6 +23,9 @@ export class TooltipComponent implements OnInit, AfterViewInit, AfterContentInit
 
     @HostListener('mouseenter')
     onMouseEnter(): void {
+        if (!this.isTimeoutLeft()) {
+            this.content.nativeElement.style.display = 'none';
+        }
         this.content.nativeElement.style.display = 'block';
         setTimeout(() => {
             this.content.nativeElement.style.transform = `translate(${(this.contentWidth - this.hostWidth) / 2}px,-${this.contentHeight + 25}px)`;
@@ -32,15 +37,24 @@ export class TooltipComponent implements OnInit, AfterViewInit, AfterContentInit
     onMouseLeave(): void {
         this.content.nativeElement.style.transform = `translate(${(this.contentWidth - this.hostWidth) / 2}px,-${this.contentHeight + 5}px)`;
         this.content.nativeElement.style.opacity = 0;
+        this.startTimer();
         setTimeout(() => {
             this.content.nativeElement.style.display = 'none';
-        }, 300);
+        }, this.timeout);
     }
 
 
     constructor(private element: ElementRef) {
     }
 
+    startTimer() {
+        this.timer = new Date();
+    }
+
+    isTimeoutLeft() {
+        const now = new Date();
+        return !this.timer ? true : ((now.getTime() - this.timer.getTime()) > this.timeout);
+    }
 
     ngOnInit() {
     }

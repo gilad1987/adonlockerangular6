@@ -1,5 +1,23 @@
 <mat-card>
-    <mat-card-title>{{section.name}}</mat-card-title>
+    <mat-card-title>
+        <span class="name">
+            {{section.name}}
+            <app-tooltip *ngIf="section.note">
+                <div class="label">
+                    <i class="material-icons info">info</i>
+                </div>
+                <div class="content">
+                    {{section?.note}}
+                </div>
+            </app-tooltip>
+        </span>
+        <i class="material-icons menu" [matMenuTriggerFor]="menu">more_vert</i>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>עריכה</button>
+            <button mat-menu-item>מחיקה</button>
+        </mat-menu>
+    </mat-card-title>
+
     <mat-card-subtitle>
         <div><span>מספר ארונות: </span> {{section.cabinets?.length}}</div>
     </mat-card-subtitle>
@@ -34,7 +52,7 @@
     <div class="actions">
         <a [routerLink]="[section._id,'cabinets']" mat-raised-button>
             <span>הצג ארונות</span>
-            <i class="fas fa-angle-left"></i>
+            <i class="material-icons">chevron_left</i>
         </a>
     </div>
 </mat-card>

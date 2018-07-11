@@ -62,10 +62,15 @@
                 <th mat-header-cell *matHeaderCellDef>לוקר ID</th>
                 <td mat-cell *matCellDef="let row" class='title' data-title="לוקר id">
                     <app-tooltip [label]="row.locker._id" *ngIf="row.locker">
-                        <div><span class="bold"> שם מתחם: </span><span>{{ getSectionName(row.locker) }}</span></div>
+                        <div class="label">
+                            {{row.locker._id}}
+                        </div>
+                        <div class="content">
+                            <div><span class="bold"> שם מתחם: </span><span>{{ getSectionName(row.locker) }}</span></div>
                         <div><span class="bold"> שם ארון: </span><span>{{ getCabinetName(row.locker) }}</span></div>
                         <div><span class="bold"> מספר ארון: </span><span>{{ getColumnNumber(row.locker) }}</span></div>
                         <div><span class="bold"> מספר תא: </span><span>{{ getLockerNumber(row.locker) }}</span></div>
+                        </div>
                     </app-tooltip>
                 </td>
             </ng-container>
