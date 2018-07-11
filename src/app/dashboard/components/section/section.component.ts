@@ -35,7 +35,6 @@ export class SectionComponent implements OnInit {
         }, []);
     }
 
-
     private getAvailableLockers() {
         return this.filterLockerByStatus(0);
     }
