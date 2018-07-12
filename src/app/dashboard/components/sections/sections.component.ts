@@ -33,13 +33,6 @@ export class SectionsComponent implements OnInit, OnDestroy {
         });
 
         this.bodyRef.classList.add('prevent-scrolling');
-
-        // console.log('route',this.route);
-        // this.paramsSub = this.router.events.subscribe((event) => {
-        //     if (event instanceof NavigationEnd) {
-        //         console.log(event);
-        //     }
-        // });
     }
 
     goBack() {

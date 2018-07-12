@@ -38,6 +38,8 @@ import {LockerComponent} from './components/locker/locker.component';
 import {CabinetComponent} from './components/cabinet/cabinet.component';
 import {ColumnsComponent} from './components/columns/columns.component';
 import {ColumnComponent} from './components/column/column.component';
+import { LockerDialogComponent } from './components/locker-dialog/locker-dialog.component';
+import { LockerDataComponent } from './containers/locker-data/locker-data.component';
 
 
 @NgModule({
@@ -82,12 +84,15 @@ import {ColumnComponent} from './components/column/column.component';
         LockerComponent,
         CabinetComponent,
         ColumnsComponent,
-        ColumnComponent
+        ColumnComponent,
+        LockerDialogComponent,
+        LockerDataComponent
     ],
     entryComponents: [
         AddNewStudentComponent,
         ConfirmDialogComponent,
         SchoolComponent,
+        LockerDialogComponent
 
     ]
 })

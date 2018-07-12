@@ -1,22 +1,15 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DropdownOption, Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
+import {Component, Input, OnInit} from '@angular/core';
+import {Field} from '../../components/dynamic-form-builder/dynamic-field-builder/field.interface';
 import {Validators} from '@angular/forms';
-import {BehaviorSubject, Subject, Subscription} from 'rxjs/index';
-import {SchoolsService} from '../../services/schools/schools.service';
-import {MatDialogRef} from '@angular/material';
-import {StudentsService} from '../../services/sudents/students.service';
 
 @Component({
-    selector: 'app-add-new-student',
-    templateUrl: './add-new-student.component.html',
-    styleUrls: ['./add-new-student.component.scss']
+    selector: 'app-locker-data',
+    templateUrl: './locker-data.component.html',
+    styleUrls: ['./locker-data.component.scss']
 })
-export class AddNewStudentComponent implements OnInit, OnDestroy {
+export class LockerDataComponent implements OnInit {
 
-    public loading: boolean = false;
-    public subjectSchools = new BehaviorSubject<DropdownOption[]>(undefined);
-
-    private optionsSub: Subscription;
+    @Input('locker') locker;
 
     public fields: Field[] = [
         {
@@ -43,25 +36,6 @@ export class AddNewStudentComponent implements OnInit, OnDestroy {
             placeholder: 'שם משפחה',
             value: '',
             validations: [
-                {
-                    name: 'minlength',
-                    fn: Validators.minLength(2),
-                    text: 'חובה להכניס לפחות 2 תווים'
-                }
-            ]
-        },
-        {
-            type: 'dropdown',
-            name: 'school_id',
-            placeholder: 'שם בית ספר',
-            value: '',
-            options: this.subjectSchools.asObservable(),
-            validations: [
-                {
-                    name: 'required',
-                    fn: Validators.required,
-                    text: 'שדה חובה'
-                },
                 {
                     name: 'minlength',
                     fn: Validators.minLength(2),
@@ -144,49 +118,11 @@ export class AddNewStudentComponent implements OnInit, OnDestroy {
         }
     ];
 
-    constructor(
-        private schoolsService: SchoolsService,
-        private studentsService: StudentsService,
-        // public dialogRef: MatDialogRef<AddNewStudentComponent>
-    ) {
-
+    constructor() {
     }
 
     ngOnInit() {
-        this.optionsSub = this.schoolsService.get$().subscribe((schools) => {
-
-            if (!schools) {
-                return;
-            }
-
-            const options: DropdownOption[] = schools.map((school) => {
-                return {
-                    text: school.name,
-                    value: school._id,
-                };
-            });
-
-            this.subjectSchools.next(options);
-        });
-    }
-
-    ngOnDestroy() {
-        this.optionsSub.unsubscribe();
-    }
-
-    onSubmit(event) {
-        this.loading = true;
-        const sub = this.studentsService.add(event).subscribe(() => {
-            this.loading = true;
-            // this.dialogRef.close();
-        }, () => {
-            this.loading = false;
-            // this.dialogRef.close();
-        });
-    }
-
-    onCancel($event) {
-        // this.dialogRef.close();
+        console.log(this.locker);
     }
 
 }

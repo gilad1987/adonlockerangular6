@@ -32,6 +32,11 @@
     }
   }
 
+  &.active{
+    background-color: #96c8a2;
+    border: 2px solid #59aa65;
+    color: #898989;
+  }
   &:hover {
     background-color: #035096;
     border: 2px solid #000;
