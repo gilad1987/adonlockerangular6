@@ -10,6 +10,8 @@ import {MatDialog} from '@angular/material';
 })
 export class LockerComponent implements OnInit, OnChanges {
 
+    public lockerNumber: number;
+
     @Input('locker') locker;
 
     @Input('columnIndex') columnIndex;
@@ -18,27 +20,26 @@ export class LockerComponent implements OnInit, OnChanges {
 
     @HostBinding('class.active') hasRegisterClass: boolean;
 
+    // #TODO change to  add in ngOnInit
     @HostListener('click', ['$event'])
     onClick(e): void {
         const dialogRef = this.dialog.open(LockerDialogComponent, {
             data: {
                 locker: this.locker
             },
-            width: '1000px',
+            // width: '1000px',
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+            console.log('The dialog was closed', this.locker);
         });
     }
-
-    public lockerNumber: number;
 
     constructor(public dialog: MatDialog) {
     }
 
     ngOnInit() {
-        this.lockerNumber = (100 * (this.index + 1)) + (this.columnIndex + 1);
+        this.locker.number = this.lockerNumber = (100 * (this.index + 1)) + (this.columnIndex + 1);
         this.hasRegisterClass = (this.locker.student !== null);
     }
 

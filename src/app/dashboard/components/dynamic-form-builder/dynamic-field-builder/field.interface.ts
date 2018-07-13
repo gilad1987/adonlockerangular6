@@ -14,7 +14,8 @@ export interface InputValidator {
 
 export interface Field {
     name: string;
-    type: 'textarea' | 'input' | 'radio' | 'checkboxs' | 'dropdown';
+    disabled?: boolean;
+    type: 'textarea' | 'input' | 'radio' | 'checkboxs' | 'dropdown' | 'autocomplete';
     inputType?: 'text' | 'number' | 'email';
     value?: string;
     placeholder?: string;

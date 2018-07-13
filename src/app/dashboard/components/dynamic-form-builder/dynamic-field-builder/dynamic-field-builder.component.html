@@ -23,4 +23,18 @@
                   [placeholder]="field.placeholder"
                   [formControl]="control"></textarea>
     </mat-form-field>
+
+    <ng-container *ngSwitchCase="'autocomplete'">
+        <mat-form-field>
+            <input type="text" matInput
+                   [placeholder]="field.placeholder"
+                   [value]="field.value"
+                   [type]="field.inputType"
+                   [formControl]="control" [matAutocomplete]="auto">
+        </mat-form-field>
+
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of field.options | async" [value]="option.value">{{option.text}}</mat-option>
+        </mat-autocomplete>
+    </ng-container>
 </div>

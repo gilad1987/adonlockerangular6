@@ -5,13 +5,15 @@ import {Observable, throwError} from 'rxjs/index';
 import {catchError, tap} from 'rxjs/internal/operators';
 import {isDevMode} from '@angular/core';
 import {School} from '../../models/school.interface';
+import {Resolve} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
 })
-export class SchoolsService {
+export class SchoolsService implements Resolve<[School]> {
 
     public schools$: Observable<[School]> = this.store.select('schools');
+    public school$: Observable<[School]> = this.store.select('school');
 
     private loading: boolean = false;
 
@@ -31,7 +33,10 @@ export class SchoolsService {
         this.http.get(`${this.BASE_URL}/api/schools`)
             .pipe(
                 tap(
-                    (schools) => this.store.set('schools', schools),
+                    (schools) => {
+                        this.store.set('schools', schools);
+                        return this.schools$;
+                    },
                     (error) => {
                         return catchError(error);
                     },
@@ -48,12 +53,22 @@ export class SchoolsService {
         return this.http.get(`${this.BASE_URL}/api/schools/${id}`)
             .pipe(
                 tap(
-                    (school) => this.store.set('school', school),
+                    (school) => {
+                        this.store.set('school', school);
+                        return this.school$;
+                    },
                     (error) => {
                         return catchError(error);
+                    },
+                    () => {
+
                     }
                 )
             )
             .pipe(catchError((err, caught) => throwError(err)));
+    }
+
+    resolve() {
+        return this.get$();
     }
 }

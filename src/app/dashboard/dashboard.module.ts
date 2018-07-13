@@ -38,8 +38,9 @@ import {LockerComponent} from './components/locker/locker.component';
 import {CabinetComponent} from './components/cabinet/cabinet.component';
 import {ColumnsComponent} from './components/columns/columns.component';
 import {ColumnComponent} from './components/column/column.component';
-import { LockerDialogComponent } from './components/locker-dialog/locker-dialog.component';
-import { LockerDataComponent } from './containers/locker-data/locker-data.component';
+import {LockerDialogComponent} from './components/locker-dialog/locker-dialog.component';
+import {LockerDataComponent} from './components/locker-data/locker-data.component';
+import {SchoolsService} from './services/schools/schools.service';
 
 
 @NgModule({
@@ -55,6 +56,9 @@ import { LockerDataComponent } from './containers/locker-data/locker-data.compon
     exports: [
         DashboardComponent,
 
+    ],
+    providers: [
+        SchoolsService
     ],
     declarations: [
         DashboardComponent,

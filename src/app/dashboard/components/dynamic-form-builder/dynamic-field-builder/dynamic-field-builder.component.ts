@@ -27,6 +27,8 @@ export class DynamicFieldBuilderComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('field',this.field);
+        // console.log('control',this.control);
     }
 
 }

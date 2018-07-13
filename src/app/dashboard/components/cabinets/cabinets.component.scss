@@ -23,11 +23,18 @@
     overflow-y: scroll;
 
     app-cabinet {
-      width: calc(31% - 2px);
+      //width: calc(31% - 2px);
+      //flex-wrap: wrap;
+      //margin: 1%;
+      //border: 1px solid #f6f5f6;
+      //border-radius: 2px;
+
+      max-width: 373px;
       flex-wrap: wrap;
-      margin: 1%;
+      margin: 10px;
       border: 1px solid #f6f5f6;
       border-radius: 2px;
+      flex: 1 1 auto;
     }
   }
 }
@@ -58,7 +65,7 @@
   :host {
     .cabinets {
       app-cabinet {
-        width: calc(48% - 2px);
+        //width: calc(48% - 2px);
       }
     }
   }
@@ -68,7 +75,7 @@
   :host {
     .cabinets {
       app-cabinet {
-        width: calc(48% - 2px);
+        //width: calc(48% - 2px);
       }
     }
   }
@@ -79,9 +86,9 @@
 
     .cabinets{
       app-cabinet {
-        width: 100%;
-        margin-right: 0;
-        margin-left: 0;
+        //width: 100%;
+        //margin-right: 0;
+        //margin-left: 0;
       }
 
     }

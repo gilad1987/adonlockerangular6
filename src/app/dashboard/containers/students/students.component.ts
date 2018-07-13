@@ -30,6 +30,10 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+
+    /**
+     * Filter input text element
+     */
     @ViewChild('filter') filter;
 
     dataSource: ExampleDataSource;

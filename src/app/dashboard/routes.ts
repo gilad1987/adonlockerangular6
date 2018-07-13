@@ -11,6 +11,7 @@ import {SectionsComponent} from './components/sections/sections.component';
 import {CabinetsComponent} from './components/cabinets/cabinets.component';
 import {TransactionPageComponent} from './components/transaction-page/transaction-page.component';
 import {NotificationsPageComponent} from './components/notifications-page/notifications-page.component';
+import {SchoolsService} from './services/schools/schools.service';
 
 export const ROUTES: Routes = [
     {
@@ -24,7 +25,10 @@ export const ROUTES: Routes = [
             },
             {
                 path: 'schools',
-                component: SchoolsPageComponent
+                component: SchoolsPageComponent,
+                resolve: {
+                    // schools$: SchoolsService
+                }
             },
             {
                 path: 'schools/:schoolId',

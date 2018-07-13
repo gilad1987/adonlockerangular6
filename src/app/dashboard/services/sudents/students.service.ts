@@ -28,7 +28,7 @@ export class StudentsService {
                 private http: HttpClient) {
     }
 
-    get$(force = false, page: number = 0, query: string = ''): Observable<any> {
+    get$(force = false, page: number = 0, query: string = '', filter: string = ''): Observable<any> {
 
         if (!force && this.store.value.students && this.store.value.students.length) {
             return this.students$;
@@ -36,7 +36,7 @@ export class StudentsService {
 
         const q = query !== '' ? `filter[first_name]=${query}` : '';
 
-        return this.http.get(`${this.BASE_URL}/api/students?page=${page}&query=${query}&${q}`)
+        return this.http.get(`${this.BASE_URL}/api/students?page=${page}&filter=${filter}&query=${query}&${q}`)
             .pipe(tap(
                 (res: StudentPage) => {
                     this.totalStudents$.next(res.total);
@@ -104,8 +104,8 @@ export class StudentsService {
                     }
                 )
             );
-            // .pipe(catchError((err, caught) => throwError(err)))
-            // .subscribe();
+        // .pipe(catchError((err, caught) => throwError(err)))
+        // .subscribe();
     }
 
 }

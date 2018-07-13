@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {Field} from "./dynamic-field-builder/field.interface";
+import {FormControl, FormGroup} from '@angular/forms';
+import {Field} from './dynamic-field-builder/field.interface';
 
 @Component({
     selector: 'app-dynamic-form-builder',
@@ -29,9 +29,8 @@ export class DynamicFormBuilderComponent implements OnInit {
 
     ngOnInit() {
 
-        const controls = this.fields.reduce((fields, item) => {
-            const defaultValue = item.value || (this.initialData && this.initialData[item.name]) || '';
-            fields[item.name] = new FormControl(defaultValue, item.validations.map((v) => v.fn));
+        const controls = this.fields.reduce((fields, field) => {
+            fields[field.name] = new FormControl({value: field.value, disabled: field.disabled}, field.validations.map((v) => v.fn));
             return fields;
         }, {});
 

@@ -153,6 +153,7 @@ export class AddNewStudentComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        // #TODO need to pass from resolver
         this.optionsSub = this.schoolsService.get$().subscribe((schools) => {
 
             if (!schools) {
