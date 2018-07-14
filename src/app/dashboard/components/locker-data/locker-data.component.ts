@@ -4,6 +4,8 @@ import {Validators} from '@angular/forms';
 import {LockerService} from '../../services/lockers/locker.service';
 import {BehaviorSubject, of, Subscription} from 'rxjs';
 import {StudentsService} from '../../services/sudents/students.service';
+import {map} from 'rxjs/operators';
+import {detectBufferEncoding} from 'tslint/lib/utils';
 
 @Component({
     selector: 'app-locker-data',
@@ -29,24 +31,24 @@ export class LockerDataComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         // #TODO need to pass from resolver
-        this.optionsSub = this.studentsService.get$().subscribe((students) => {
-
-            if (!students) {
-                this.subjectStudents.next([]);
-                return;
-            }
-
-            const options: DropdownOption[] = students.map((student) => {
-                return {
-                    text: student.fullName,
-                    value: student._id,
-                };
-            });
-
-            options.splice(0, 0, {value: null, text: 'ריק'});
-
-            this.subjectStudents.next(options);
-        });
+        // this.optionsSub = this.studentsService.get$().subscribe((students) => {
+        //
+        //     if (!students) {
+        //         this.subjectStudents.next([]);
+        //         return;
+        //     }
+        //
+        //     const options: DropdownOption[] = students.map((student) => {
+        //         return {
+        //             text: student.fullName,
+        //             value: student._id,
+        //         };
+        //     });
+        //
+        //     options.splice(0, 0, {value: null, text: 'ריק'});
+        //
+        //     this.subjectStudents.next(options);
+        // });
 
         this.locker.type = Number(this.locker.type);
 
@@ -58,16 +60,16 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                 value: this.locker.active,
                 options: of(this.lockerService.STATUS),
                 validations: [
-                    {
-                        name: 'required',
-                        fn: Validators.required,
-                        text: 'שדה חובה'
-                    },
-                    {
-                        name: 'minlength',
-                        fn: Validators.minLength(2),
-                        text: 'חובה להכניס לפחות 2 תווים'
-                    }
+                    // {
+                    //     name: 'required',
+                    //     fn: Validators.required,
+                    //     text: 'שדה חובה'
+                    // },
+                    // {
+                    //     name: 'minlength',
+                    //     fn: Validators.minLength(2),
+                    //     text: 'חובה להכניס לפחות 2 תווים'
+                    // }
                 ]
             },
             {
@@ -85,24 +87,35 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                 value: this.locker.type,
                 options: of(this.lockerService.TYPES),
                 validations: [
-                    {
-                        name: 'required',
-                        fn: Validators.required,
-                        text: 'שדה חובה'
-                    },
-                    {
-                        name: 'minlength',
-                        fn: Validators.minLength(2),
-                        text: 'חובה להכניס לפחות 2 תווים'
-                    }
+                    // {
+                    //     name: 'required',
+                    //     fn: Validators.required,
+                    //     text: 'שדה חובה'
+                    // },
+                    // {
+                    //     name: 'minlength',
+                    //     fn: Validators.minLength(2),
+                    //     text: 'חובה להכניס לפחות 2 תווים'
+                    // }
                 ]
             },
             {
                 type: 'autocomplete',
-                name: 'student_id',
+                name: 'student',
+                propToDisplay: 'fullName',
                 placeholder: 'סטודנט משויך',
-                value: this.locker.students ? this.locker.students._id : null,
-                options: this.subjectStudents.asObservable(),
+                displayFn: (student) => {
+                    return student ? student.fullName : undefined;
+                },
+                filter: (() => {
+
+                    return (query) => {
+                        query = query && query.toLowerCase() || '';
+                        return this.studentsService.search(query);
+                    };
+                })(),
+                value: this.locker.student,
+                // options: this.studentsService.search(''), // this.subjectStudents.asObservable(),
                 validations: []
             },
             {
@@ -111,17 +124,25 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                 placeholder: 'הערות',
                 value: this.locker.note,
                 validations: [
-                    {
-                        name: 'required',
-                        fn: Validators.required,
-                        text: 'מספר הטלפון אינו תקין.'
-                    }
+                    // {
+                    //     name: 'required',
+                    //     fn: Validators.required,
+                    //     text: 'מספר הטלפון אינו תקין.'
+                    // }
                 ]
             }
         ];
     }
 
     ngOnDestroy() {
-        this.optionsSub.unsubscribe();
+        // this.optionsSub.unsubscribe();
+    }
+
+    onSubmit(event) {
+        console.log('on submit', event);
+    }
+
+    onCancel(event) {
+        console.log('on cancel', event);
     }
 }

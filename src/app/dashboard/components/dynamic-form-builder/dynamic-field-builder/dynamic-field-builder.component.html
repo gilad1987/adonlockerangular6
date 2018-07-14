@@ -31,10 +31,20 @@
                    [value]="field.value"
                    [type]="field.inputType"
                    [formControl]="control" [matAutocomplete]="auto">
+            <button mat-button
+                    *ngIf="control.value"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="control.setValue('')">
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
 
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of field.options | async" [value]="option.value">{{option.text}}</mat-option>
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="field.displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async;trackBy: trackByFn" [value]="option">
+                {{option[field.propToDisplay]}}
+            </mat-option>
         </mat-autocomplete>
     </ng-container>
 </div>

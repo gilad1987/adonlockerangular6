@@ -11,6 +11,12 @@ export class ColumnComponent implements OnInit, OnChanges {
 
     @Input('index') index;
 
+    @Input('cabinet') cabinet;
+
+    @Input('section') section;
+
+    @Input('school') school;
+
     constructor() {
 
     }

@@ -1,6 +1,21 @@
 <div dir="rtl">
   <mat-tab-group>
     <mat-tab label="מידע לוקר">
+      <br>
+      <div>
+        <span>בית ספר:</span>
+        {{data.school.name}}
+      </div>
+      <div>
+        <span>מתחם:</span>
+        {{data.section.name}}
+      </div>
+      <div>
+        <span>ארון:</span>
+        {{data.cabinet.name}}
+      </div>
+      <br>
+
       <app-locker-data [locker]="data.locker"></app-locker-data>
     </mat-tab>
     <mat-tab label="הוסף סטודנט">

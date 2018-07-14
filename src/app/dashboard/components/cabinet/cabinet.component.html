@@ -2,5 +2,10 @@
     {{cabinet?.name}}
 </mat-toolbar>
 <div class="columns" dir="ltr">
-    <app-column *ngFor="let column of cabinet?.columns; let i = index" [column]="column" [index]="i"></app-column>
+    <app-column *ngFor="let column of cabinet?.columns; let i = index"
+                [column]="column"
+                [cabinet]="cabinet"
+                [section]="section"
+                [school]="school"
+                [index]="i"></app-column>
 </div>

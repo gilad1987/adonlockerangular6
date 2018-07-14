@@ -1,2 +1,9 @@
 
-<app-locker *ngFor="let locker of column?.lockers; let i = index;" [locker]="locker" [columnIndex]="index" [index]="i"></app-locker>
+<app-locker *ngFor="let locker of column?.lockers; let i = index;"
+            [locker]="locker"
+            [columnIndex]="index"
+            [index]="i"
+            [cabinet]="cabinet"
+            [section]="section"
+            [school]="school"
+></app-locker>

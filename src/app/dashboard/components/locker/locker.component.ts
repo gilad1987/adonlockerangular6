@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, HostBinding, HostListener, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, HostBinding, HostListener, Input, OnChanges, OnInit} from '@angular/core';
 import {LockerDialogComponent} from '../locker-dialog/locker-dialog.component';
 import {MatDialog} from '@angular/material';
 
@@ -12,12 +12,12 @@ export class LockerComponent implements OnInit, OnChanges {
 
     public lockerNumber: number;
 
+    @Input('school') school;
+    @Input('section') section;
+    @Input('cabinet') cabinet;
     @Input('locker') locker;
-
     @Input('columnIndex') columnIndex;
-
     @Input('index') index;
-
     @HostBinding('class.active') hasRegisterClass: boolean;
 
     // #TODO change to  add in ngOnInit
@@ -25,7 +25,10 @@ export class LockerComponent implements OnInit, OnChanges {
     onClick(e): void {
         const dialogRef = this.dialog.open(LockerDialogComponent, {
             data: {
-                locker: this.locker
+                locker: this.locker,
+                cabinet: this.cabinet,
+                section: this.section,
+                school: this.school,
             },
             // width: '1000px',
         });

@@ -21,6 +21,6 @@
   </mat-toolbar>
 
     <div class="cabinets">
-        <app-cabinet *ngFor="let cabinet of section?.cabinets" [cabinet]="cabinet"></app-cabinet>
+        <app-cabinet *ngFor="let cabinet of section?.cabinets" [cabinet]="cabinet" [section]="section" [school]="school"></app-cabinet>
     </div>
 </div>

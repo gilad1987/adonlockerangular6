@@ -19,10 +19,16 @@ interface StudentPage {
 export class StudentsService {
 
     public students$: Observable<[Student]> = this.store.select('students');
-    public studentsSearchResults$: Observable<[Student]> = this.store.select('studentsSearchResults');
+
+    get students(): [Student] | undefined {
+        return this.store.value.students;
+    }
+
     public totalStudents$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
     private BASE_URL = isDevMode() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';
+
+    private loading: boolean = false;
 
     constructor(private store: Store,
                 private http: HttpClient) {
@@ -30,27 +36,42 @@ export class StudentsService {
 
     get$(force = false, page: number = 0, query: string = '', filter: string = ''): Observable<any> {
 
-        if (!force && this.store.value.students && this.store.value.students.length) {
-            return this.students$;
+        console.log('get', query);
+        if ((this.loading && query === '') || (!force && this.store.value.students && this.store.value.students.length)) {
+            // debugger;
+            // return this.students$;
         }
 
-        const q = query !== '' ? `filter[first_name]=${query}` : '';
 
-        return this.http.get(`${this.BASE_URL}/api/students?page=${page}&filter=${filter}&query=${query}&${q}`)
+        this.loading = true;
+        return this.http.get(`${this.BASE_URL}/api/students?page=${page}&filter=${filter}&query=${query}`)
             .pipe(tap(
                 (res: StudentPage) => {
                     this.totalStudents$.next(res.total);
                     this.store.set('students', res.students);
+                    return res.students;
                 },
                 (error) => {
                     console.error('StudentsService.get$', error);
                     return catchError(error);
+                },
+                () => {
+                    this.loading = true;
                 })
             ).pipe(map(res => {
                 return res.students;
             }))
             .pipe(catchError((err, caught) => throwError(caught)));
     }
+
+    search(query) {
+        return this.get$(true, 0, query);
+    }
+
+    getPage(number = 1, query = '') {
+        return this.get$(true, number, query);
+    }
+
 
     update(newStudent: Student) {
         return this.http.patch(`${this.BASE_URL}/api/students/${newStudent._id}`, newStudent)
@@ -59,6 +80,8 @@ export class StudentsService {
                     (res: Student) => {
                         const students = this.store.value.students.slice().map((student) => student._id === newStudent._id ? res : student);
                         this.store.set('students', students);
+                        debugger;
+                        return students;
                     },
                     (error) => {
                         console.error('StudentsService.update', error);
