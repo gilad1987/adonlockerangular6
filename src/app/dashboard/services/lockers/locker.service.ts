@@ -21,7 +21,7 @@ export class LockerService {
     ];
 
     private STATUS_ACTIVE = {
-        value: 0,
+        value: 1,
         text: 'תקין'
     };
 

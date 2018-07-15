@@ -54,8 +54,16 @@ export class LockerDataComponent implements OnInit, OnDestroy {
 
         this.fields = [
             {
+                type: 'input',
+                name: 'number',
+                placeholder: 'תא מספר',
+                value: this.locker.number,
+                disabled: true,
+                validations: []
+            },
+            {
                 type: 'dropdown',
-                name: 'type',
+                name: 'status',
                 placeholder: 'סטטוס',
                 value: this.locker.active,
                 options: of(this.lockerService.STATUS),
@@ -71,14 +79,6 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                     //     text: 'חובה להכניס לפחות 2 תווים'
                     // }
                 ]
-            },
-            {
-                type: 'input',
-                name: 'number',
-                placeholder: 'תא מספר',
-                value: this.locker.number,
-                disabled: true,
-                validations: []
             },
             {
                 type: 'dropdown',
@@ -119,6 +119,32 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                 validations: []
             },
             {
+                type: 'input',
+                name: 'code1',
+                placeholder: 'קוד',
+                value: this.locker.code,
+                validations: [
+                    // {
+                    //     name: 'required',
+                    //     fn: Validators.required,
+                    //     text: 'מספר הטלפון אינו תקין.'
+                    // }
+                ]
+            },
+            {
+                type: 'input',
+                name: 'code_master',
+                placeholder: 'קוד מאסטר',
+                value: this.locker.code_master,
+                validations: [
+                    // {
+                    //     name: 'required',
+                    //     fn: Validators.required,
+                    //     text: 'מספר הטלפון אינו תקין.'
+                    // }
+                ]
+            },
+            {
                 type: 'textarea',
                 name: 'note',
                 placeholder: 'הערות',
@@ -130,7 +156,7 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                     //     text: 'מספר הטלפון אינו תקין.'
                     // }
                 ]
-            }
+            },
         ];
     }
 

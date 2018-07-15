@@ -36,13 +36,13 @@
                     matSuffix
                     mat-icon-button
                     aria-label="Clear"
-                    (click)="control.setValue('')">
+                    (click)="control.setValue(null)">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
 
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="field.displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async;trackBy: trackByFn" [value]="option">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                 {{option[field.propToDisplay]}}
             </mat-option>
         </mat-autocomplete>

@@ -35,24 +35,32 @@ export class DynamicFieldBuilderComponent implements OnInit, AfterViewInit {
         if (this.field.type === 'autocomplete') {
             this.filteredOptions = this.control.valueChanges
                 .pipe(
-                    startWith(''),
+                    startWith(null),
                     debounceTime(1250),
                     distinctUntilChanged(),
+
                     switchMap(value => {
                         debugger;
-                        if (value === '' && this.control.value ) {
+                        // #TODO check all version to not go to server
+                        if (typeof value === 'object' && value !== null && this.control.value === value) {
                             return of([this.control.value]);
                         }
                         console.log('control.value', this.control.value);
                         console.log('autocomplete filter', value);
+                        console.log('start');
                         return this.field.filter(value);
+                    }),
+                    map((s) => {
+                        console.log('done');
+                        return s;
                     })
                 );
         }
     }
 
     trackByFn(index, item) {
-        return item.authcompleteIndex ? item.authcompleteIndex : (item.authcompleteIndex = Math.random());
+
+        // return item.authcompleteIndex ? item.authcompleteIndex : (item.authcompleteIndex = Math.random());
     }
 
     ngAfterViewInit() {
