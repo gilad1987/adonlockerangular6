@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {DataSource} from '@angular/cdk/collections';
-import {UsersDataSource} from '../../containers/users/users.component';
 
 @Component({
     selector: 'app-al-table',

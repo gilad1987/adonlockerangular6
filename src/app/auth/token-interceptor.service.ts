@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {
     HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,
     HttpResponse
-} from "@angular/common/http";
-import {Observable} from "rxjs/index";
-import {AuthService} from "./auth.service";
-import {tap} from "rxjs/internal/operators";
-import {Router} from "@angular/router";
+} from '@angular/common/http';
+import {Observable} from 'rxjs/index';
+import {AuthService} from './auth.service';
+import {tap} from 'rxjs/internal/operators';
+import {Router} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -36,7 +36,8 @@ export class TokenInterceptorService implements HttpInterceptor {
                 }, (err: any) => {
                     if (err instanceof HttpErrorResponse) {
                         if (err.status === 401) {
-                            this.router.navigate(['login']);
+                            const referrer = window.location.href.replace(window.location.origin, '');
+                            this.router.navigate(['login'], {queryParams: {referrer: referrer}});
                         }
                     }
                 }

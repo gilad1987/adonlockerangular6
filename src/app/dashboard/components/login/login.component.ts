@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     public form: FormGroup;
     public invalidCredentials: boolean = false;
 
-    private referrer: string;
+    private navigateAfterLogin: string;
 
     constructor(private auth: AuthService,
                 private route: ActivatedRoute,
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
 
-        this.referrer = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.navigateAfterLogin = this.route.snapshot.queryParams['referrer'] || '/dashboard';
 
         this.form = new FormGroup({
             password: new FormControl('', [
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
             .login(this.f.username.value, this.f.password.value)
             .subscribe(
                 (res) => {
-                    this.router.navigate(['dashboard']);
+                    this.router.navigateByUrl(this.navigateAfterLogin);
                 },
                 (error) => {
                     if (error.status === 401) {

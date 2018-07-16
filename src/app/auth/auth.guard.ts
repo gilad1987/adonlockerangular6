@@ -19,10 +19,11 @@ export class AuthGuard implements CanActivate {
                 return await true;
             }
         } catch (error) {
-            this.router.navigate(['login']);
+            // this.router.navigate(['login']);
         }
 
-        this.router.navigate(['login']);
+        const referrer = window.location.href.replace(window.location.origin, '');
+        this.router.navigate(['login'], {queryParams: {referrer: referrer}});
 
         return await false;
     }
