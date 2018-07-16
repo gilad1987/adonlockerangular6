@@ -44,7 +44,10 @@
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="field.displayFn">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                 {{option[field.propToDisplay]}}
+                <!--<div>מספר מנעול: {{option[field.propToDisplay]}} | קוד : {{option.code}}</div>-->
             </mat-option>
         </mat-autocomplete>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
     </ng-container>
+
 </div>

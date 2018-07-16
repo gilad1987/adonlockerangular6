@@ -17,6 +17,8 @@ export class DynamicFieldBuilderComponent implements OnInit, AfterViewInit {
     @Input() form: FormGroup;
     @Input() control: FormControl;
 
+    public loading: boolean = false;
+
     private filteredOptions: Observable<any[]>;
 
     get isDirty() {
@@ -38,21 +40,12 @@ export class DynamicFieldBuilderComponent implements OnInit, AfterViewInit {
                     startWith(null),
                     debounceTime(1250),
                     distinctUntilChanged(),
-
                     switchMap(value => {
-                        debugger;
                         // #TODO check all version to not go to server
                         if (typeof value === 'object' && value !== null && this.control.value === value) {
                             return of([this.control.value]);
                         }
-                        console.log('control.value', this.control.value);
-                        console.log('autocomplete filter', value);
-                        console.log('start');
                         return this.field.filter(value);
-                    }),
-                    map((s) => {
-                        console.log('done');
-                        return s;
                     })
                 );
         }

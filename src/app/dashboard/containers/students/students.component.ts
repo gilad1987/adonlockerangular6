@@ -96,7 +96,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     getPage(number) {
-        return this.studentService.get$(true, number);
+        return this.studentService.get$(true, number, '', null, 1);
     }
 
     initFilter(el: HTMLElement) {

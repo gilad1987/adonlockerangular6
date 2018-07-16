@@ -2,21 +2,25 @@
     <mat-tab-group>
         <mat-tab label="מידע לוקר">
             <br>
-            <div>
-                <span>בית ספר:</span>
-                {{data.school.name}}
-            </div>
-            <div>
-                <span>מתחם:</span>
-                {{data.section.name}}
-            </div>
-            <div>
-                <span>ארון:</span>
-                {{data.cabinet.name}}
+            <div class="metadata">
+                <div>
+                    <span>בית ספר:</span>
+                    {{data.school.name}}
+                </div>
+                <div>
+                    <span>מתחם:</span>
+                    {{data.section.name}}
+                </div>
+                <div>
+                    <span>ארון:</span>
+                    {{data.cabinet.name}}
+                </div>
             </div>
             <br>
 
+            <mat-dialog-content>
             <app-locker-data [locker]="data.locker"></app-locker-data>
+            </mat-dialog-content>
         </mat-tab>
         <mat-tab label="הוסף סטודנט">
             <app-add-new-student></app-add-new-student>

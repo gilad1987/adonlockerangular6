@@ -6,6 +6,7 @@ import {BehaviorSubject, of, Subscription} from 'rxjs';
 import {StudentsService} from '../../services/sudents/students.service';
 import {map} from 'rxjs/operators';
 import {detectBufferEncoding} from 'tslint/lib/utils';
+import {LocksService} from '../../services/locks/locks.service';
 
 @Component({
     selector: 'app-locker-data',
@@ -18,37 +19,15 @@ export class LockerDataComponent implements OnInit, OnDestroy {
 
     public fields: Field[];
 
-    public subjectStudents = new BehaviorSubject<DropdownOption[]>(undefined);
-    private optionsSub: Subscription;
-
     constructor(
         private lockerService: LockerService,
-        private studentsService: StudentsService
+        private studentsService: StudentsService,
+        private locksService: LocksService
     ) {
 
     }
 
     ngOnInit() {
-
-        // #TODO need to pass from resolver
-        // this.optionsSub = this.studentsService.get$().subscribe((students) => {
-        //
-        //     if (!students) {
-        //         this.subjectStudents.next([]);
-        //         return;
-        //     }
-        //
-        //     const options: DropdownOption[] = students.map((student) => {
-        //         return {
-        //             text: student.fullName,
-        //             value: student._id,
-        //         };
-        //     });
-        //
-        //     options.splice(0, 0, {value: null, text: 'ריק'});
-        //
-        //     this.subjectStudents.next(options);
-        // });
 
         this.locker.type = Number(this.locker.type);
 
@@ -63,10 +42,11 @@ export class LockerDataComponent implements OnInit, OnDestroy {
             },
             {
                 type: 'dropdown',
-                name: 'status',
-                placeholder: 'סטטוס',
-                value: this.locker.active,
-                options: of(this.lockerService.STATUS),
+                name: 'type',
+                placeholder: 'סוג מנעול',
+                value: this.locker.type,
+                disabled: true,
+                options: of(this.lockerService.TYPES),
                 validations: [
                     // {
                     //     name: 'required',
@@ -82,10 +62,10 @@ export class LockerDataComponent implements OnInit, OnDestroy {
             },
             {
                 type: 'dropdown',
-                name: 'type',
-                placeholder: 'סוג מנעול',
-                value: this.locker.type,
-                options: of(this.lockerService.TYPES),
+                name: 'status',
+                placeholder: 'סטטוס',
+                value: Number(this.locker.is_active),
+                options: of(this.lockerService.STATUS),
                 validations: [
                     // {
                     //     name: 'required',
@@ -118,7 +98,32 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                 // options: this.studentsService.search(''), // this.subjectStudents.asObservable(),
                 validations: []
             },
-            {
+        ];
+
+
+        if (this.locker.type === this.lockerService.MECHANIC_TYPE.value) {
+            this.fields.push({
+                type: 'autocomplete',
+                name: 'lock',
+                propToDisplay: 'number',
+                placeholder: 'מנעול',
+                displayFn: (lock) => {
+                    return lock ? lock.number : undefined;
+                },
+                filter: (() => {
+                    return (query) => {
+                        query = query && query.toLowerCase() || '';
+                        return this.locksService.search(query);
+                    };
+                })(),
+                value: this.locker.student,
+                // options: this.studentsService.search(''), // this.subjectStudents.asObservable(),
+                validations: []
+            });
+        }
+
+        if (this.locker.type === this.lockerService.DIGITAL_TYPE.value) {
+            this.fields.push({
                 type: 'input',
                 name: 'code1',
                 placeholder: 'קוד',
@@ -130,8 +135,9 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                     //     text: 'מספר הטלפון אינו תקין.'
                     // }
                 ]
-            },
-            {
+            });
+
+            this.fields.push({
                 type: 'input',
                 name: 'code_master',
                 placeholder: 'קוד מאסטר',
@@ -143,21 +149,23 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                     //     text: 'מספר הטלפון אינו תקין.'
                     // }
                 ]
-            },
-            {
-                type: 'textarea',
-                name: 'note',
-                placeholder: 'הערות',
-                value: this.locker.note,
-                validations: [
-                    // {
-                    //     name: 'required',
-                    //     fn: Validators.required,
-                    //     text: 'מספר הטלפון אינו תקין.'
-                    // }
-                ]
-            },
-        ];
+            });
+        }
+
+        this.fields.push({
+            type: 'textarea',
+            name: 'note',
+            placeholder: 'הערות',
+            value: this.locker.note,
+            validations: [
+                // {
+                //     name: 'required',
+                //     fn: Validators.required,
+                //     text: 'מספר הטלפון אינו תקין.'
+                // }
+            ]
+        });
+
     }
 
     ngOnDestroy() {

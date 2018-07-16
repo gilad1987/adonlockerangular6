@@ -11,6 +11,7 @@ const state: State = {
     studentsSearchResults: undefined,
     transactions: undefined,
     notifications: undefined,
+    locks: undefined,
 };
 
 export class Store {

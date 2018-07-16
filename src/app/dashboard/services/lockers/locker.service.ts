@@ -5,12 +5,12 @@ import {Injectable} from '@angular/core';
 })
 export class LockerService {
 
-    private MECHANIC_TYPE = {
+    public MECHANIC_TYPE = {
         value: 0,
         text: 'מכני'
     };
 
-    private DIGITAL_TYPE = {
+    public DIGITAL_TYPE = {
         value: 1,
         text: 'דיגיטלי'
     };

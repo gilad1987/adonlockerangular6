@@ -84,6 +84,10 @@ export class SchoolsComponent implements OnInit, OnDestroy {
         return school._id === this.schoolId;
     }
 
+    onItemChange(event) {
+
+    }
+
 }
 
 
