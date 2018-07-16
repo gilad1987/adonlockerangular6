@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {DropdownOption, Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
 import {Validators} from '@angular/forms';
 import {BehaviorSubject, Subject, Subscription} from 'rxjs/index';
@@ -12,6 +12,8 @@ import {StudentsService} from '../../services/sudents/students.service';
     styleUrls: ['./add-new-student.component.scss']
 })
 export class AddNewStudentComponent implements OnInit, OnDestroy {
+
+    @Input('showHeader') showHeader: boolean = true;
 
     public loading: boolean = false;
     public subjectSchools = new BehaviorSubject<DropdownOption[]>(undefined);

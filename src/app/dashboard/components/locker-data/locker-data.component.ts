@@ -116,7 +116,7 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                         return this.locksService.search(query);
                     };
                 })(),
-                value: this.locker.student,
+                value: this.locker.lock,
                 // options: this.studentsService.search(''), // this.subjectStudents.asObservable(),
                 validations: []
             });

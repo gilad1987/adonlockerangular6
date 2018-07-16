@@ -41,6 +41,7 @@ import {ColumnComponent} from './components/column/column.component';
 import {LockerDialogComponent} from './components/locker-dialog/locker-dialog.component';
 import {LockerDataComponent} from './components/locker-data/locker-data.component';
 import {SchoolsService} from './services/schools/schools.service';
+import { LocksPageComponent } from './components/lock-page/locks-page.component';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import {SchoolsService} from './services/schools/schools.service';
         ColumnsComponent,
         ColumnComponent,
         LockerDialogComponent,
-        LockerDataComponent
+        LockerDataComponent,
+        LocksPageComponent
     ],
     entryComponents: [
         AddNewStudentComponent,

@@ -8,3 +8,9 @@
 <p>
   <span>lock number</span> {{locker?.lock?.number}}
 </p>
+
+<p *ngIf="!locker.is_active">
+  <i class="material-icons">
+    close
+  </i>
+</p>

@@ -4,7 +4,7 @@
         <mat-spinner></mat-spinner>
     </div>
 
-    <mat-toolbar>הוסף סטודנט חדש</mat-toolbar>
+    <mat-toolbar *ngIf="showHeader">הוסף סטודנט חדש</mat-toolbar>
 
     <mat-dialog-content>
         <app-dynamic-form-builder [fields]="fields"

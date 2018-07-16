@@ -1,8 +1,7 @@
-import {Route, Routes} from '@angular/router';
+import {Routes} from '@angular/router';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {AuthGuard} from '../auth/auth.guard';
 import {LoginComponent} from './components/login/login.component';
-import {SchoolsComponent} from './containers/schools/schools.component';
 import {StudentsPageComponent} from './components/students-page/students-page.component';
 import {DashboardPageComponent} from './components/dashboard-page/dashboard-page.component';
 import {UsersPageComponent} from './components/users-page/users-page.component';
@@ -11,7 +10,7 @@ import {SectionsComponent} from './components/sections/sections.component';
 import {CabinetsComponent} from './components/cabinets/cabinets.component';
 import {TransactionPageComponent} from './components/transaction-page/transaction-page.component';
 import {NotificationsPageComponent} from './components/notifications-page/notifications-page.component';
-import {SchoolsService} from './services/schools/schools.service';
+import {LocksPageComponent} from './components/lock-page/locks-page.component';
 
 export const ROUTES: Routes = [
     {
@@ -53,6 +52,9 @@ export const ROUTES: Routes = [
             {
                 path: 'users',
                 component: UsersPageComponent
+            }, {
+                path: 'locks',
+                component: LocksPageComponent
             },
             {
                 path: 'transactions',

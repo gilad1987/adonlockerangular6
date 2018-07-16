@@ -21,7 +21,7 @@ export interface Field {
     disabled?: boolean;
     type: 'textarea' | 'input' | 'radio' | 'checkboxs' | 'dropdown' | 'autocomplete';
     inputType?: 'text' | 'number' | 'email';
-    value?: string;
+    value?: string | number | boolean;
     placeholder?: string;
     // options?: Array<DropdownOption> | Observable<[DropdownOption]>;
     options?:  Observable<any> | Subscription;

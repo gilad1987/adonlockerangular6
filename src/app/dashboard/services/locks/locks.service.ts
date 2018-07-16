@@ -48,15 +48,15 @@ export class LocksService {
 
     search(q) {
         return new Observable((obs) => {
-            let subc = this.get$().subscribe((locks: [Lock]) => {
+            const sub = this.get$().subscribe((locks: [Lock]) => {
                 if (locks) {
                     const filterValue = q.toLowerCase();
                     const results = (locks ? locks.filter(lock => Object.values(lock).filter((s) => `${s}`.includes(filterValue)).length) : []).splice(0, 50);
 
                     obs.next(results);
                     obs.complete();
-                    if (subc) {
-                        subc.unsubscribe();
+                    if (sub) {
+                        sub.unsubscribe();
                     }
                 }
 
