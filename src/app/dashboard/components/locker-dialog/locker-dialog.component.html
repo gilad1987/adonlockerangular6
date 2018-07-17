@@ -19,7 +19,9 @@
             <br>
 
             <mat-dialog-content>
-            <app-locker-data [locker]="data.locker"></app-locker-data>
+                <app-locker-data [locker]="data.locker"
+                                 (onSubmit)="submit($event)"
+                                 (onCancel)="cancel($event)"></app-locker-data>
             </mat-dialog-content>
         </mat-tab>
         <mat-tab label="הוסף סטודנט">

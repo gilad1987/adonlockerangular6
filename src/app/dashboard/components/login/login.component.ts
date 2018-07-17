@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../../auth/auth.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from '../../../auth/auth.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../../../services/user/user.service';
 
 @Component({
     selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
 
     constructor(private auth: AuthService,
                 private route: ActivatedRoute,
+                private userService: UserService,
                 private router: Router) {
     }
 
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
         return this.form.invalid;
     }
 
-    ngOnInit() {
+    async ngOnInit() {
 
         this.navigateAfterLogin = this.route.snapshot.queryParams['referrer'] || '/dashboard';
 
@@ -43,7 +45,11 @@ export class LoginComponent implements OnInit {
             ])
         });
 
+        const isLoggedUser = await this.auth.isLoggedIn();
 
+        if (isLoggedUser) {
+            this.router.navigateByUrl(this.navigateAfterLogin);
+        }
     }
 
     submit() {

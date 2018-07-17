@@ -1,3 +1,7 @@
 <app-dynamic-form-builder [fields]="fields"
-                          (onSubmit)="onSubmit($event)"
-                          (onCancel)="onCancel($event)"></app-dynamic-form-builder>
+                          (onSubmit)="submit($event)"
+                          (onCancel)="cancel($event)"></app-dynamic-form-builder>
+
+<ng-template #customAutoCompleteOption let-field="field" let-option="option">
+    <div>מספר מנעול: {{option[field.propToDisplay]}} | קוד : {{option.code}}</div>
+</ng-template>

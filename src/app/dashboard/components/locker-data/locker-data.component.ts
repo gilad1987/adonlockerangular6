@@ -1,11 +1,8 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {DropdownOption, Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
-import {Validators} from '@angular/forms';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
 import {LockerService} from '../../services/lockers/locker.service';
-import {BehaviorSubject, of, Subscription} from 'rxjs';
+import {of} from 'rxjs';
 import {StudentsService} from '../../services/sudents/students.service';
-import {map} from 'rxjs/operators';
-import {detectBufferEncoding} from 'tslint/lib/utils';
 import {LocksService} from '../../services/locks/locks.service';
 
 @Component({
@@ -16,6 +13,15 @@ import {LocksService} from '../../services/locks/locks.service';
 export class LockerDataComponent implements OnInit, OnDestroy {
 
     @Input('locker') locker;
+
+    @Output()
+    onSubmit: EventEmitter<any> = new EventEmitter<any>();
+
+    @Output()
+    onCancel: EventEmitter<any> = new EventEmitter<any>();
+
+    @ViewChild('customAutoCompleteOption')
+    private customAutoCompleteOption: TemplateRef<any>;
 
     public fields: Field[];
 
@@ -116,6 +122,7 @@ export class LockerDataComponent implements OnInit, OnDestroy {
                         return this.locksService.search(query);
                     };
                 })(),
+                optionTemplate: this.customAutoCompleteOption,
                 value: this.locker.lock,
                 // options: this.studentsService.search(''), // this.subjectStudents.asObservable(),
                 validations: []
@@ -172,11 +179,11 @@ export class LockerDataComponent implements OnInit, OnDestroy {
         // this.optionsSub.unsubscribe();
     }
 
-    onSubmit(event) {
-        console.log('on submit', event);
+    cancel(event) {
+        this.onCancel.emit(event);
     }
 
-    onCancel(event) {
-        console.log('on cancel', event);
+    submit(event) {
+        this.onSubmit.emit(event);
     }
 }

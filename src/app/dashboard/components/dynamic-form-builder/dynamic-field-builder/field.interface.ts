@@ -1,6 +1,6 @@
 import {ValidationErrors, Validator, ValidatorFn} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs/index';
-import {st} from '@angular/core/src/render3';
+import {TemplateRef} from '@angular/core';
 
 export interface DropdownOption {
     text: string;
@@ -26,4 +26,5 @@ export interface Field {
     // options?: Array<DropdownOption> | Observable<[DropdownOption]>;
     options?:  Observable<any> | Subscription;
     validations?: Array<InputValidator>;
+    optionTemplate?: TemplateRef<any>;
 }

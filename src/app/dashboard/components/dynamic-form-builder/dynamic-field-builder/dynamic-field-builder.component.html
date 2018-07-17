@@ -43,11 +43,13 @@
 
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="field.displayFn">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{option[field.propToDisplay]}}
-                <!--<div>מספר מנעול: {{option[field.propToDisplay]}} | קוד : {{option.code}}</div>-->
+                <ng-container *ngTemplateOutlet="field.optionTemplate ? field.optionTemplate: defaultAutoComplete;context:{ field: field, option: option }" ></ng-container>
             </mat-option>
         </mat-autocomplete>
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
     </ng-container>
 
+    <ng-template #defaultAutoComplete let-field="field" let-option="option">
+        {{option[field.propToDisplay]}}
+    </ng-template>
 </div>
