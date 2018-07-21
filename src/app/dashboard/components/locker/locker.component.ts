@@ -20,6 +20,8 @@ export class LockerComponent implements OnInit, OnChanges {
     @Input('index') index;
     @HostBinding('class.active') hasRegisterClass: boolean;
 
+    public isDigital: boolean;
+
     // #TODO change to  add in ngOnInit
     @HostListener('click', ['$event'])
     onClick(e): void {
@@ -44,6 +46,7 @@ export class LockerComponent implements OnInit, OnChanges {
     ngOnInit() {
         this.locker.number = this.lockerNumber = (100 * (this.index + 1)) + (this.columnIndex + 1);
         this.hasRegisterClass = (this.locker.student !== null);
+        this.isDigital = (Number(this.locker.type) === 1);
     }
 
     ngOnChanges(changes) {

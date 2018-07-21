@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {slideInOutAnimation} from '../../../animations/slide-in-out';
 import {Store} from '../../../services/store/store';
 import {Location} from '@angular/common';
@@ -19,6 +19,8 @@ export class SectionsComponent implements OnInit, OnDestroy {
     private bodyRef = document.querySelector('body');
 
     private paramsSub: Subscription;
+
+    @ViewChild('content') content;
 
     constructor(
         private location: Location,
@@ -41,6 +43,35 @@ export class SectionsComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.bodyRef.classList.remove('prevent-scrolling');
+    }
+
+    onSectionOpen(event) {
+        const element = this.content.nativeElement;
+        // const x = Math.max(-(window.outerWidth - element.offsetWidth), -(window.outerWidth - element.offsetWidth + 300));
+        const x = Math.max(-500, -(window.outerWidth - element.offsetWidth));
+        element.animate(
+            [
+                {transform: 'translate(0px, 0)'},
+                {transform: `translate(${x}px, 0)`}
+            ], {
+                duration: 300,
+                fill: 'forwards',
+            }
+        );
+    }
+
+    onSectionClose(event) {
+        const element = this.content.nativeElement;
+        const x = Math.max(-500, -(window.outerWidth - element.offsetWidth));
+        element.animate(
+            [
+                {transform: `translate(${x}px, 0)`},
+                {transform: 'translate(0px, 0)'},
+            ], {
+                duration: 400,
+                fill: 'forwards',
+            }
+        );
     }
 
 

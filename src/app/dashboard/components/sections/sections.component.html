@@ -1,4 +1,4 @@
-<div class="content" dir="rtl">
+<div class="content" dir="rtl" #content>
     <mat-toolbar>
         <div class="title">
             <a mat-button
@@ -26,5 +26,5 @@
     </div>
 </div>
 
-<router-outlet></router-outlet>
+<router-outlet (activate)="onSectionOpen($event)" (deactivate)="onSectionClose($event)"></router-outlet>
 

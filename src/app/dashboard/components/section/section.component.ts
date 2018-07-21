@@ -28,10 +28,10 @@ export class SectionComponent implements OnInit {
     }
 
     private getLockers(cabinets) {
-        return cabinets.reduce((collection, item) => {
-            return collection.concat((item.columns || []));
-        }, []).reduce((collection, item) => {
-            return collection.concat((item.lockers || []));
+        return cabinets.reduce((columns, item) => {
+            return columns.concat((item.columns || []));
+        }, []).reduce((lockers, item) => {
+            return lockers.concat((item.lockers || []));
         }, []);
     }
 

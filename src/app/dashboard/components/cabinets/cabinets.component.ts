@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {slideInOutAnimation} from '../../../animations/slide-in-out';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Store} from '../../../services/store/store';
@@ -20,6 +20,8 @@ export class CabinetsComponent implements OnInit, OnDestroy {
     public school$: any = this.store.select('school');
     public section: any;
     public school: School;
+
+
 
     constructor(
         private location: Location,
