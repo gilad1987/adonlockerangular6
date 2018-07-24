@@ -19,7 +19,7 @@ export class DynamicFieldBuilderComponent implements OnInit, AfterViewInit {
 
     public loading: boolean = false;
 
-    private filteredOptions: Observable<any[]>;
+    private filteredOptions: Observable<any[any]>;
 
     get isDirty() {
         return this.control.dirty;
@@ -45,7 +45,12 @@ export class DynamicFieldBuilderComponent implements OnInit, AfterViewInit {
                         if (typeof value === 'object' && value !== null && this.control.value === value) {
                             return of([this.control.value]);
                         }
+                        this.loading = true;
                         return this.field.filter(value);
+                    }),
+                    map((response) => {
+                        this.loading = false;
+                        return response;
                     })
                 );
         }

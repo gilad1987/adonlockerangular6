@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {User} from '../../../auth/user.interface';
 import {Store} from '../../../services/store/store';
 import {UserService} from '../../../services/user/user.service';
-import {UsersService} from '../../../services/users/users.service';
+import {UsersService} from '../../services/users/users.service';
 import {pageFadeInOutAnimation} from '../../../animations/page-fade-in-out';
 
 @Component({

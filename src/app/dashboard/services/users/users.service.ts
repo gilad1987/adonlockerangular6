@@ -2,7 +2,7 @@ import {Injectable, isDevMode} from '@angular/core';
 import {catchError, tap} from 'rxjs/internal/operators';
 import {Observable, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Store} from '../store/store';
+import {Store} from '../../../services/store/store';
 
 @Injectable({
     providedIn: 'root'
@@ -11,10 +11,10 @@ export class UsersService {
 
     public users$: Observable<any> = this.store.select('users');
     private BASE_URL = isDevMode() ? 'http://localhost:9091' : 'https://devapi.adonlockerrent.co.il';
-    
+
     constructor(private store: Store,
                 private http: HttpClient) {
-        
+
     }
 
     get$(force = false) {

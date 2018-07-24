@@ -28,6 +28,22 @@ export class ColumnComponent implements OnInit, OnChanges {
         if (changes.column) {
             this.column = Object.assign({}, changes.column.currentValue);
         }
+
+        if (changes.cabinet) {
+            this.cabinet = Object.assign({}, changes.cabinet.currentValue);
+        }
+
+        if (changes.section) {
+            this.section = Object.assign({}, changes.section.currentValue);
+        }
+
+        if (changes.school) {
+            this.school = Object.assign({}, changes.school.currentValue);
+        }
+
+        if (changes.index) {
+            this.index =  changes.index.currentValue;
+        }
     }
 
 }

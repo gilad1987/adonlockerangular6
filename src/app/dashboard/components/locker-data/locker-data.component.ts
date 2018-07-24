@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {Field} from '../dynamic-form-builder/dynamic-field-builder/field.interface';
 import {LockerService} from '../../services/lockers/locker.service';
 import {of} from 'rxjs';
@@ -10,7 +10,7 @@ import {LocksService} from '../../services/locks/locks.service';
     templateUrl: './locker-data.component.html',
     styleUrls: ['./locker-data.component.scss']
 })
-export class LockerDataComponent implements OnInit, OnDestroy {
+export class LockerDataComponent implements OnInit, OnDestroy, OnChanges {
 
     @Input('locker') locker;
 
@@ -31,6 +31,12 @@ export class LockerDataComponent implements OnInit, OnDestroy {
         private locksService: LocksService
     ) {
 
+    }
+
+    ngOnChanges(changes) {
+        if (changes.locker) {
+            this.locker = Object.assign({}, changes.locker.currentValue);
+        }
     }
 
     ngOnInit() {

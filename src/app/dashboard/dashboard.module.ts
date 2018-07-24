@@ -36,12 +36,11 @@ import {NotificationsPageComponent} from './components/notifications-page/notifi
 import {LockersComponent} from './components/lockers/lockers.component';
 import {LockerComponent} from './components/locker/locker.component';
 import {CabinetComponent} from './components/cabinet/cabinet.component';
-import {ColumnsComponent} from './components/columns/columns.component';
 import {ColumnComponent} from './components/column/column.component';
 import {LockerDialogComponent} from './components/locker-dialog/locker-dialog.component';
 import {LockerDataComponent} from './components/locker-data/locker-data.component';
 import {SchoolsService} from './services/schools/schools.service';
-import { LocksPageComponent } from './components/lock-page/locks-page.component';
+import {LocksPageComponent} from './components/lock-page/locks-page.component';
 
 
 @NgModule({
@@ -88,7 +87,6 @@ import { LocksPageComponent } from './components/lock-page/locks-page.component'
         LockersComponent,
         LockerComponent,
         CabinetComponent,
-        ColumnsComponent,
         ColumnComponent,
         LockerDialogComponent,
         LockerDataComponent,

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersService} from '../../../services/users/users.service';
+import {UsersService} from '../../services/users/users.service';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs';
 import {ExampleDataSource} from '../students/students.component';
