@@ -54,6 +54,7 @@ export class SectionsComponent implements OnInit, OnDestroy {
                 {transform: 'translate(0px, 0)'},
                 {transform: `translate(${x}px, 0)`}
             ], {
+                delay: 150,
                 duration: 300,
                 fill: 'forwards',
             }

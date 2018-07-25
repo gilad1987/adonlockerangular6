@@ -5,6 +5,7 @@
                [value]="field.value"
                [type]="field.inputType"
                [formControl]="control" autocomplete="false">
+        <span matSuffix *ngIf="field.icon">{{field.icon}}</span>
         <mat-error *ngFor="let validation of field.validations">
             <span *ngIf="hasError(validation.name)">{{validation.text}}</span>
         </mat-error>

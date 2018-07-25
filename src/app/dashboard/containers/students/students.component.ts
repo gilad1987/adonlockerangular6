@@ -29,6 +29,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
     isRateLimitReached = false;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
+
     @ViewChild(MatSort) sort: MatSort;
 
     /**
@@ -96,7 +97,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     getPage(number) {
-        return this.studentService.get$(true, number, '', null, 1);
+        return this.studentService.get$(true, number, '', null);
     }
 
     initFilter(el: HTMLElement) {

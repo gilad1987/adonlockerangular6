@@ -23,8 +23,9 @@ export interface Field {
     inputType?: 'text' | 'number' | 'email';
     value?: string | number | boolean;
     placeholder?: string;
+    icon?: string;
     // options?: Array<DropdownOption> | Observable<[DropdownOption]>;
-    options?:  Observable<any> | Subscription;
+    options?: Observable<any> | Subscription;
     validations?: Array<InputValidator>;
     optionTemplate?: TemplateRef<any>;
 }

@@ -24,6 +24,12 @@ export class UsersComponent implements OnInit {
         this.dataSource = new UsersDataSource(this.usersService.users$);
     }
 
+    update(prop: string, value: string, item) {
+        // this.studentService.update({
+        //     ...item, [prop]: value
+        // });
+    }
+
 }
 
 export class UsersDataSource extends DataSource<any> {

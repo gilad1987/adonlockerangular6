@@ -5,7 +5,7 @@
   <span>id </span> {{locker._id}}
 </p>
 
-<p>
+<p *ngIf="locker.lock">
   <span>lock number</span> {{locker?.lock?.number}}
 </p>
 

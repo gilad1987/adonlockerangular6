@@ -123,6 +123,7 @@ export class AddNewStudentComponent implements OnInit, OnDestroy {
             name: 'paid',
             placeholder: 'סכום שהתקבל',
             value: '',
+            icon: '₪',
             validations: [
                 {
                     name: 'phoneNumber',

@@ -88,7 +88,7 @@ export class StudentsService {
                     }
                 )
             )
-            // .pipe(catchError((err, caught) => throwError(err)))
+            .pipe(catchError((err, caught) => throwError(err)))
             .subscribe();
     }
 
@@ -106,7 +106,7 @@ export class StudentsService {
                     }
                 )
             )
-            // .pipe(catchError((err, caught) => throwError(err)))
+            .pipe(catchError((err, caught) => throwError(err)))
             .subscribe();
     }
 
@@ -125,8 +125,8 @@ export class StudentsService {
                         return catchError(error);
                     }
                 )
-            );
-        // .pipe(catchError((err, caught) => throwError(err)))
+            )
+            .pipe(catchError((err, caught) => throwError(err)));
         // .subscribe();
     }
 

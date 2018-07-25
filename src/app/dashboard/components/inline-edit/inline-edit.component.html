@@ -24,8 +24,8 @@
                 </mat-form-field>
 
                 <div class="actions">
-                    <button mat-button type="submit" color="primary">שמור</button>
-                    <button mat-button type="button" color="primary" (click)="onCancel()">בטל</button>
+                    <button mat-button type="button" (click)="onCancel()" >בטל</button>
+                    <button mat-raised-button type="submit" color="primary" [disabled]="!form.touched || form.invalid">שמור</button>
                 </div>
             </form>
         </div>
