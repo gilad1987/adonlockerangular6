@@ -77,19 +77,23 @@ app-root {
 [tooltip] {
   &:after {
     position: absolute;
-    background: #00000078;
+    background: #000000a8;
     padding: 5px;
     content: attr(tooltip);
     bottom: -90%;
     left: 50%;
+    -webkit-transform: translateX(-50%) scale(0);
     transform: translateX(-50%) scale(0);
     font-size: 12px;
     line-height: 12px;
     color: white;
     z-index: 1000;
     border-radius: 3px;
+    transition: -webkit-transform 200ms ease-in-out 50ms;
     transition: transform 200ms ease-in-out 50ms;
     pointer-events: none;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    direction: rtl;
   }
 
   &:hover::after{

@@ -1,10 +1,21 @@
 <div class="app-max-width" dir="rtl">
     <mat-toolbar>מידע זמן אמת</mat-toolbar>
 
-    <div class="cards">
-        <mat-card>header</mat-card>
-        <mat-card>main</mat-card>
-        <mat-card>sidebar</mat-card>
-        <mat-card>footer</mat-card>
-    </div>
+    <!--<div class="cards">-->
+    <!--<mat-card>header</mat-card>-->
+    <!--<mat-card>main</mat-card>-->
+    <!--<mat-card>sidebar</mat-card>-->
+
+    <!--</div>-->
+
+    <mat-card>
+        <mat-card-title>רכישות מהאתר</mat-card-title>
+        <mat-card-subtitle>
+            <div><span>סה״כ</span>: {{sumTransactions}} רכישות </div>
+            <div><span>סה״כ</span>: ₪{{sumTransactionsInNis}}</div>
+        </mat-card-subtitle>
+        <canvas id="chart1"></canvas>
+    </mat-card>
+
+
 </div>

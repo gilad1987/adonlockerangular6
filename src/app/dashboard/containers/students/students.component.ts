@@ -13,13 +13,21 @@ import {flatMap} from 'tslint/lib/utils';
 import {Store} from '../../../services/store/store';
 import {Overlay} from '@angular/cdk/overlay';
 import {ConfirmDialogComponent} from '../../components/confirm-dialog/confirm-dialog.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 const Fuse = require('fuse.js');
 
 @Component({
     selector: 'app-students',
     templateUrl: './students.component.html',
-    styleUrls: ['./students.component.scss']
+    styleUrls: ['./students.component.scss'],
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+            state('expanded', style({height: '*'})),
+            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+    ],
 })
 export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -27,6 +35,7 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     isLoadingResults = true;
     isRateLimitReached = false;
+    expandedElement: any;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
