@@ -10,7 +10,7 @@ import Chart from 'chart.js';
 export class DashboardComponent implements OnInit, AfterViewInit {
 
     public sumTransactions: number = 0;
-    public sumTransactionsInNis: string = '0';
+    public sumTransactionsInNis: number = 0;
 
     constructor(
         private userService: UserService) {
@@ -770,9 +770,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             var chart = new Chart(ctx, cfg);
             this.sumTransactions = cfg.data.labels.reduce((sum, item) => sum + item.y, 0);
             this.sumTransactionsInNis = cfg.data.labels
-                .reduce((sum, item) => sum + (item.paid / 100), 0)
-                .toFixed(2)
-                .replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                .reduce((sum, item) => sum + (item.paid / 100), 0);
+
 
 
             const canvas  = <HTMLCanvasElement>document.getElementById('chart2');

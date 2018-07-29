@@ -12,7 +12,7 @@
         <mat-card-title>רכישות מהאתר</mat-card-title>
         <mat-card-subtitle>
             <div><span>סה״כ</span>: {{sumTransactions}} רכישות</div>
-            <div><span>סה״כ</span>: ₪{{sumTransactionsInNis}}</div>
+            <div><span>סה״כ</span>: {{sumTransactionsInNis | shekel}}</div>
         </mat-card-subtitle>
         <canvas id="chart1"></canvas>
 
