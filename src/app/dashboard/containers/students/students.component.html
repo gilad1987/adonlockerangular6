@@ -114,8 +114,10 @@
                 <td mat-cell *matCellDef="let row" class='title delete-button'>
 
                     <button>
-                        <i class="material-icons" *ngIf="expandedElement != row" (click)="expandedElement = row" tooltip="הצג פרופיל">unfold_more</i>
-                        <i class="material-icons" *ngIf="expandedElement == row" (click)="expandedElement = null" tooltip="הסתר פרופיל">unfold_less</i>
+                        <i class="material-icons" *ngIf="expandedElement != row" (click)="expandedElement = row"
+                           tooltip="הצג פרופיל">unfold_more</i>
+                        <i class="material-icons" *ngIf="expandedElement == row" (click)="expandedElement = null"
+                           tooltip="הסתר פרופיל">unfold_less</i>
                     </button>
                     <button (click)="openConfirmDeleteDialog(row)"><i class="material-icons" tooltip="רוצה למחוק ?">delete</i></button>
 
@@ -158,22 +160,21 @@
                       </div>
 
                       <div>
-                          <strong>אימייל:</strong>
-                          <span>{{row.email}}</span>
-                      </div>
-
-                      <div>
                           <strong>טלפון:</strong>
                           <span>{{row.phone_number}}</span>
                       </div>
 
-
+                      <div>
+                          <strong>אימייל:</strong>
+                          <span>{{row.email}}</span>
+                      </div>
                   </div>
                 </td>
               </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === row"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"
+                [class.example-expanded-row]="expandedElement === row"></tr>
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
         </table>
     </div>

@@ -22,7 +22,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
 
         setTimeout(() => {
-            var ctx = document.getElementById('chart1').getContext('2d');
+            const canvas1  = <HTMLCanvasElement>document.getElementById('chart1');
+            var ctx = canvas1.getContext('2d');
             ctx.canvas.width = 1000;
             ctx.canvas.height = 300;
             var cfg = {
@@ -773,6 +774,28 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 .toFixed(2)
                 .replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
+
+            const canvas  = <HTMLCanvasElement>document.getElementById('chart2');
+            var ctx2 = canvas.getContext('2d');
+            const data = {
+                datasets: [{
+                    // all 6868
+                    data: [295, 4520, 2067],
+                    'backgroundColor': ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)']
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'תקול',
+                    'בשימוש',
+                    'פנוי',
+                ]
+            };
+            var myDoughnutChart = new Chart(ctx2, {
+                type: 'doughnut',
+                data: data,
+                options: {}
+            });
         }, 0);
 
     }
