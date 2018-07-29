@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         {
                             'y': 1,
                             'paid': 16500,
-                            'x': '2017-07-27'
+                            'x': new Date('2017-07-27')
                         },
                         {
                             'y': 17,
@@ -387,17 +387,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             {
                                 'y': 1,
                                 'paid': 16500,
-                                'x': '2017-07-27'
+                                'x': new Date('2017-07-27')
                             },
                             {
                                 'y': 17,
                                 'paid': 288000,
-                                'x': '2017-07-28'
+                                'x': new Date('2017-07-28')
                             },
                             {
                                 'y': 67,
                                 'paid': 1102500,
-                                'x': '2017-07-29'
+                                'x': new Date('2017-07-29')
                             },
                             {
                                 'y': 19,
@@ -749,7 +749,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             type: 'time',
                             time: {
                                 displayFormats: {
-                                    quarter: 'YYYY-MM-DD'
+                                    quarter: 'YYYY'
                                 }
                             },
                             distribution: 'series',
