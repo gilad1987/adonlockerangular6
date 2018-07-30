@@ -117,7 +117,6 @@ export class StudentsService {
                     (newStudent: Student) => {
                         const students = this.store.value.students.slice();
                         students.unshift(newStudent);
-                        debugger;
                         this.store.set('students', students);
                     },
                     (error) => {

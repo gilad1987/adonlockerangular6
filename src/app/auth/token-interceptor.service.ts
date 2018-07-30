@@ -27,17 +27,15 @@ export class TokenInterceptorService implements HttpInterceptor {
 
         return next.handle(request)
             .pipe(tap((event: HttpEvent<any>) => {
-                console.log(event);
                     if (event instanceof HttpResponse && event.body && event.body.token) {
                         localStorage.setItem('token', event.body.token);
                     }
                     return event;
 
                 }, (err: any) => {
-                console.log(err);
                     if (err instanceof HttpErrorResponse) {
                         if (err.status === 401) {
-                            const referrer = window.location.href.replace(window.location.origin, '');
+                            const referrer = {} || window.location.href.replace(window.location.origin, '');
                             this.router.navigate(['login'], {queryParams: {referrer: referrer}});
                         }
                     }

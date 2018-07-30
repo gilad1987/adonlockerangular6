@@ -17,7 +17,6 @@ export class LockerDialogComponent implements OnInit {
     }
 
     submit(event) {
-        debugger;
     }
 
     cancel(event) {
