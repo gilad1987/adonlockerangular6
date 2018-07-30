@@ -1,6 +1,6 @@
 import {State} from './state';
 import {BehaviorSubject, Observable} from 'rxjs/index';
-import {distinctUntilChanged, map} from 'rxjs/internal/operators';
+import {distinctUntilChanged, pluck} from 'rxjs/internal/operators';
 
 const state: State = {
     user: undefined,
@@ -24,7 +24,7 @@ export class Store {
     }
 
     select<T>(name: string): Observable<T> {
-        return this.store.pipe(map(s => s[name]));
+        return this.store.pipe(pluck(name));
     }
 
     set(name: string, state: any) {
